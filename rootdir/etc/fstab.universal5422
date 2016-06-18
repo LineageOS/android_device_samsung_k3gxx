@@ -14,6 +14,6 @@
 /dev/block/mmcblk0p21    /data               ext4      noatime,nosuid,nodev,discard,noauto_da_alloc,journal_async_commit,errors=panic    wait,check,encryptable=footer
 
 # VOLD
-/devices/12220000.dwmmc2/mmc_host/mmc2*            auto             auto    defaults     voldmanaged=sdcard1:auto,noemulatedsd
+/devices/12220000.dwmmc2/mmc_host/mmc*            auto             auto    defaults     voldmanaged=sdcard:auto,encryptable=userdata
 /devices/usb.1/12000000.dwc3/xhci-hcd.4.auto/usb*       auto                    auto    defaults     voldmanaged=usb:auto 
 /dev/block/mmcblk0p20    /preload    ext4    defaults    voldmanaged=preload:auto
