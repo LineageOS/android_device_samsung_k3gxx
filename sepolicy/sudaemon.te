@@ -1,0 +1,2 @@
+# For SpenCommand
+allow sudaemon input_method_service:service_manager find;

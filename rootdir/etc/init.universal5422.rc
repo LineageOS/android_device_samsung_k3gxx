@@ -40,6 +40,8 @@ on post-fs-data
     setprop vold.post_fs_data_done 1
 
     # Permissions Camera
+	chown system radio /sys/class/camera/rear/isp_core
+	chown system radio /sys/class/camera/rear/rear_calcheck
     chown system radio /sys/class/camera/rear/rear_camfw
     chown system radio /sys/class/camera/rear/rear_camfw_full
     chown system radio /sys/class/camera/rear/rear_camtype
@@ -88,6 +90,9 @@ on boot
     chown radio system /sys/class/secgpio_check/secgpio_check_all/gpioinit_check
     chown radio system /sys/class/secgpio_check/secgpio_check_all/gpiosleep_check
     chown radio system /sys/class/secgpio_check/secgpio_check_all/checked_sleepGPIO
+	
+# create camera directory
+    mkdir /data/camera 0700 media media
 
     # GPS
     chown root system /dev/ttySAC1

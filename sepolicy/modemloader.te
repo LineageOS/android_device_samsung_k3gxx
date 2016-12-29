@@ -2,7 +2,12 @@
 #
 type modemloader, domain;
 type modemloader_exec, exec_type, file_type;
+type modemloader_prop, property_type;
 
 init_daemon_domain(modemloader)
 
 allow modemloader proc:file r_file_perms;
+
+set_prop(modemloader, modemloader_prop)
+
+allow modemloader system_prop:property_service set;

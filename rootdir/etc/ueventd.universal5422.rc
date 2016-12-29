@@ -110,7 +110,7 @@
 
 # MobiCore
 /dev/mobicore             0700   system     system
-/dev/mobicore-user        0666   radio     system
+/dev/mobicore-user        0666   radio      system
 
 # rfkill
 /dev/rfkill               0660   root       wifi
@@ -134,9 +134,9 @@
 /sys/devices/virtual/input/input*	enable		0660	system	radio
 
 # fingerprint sensor
-/dev/vfsspi        0660   system     system
+/dev/vfsspi               0660   system     system
 
-# USB Accessories (printer and so on) - duki994
+# USB Accessories (printer and so on)
 /dev/usb/lp*              0660   system     usb
 
 # Sensorhub IIO

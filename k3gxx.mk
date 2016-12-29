@@ -9,6 +9,41 @@ DEVICE_PACKAGE_OVERLAYS += device/samsung/k3gxx/overlay
 
 LOCAL_PATH := device/samsung/k3gxx
 
+# Boot animation
+TARGET_BOOTANIMATION_HALF_RES := true
+TARGET_SCREEN_HEIGHT := 1920
+TARGET_SCREEN_WIDTH := 1080
+
+$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
+ 
+$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
+
+# Shims/Samsung symbols
+PRODUCT_PACKAGES += \
+    libsamsung_symbols
+
+# MobiCore setup
+PRODUCT_PACKAGES += \
+    libMcClient \
+    libMcRegistry \
+    libPaApi \
+    libgdmcprov
+
+# Network tools
+PRODUCT_PACKAGES += \
+    libpcap \
+    tcpdump
+	
+# OMX
+PRODUCT_PACKAGES += \
+    libcsc \
+    libOMX.Exynos.WMV.Decoder \
+    libOMX.Exynos.MPEG2.Decoder
+	
+# IO Scheduler
+PRODUCT_PROPERTY_OVERRIDES += \
+sys.io.scheduler=bfq
+
 ###########################################################
 ### RAMDISK
 ###########################################################
@@ -32,6 +67,8 @@ init.goldfish.sh
 ###########################################################
 
 PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.consumerir.xml:system/etc/permissions/android.hardware.consumerir.xml \
+    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
@@ -47,10 +84,13 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
     frameworks/native/data/etc/android.hardware.sensor.heartrate.xml:system/etc/permissions/android.hardware.sensor.heartrate.xml \
+	frameworks/native/data/etc/android.hardware.sensor.heartrate.ecg.xml:system/etc/permissions/android.hardware.sensor.heartrate.ecg.xml \
+    frameworks/native/data/etc/android.hardware.sensor.heartrate.xml:system/etc/permissions/android.hardware.sensor.heartrate.xml \
     frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml \
+	frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
     frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
@@ -61,8 +101,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.xml:system/etc/permissions/android.software.sip.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
-    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
-
+    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+    frameworks/base/nfc-extras/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml
+	
 ###########################################################
 ### GRAPHICS
 ###########################################################
@@ -144,10 +185,8 @@ PRODUCT_PACKAGES += \
 	libnfc_nci_jni \
 	libnfc-nci \
 	NfcNci \
-	Tag
-
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.nfc.sec_hal=true
+	Tag \
+        nfc_nci.universal5422
 
 ###########################################################
 ### AUDIO
@@ -173,6 +212,8 @@ PRODUCT_COPY_FILES += \
 	frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
 	$(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
+	$(LOCAL_PATH)/configs/media/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
+	$(LOCAL_PATH)/configs/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
 	$(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml
 
 ###########################################################
@@ -195,7 +236,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
-	$(LOCAL_PATH)/configs/gps/SuplRootCert:system/etc/SuplRootCert \
+	$(LOCAL_PATH)/configs/gps/gps.cer:system/bin/gps.cer \
 	$(LOCAL_PATH)/configs/gps/gps.xml:system/etc/gps.xml
 
 PRODUCT_PACKAGES += \
@@ -209,7 +250,9 @@ PRODUCT_PACKAGES += \
     fingerprintd \
     fingerprint.universal5422 \
     ValidityService
-
+	
+PRODUCT_PROPERTY_OVERRIDES += \
+     fingerprint_enabled=1
 ###########################################################
 ### CAMERA
 ###########################################################
@@ -218,6 +261,7 @@ PRODUCT_PACKAGES += \
 	Snap
 
 PRODUCT_PACKAGES += \
+	camera.universal5422 \
 	libhwjpeg \
 	libsamsung_symbols \
 	libdmitry

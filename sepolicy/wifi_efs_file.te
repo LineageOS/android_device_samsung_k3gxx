@@ -1,0 +1,2 @@
+# wifi, .mac.info, .mac.cob
+allow wifi_efs_file labeledfs:filesystem associate;

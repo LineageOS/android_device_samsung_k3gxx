@@ -89,6 +89,7 @@ on post-fs-data
     # SA, System SW, SAMSUNG 
     # create log directory
     mkdir /data/log 0775 system log
+    chmod 0775 /data/log
     chown system log /data/log
     mkdir /data/anr 0775 system system
     chown system system /data/anr

@@ -120,6 +120,8 @@ enum {
     GRALLOC_USAGE_HW_CAMERA_ZSL         = 0x00060000,
     /* mask for the camera access values */
     GRALLOC_USAGE_HW_CAMERA_MASK        = 0x00060000,
+    /* buffer will be used by the HW IPs when sysmmu is off */
+    GRALLOC_USAGE_PHYSICALLY_LINEAR     = 0x01000000,
     /* mask for the software usage bit-mask */
     GRALLOC_USAGE_HW_MASK               = 0x00079F00,
 
@@ -144,6 +146,13 @@ enum {
     GRALLOC_USAGE_PRIVATE_3             = 0x80000000,
     GRALLOC_USAGE_PRIVATE_MASK          = 0xF0000000,
 
+    GRALLOC_USAGE_INTERNAL_ONLY         = 0x10000000,
+    GRALLOC_USAGE_EXTERNAL_FLEXIBLE     = 0x20000000,
+    GRALLOC_USAGE_EXTERNAL_BLOCK        = 0x40000000,
+    GRALLOC_USAGE_EXTERNAL_ONLY         = 0x80000000,
+    GRALLOC_USAGE_EXTERNAL_VIRTUALFB    = 0x00400000,
+    GRALLOC_USAGE_PRIVATE_NONSECURE     = 0x02000000,
+
 #ifdef EXYNOS4_ENHANCEMENTS
     /* SAMSUNG */
     GRALLOC_USAGE_PRIVATE_NONECACHE     = 0x00800000,
@@ -152,23 +161,12 @@ enum {
     GRALLOC_USAGE_HW_ION                = 0x02000000,
     GRALLOC_USAGE_YUV_ADDR              = 0x04000000,
     GRALLOC_USAGE_CAMERA                = 0x08000000,
+
     /* SEC Private usage , for Overlay path at HWC */
     GRALLOC_USAGE_HWC_HWOVERLAY         = 0x20000000,
 #endif
 
-#ifdef EXYNOS5_ENHANCEMENTS
-    /* buffer will be used by the HW IPs when sysmmu is off */
-    GRALLOC_USAGE_PHYSICALLY_LINEAR     = 0x01000000,
-
     GRALLOC_USAGE_GPU_BUFFER            = 0x00800000,
-    GRALLOC_USAGE_PRIVATE_NONSECURE     = 0x02000000,
-    GRALLOC_USAGE_INTERNAL_ONLY         = 0x10000000,
-    GRALLOC_USAGE_EXTERNAL_FLEXIBLE     = 0x20000000,
-    GRALLOC_USAGE_EXTERNAL_BLOCK        = 0x40000000,
-    GRALLOC_USAGE_EXTERNAL_ONLY         = 0x80000000,
-    GRALLOC_USAGE_EXTERNAL_VIRTUALFB    = 0x00400000,
-
-#endif
 };
 
 /*****************************************************************************/

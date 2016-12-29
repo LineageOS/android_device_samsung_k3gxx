@@ -108,16 +108,15 @@ vendor/lib/liblvverx_3.21.13.so
 vendor/lib/liblvvetx_3.21.13.so
 
 ### Camera
-#lib/hw/camera.universal5422.so
-#lib/libsecnativefeature.so
-#lib/libexynoscamera.so
-#lib/libexynosv4l2.so
-#lib/libhwjpeg.so
-#lib/libvdis.so
+lib/hw/camera.universal5422.so
+lib/libsecnativefeature.so
+lib/libexynoscamera.so
+lib/libexynosv4l2.so
+lib/libhwjpeg.so
+lib/libvdis.so
 
 ### BIN
 bin/sensorhubservice
-bin/vcsFPService
 
 ### GPS
 bin/gpsd
@@ -131,7 +130,7 @@ vendor/lib/egl/libGLES_mali.so
 vendor/lib/libRSDriverArm.so
 
 ### FingerPrint
-
+bin/vcsFPService
 lib/libfpasmtztransport.so
 lib/libvalAuth.so
 lib/libvcsfp.so

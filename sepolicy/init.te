@@ -1,27 +1,30 @@
-domain_trans(init, rootfs, cpboot-daemon)
-domain_trans(init, cpboot-daemon_exec, cpboot-daemon)
-domain_trans(init, gpsd_exec, gpsd)
+allow init drmserver_service:service_manager add;
+
+# read/chown mDNIE symlinks
+allow init sysfs_mdnie_writable:lnk_file { read setattr };
 
 # /dev/block/mmcblk0p[0-9]
 allow init emmcblk_device:blk_file rw_file_perms;
 
-allow init block_device:lnk_file { setattr };
-allow init tmpfs:lnk_file create_file_perms;
-
 # /data
 allow init sdcardd_exec:file r_file_perms;
 
-#============= init ==============
-allow init device:fifo_file create;
-allow init input_device:chr_file ioctl;
-allow init servicemanager:binder call;
-allow init servicemanager:binder transfer;
-allow init shell_exec:file execute_no_trans;
-allow init system_file:file execute_no_trans;
-allow init tee_device:file { read getattr open execute execute_no_trans };
-allow init default_android_service:service_manager add;
-allow init debugfs:dir mounton;
+# panel
+allow init sysfs_writable:lnk_file read;
+
+# sdcard
+allow init tmpfs:lnk_file create;
 
 # LD_SHIM_LIBS
 allow init gpsd:process { noatsecure };
 allow init mediaserver:process { noatsecure };
+
+allow init debugfs:dir mounton;
+allow init socket_device:sock_file { write create setattr };
+allow init wifi_efs_file:file getattr;
+
+allow init serial_device:chr_file { write ioctl };
+
+# .mac.info .mac.cob
+allow init wifi_efs_file:dir relabelto;
+allow init wifi_efs_file:file relabelto;

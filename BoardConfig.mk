@@ -1,3 +1,19 @@
+#
+# Copyright (C) 2013 The CyanogenMod Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 LOCAL_PATH := device/samsung/k3gxx
 
 # Platform
@@ -6,6 +22,8 @@ TARGET_BOARD_PLATFORM := exynos5
 TARGET_SLSI_VARIANT := cm
 TARGET_SOC := exynos5422
 
+USE_CLANG_PLATFORM_BUILD := true
+
 # Architecture
 TARGET_BUILD_VARIANT := userdebug
 TARGET_ARCH := arm
@@ -13,7 +31,7 @@ TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
-TARGET_CPU_VARIANT := cortex-a7
+TARGET_CPU_VARIANT := cortex-a15
 # big.LITTLE load balancing
 ENABLE_CPUSETS := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
@@ -32,33 +50,16 @@ TARGET_BOOTLOADER_BOARD_NAME := universal5422
 TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
-### CAMERA
-# frameworks/av/services/camera/libcameraservice
+# Camera
+BOARD_CAMERA_SNUMINTS := 34
 BOARD_NEEDS_MEMORYHEAPION := true
-# hardware/samsung_slsi-cm/exynos5/libgscaler
+COMMON_GLOBAL_CFLAGS += -DCAMERA_SNUMINTS=$(BOARD_CAMERA_SNUMINTS)
+COMMON_GLOBAL_CFLAGS += -DSAMSUNG_DVFS
+# scaler
 BOARD_USES_SCALER := true
-BOARD_USES_DT := true
-BOARD_USES_DT_SHORTNAME := true
-# frameworks/av/camera, camera blob support
-COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
-# frameworks/av/media/libstagefright, for libwvm.so
-COMMON_GLOBAL_CFLAGS += -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
-# device specific gralloc header
-COMMON_GLOBAL_CFLAGS += -DEXYNOS5_ENHANCEMENTS
-# frameworks/av/media/libstagefright
-COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED
-BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
-USE_CAMERA_STUB := true
 
-COMMON_GLOBAL_CFLAGS += -DUSE_ANB_REF
-COMMON_GLOBAL_CFLAGS += -DUSE_ANB
-#libcamera
-COMMON_GLOBAL_CFLAGS += -DSENSOR_NAME_GET_FROM_FILE
-
-#CAMERA_BUILD_ON := true
-#BOARD_USES_CAMERAWRAPPER := true
-
-##################################################
+COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED # use format from fw/native
+COMMON_GLOBAL_CFLAGS += -DWIDEVINE_PLUGIN_PRE_NOTIFY_ERROR
 
 #Enable ValidityService for fingerprint
 BOARD_USES_VALIDITY := true
@@ -76,20 +77,14 @@ CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/k3gxx/mkdtbhbootimg.mk
 BOARD_CUSTOM_MKBOOTIMG := mkdtbhbootimg
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --tags_offset 0x10000100
-BOARD_MKBOOTIMG_ARGS += --dt_dir $(OUT)/obj/KERNEL_OBJ/arch/arm/boot/dts/
-#BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --dt device/samsung/k3gxx/recovery/dt.img --tags_offset 0x10000100
-#BOARD_KERNEL_SEPARATED_DT := true
-#TARGET_PREBUILT_KERNEL := device/samsung/k3gxx/recovery/zImage
 TARGET_KERNEL_SOURCE := kernel/samsung/exynos5422
-TARGET_KERNEL_CONFIG := exynos5422-k3g_00_defconfig
-#BOARD_KERNEL_CMDLINE := console=ram vmalloc=256m androidboot.console=null user_debug=31
-#BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive user_debug=31
+TARGET_KERNEL_CONFIG := exynos5422-k3g_01_defconfig
+BOARD_MKBOOTIMG_ARGS += --dt device/samsung/k3gxx/dt.img
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 
-# Battery
+# Battery / charging mode
 BOARD_CHARGER_ENABLE_SUSPEND := true
-# Charger/Healthd
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 BOARD_BATTERY_DEVICE_NAME := battery
 
@@ -113,7 +108,7 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # PowerHAL
-TARGET_POWERHAL_VARIANT := k3gxx
+TARGET_POWERHAL_VARIANT := Samsung
 
 # Radio
 BOARD_PROVIDES_LIBRIL := true
@@ -148,14 +143,17 @@ TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/fstab.universal5422
 endif
 
 # SELinux
-#BOARD_SEPOLICY_DIRS += \
-#    device/samsung/k3gxx/sepolicy
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/k3gxx/sepolicy
 
 # Graphics
 USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := device/samsung/k3gxx/configs/egl/egl.cfg
 DEFAULT_FB_NUM := 0
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
+TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
+
 #BOARD_EGL_NEEDS_HANDLE_VALUE := true
 ENABLE_WEBGL := true
 # Samsung LSI OpenMAX
@@ -189,11 +187,12 @@ BOARD_USE_NON_CACHED_GRAPHICBUFFER := true
 BOARD_USE_GSC_RGB_ENCODER := true
 BOARD_USE_CSC_HW := true
 BOARD_USE_QOS_CTRL := false
-#BOARD_USE_S3D_SUPPORT := true
+BOARD_USE_S3D_SUPPORT := true
 BOARD_USE_VP8ENC_SUPPORT := true
 
 # Scaler
 BOARD_USES_SCALER := true
+BOARD_USES_GSC_VIDEO := true
 
 # WFD
 #BOARD_USES_WFD_SERVICE := true
