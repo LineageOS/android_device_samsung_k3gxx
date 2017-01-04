@@ -5,7 +5,7 @@ $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
 $(call inherit-product-if-exists, vendor/samsung/k3gxx/k3gxx-vendor.mk)
 
-DEVICE_PACKAGE_OVERLAYS += device/samsung/k3gxx/overlay
+# DEVICE_PACKAGE_OVERLAYS += device/samsung/k3gxx/overlay
 
 LOCAL_PATH := device/samsung/k3gxx
 
