@@ -182,6 +182,7 @@ app/mcRegistry/ffffffffd0000000000000000000000e.tlbin
 app/mcRegistry/ffffffffd00000000000000000000004.tlbin
 app/mcRegistry/ffffffffd00000000000000000000016.tlbin
 bin/scranton_RD
+bin/mcDriverDaemon
 
 ### IR
 lib/hw/consumerir.default.so
@@ -191,34 +192,11 @@ vendor/firmware/libpn547_fw.so
 lib/hw/nfc_nci.universal5422.so
 etc/plmn_se13.bin
 
-
-# no arranca
-
-
+# sensors
 lib/libhr.so
 lib/libsensorhub.so
 lib/libsensorhubservice.so
-#bin/cs
-bin/mcDriverDaemon
 lib/libgnustl_shared.so
-
-###no
-#lib/libstlport.so
-#lib/libstlport_shared.so
-#bin/jackservice
-#·bin/lpm
-#lib/hw/power.exynos5.so
-#·bin/drsd
-#·bin/exyrngd
-#bin/gps.cer
-#bin/gpsd
-#·bin/npsmobex
-#lib/libbt-aptx-4.0.3.so
-#lib/libbt-codec_aptx.so
-#lib/libbt-iopdb.so
-#lib/libbt-iopdb_mod.so
-#lib/libbt-vendor.so
-#·usr/share/alsa/alsa.conf
 
 #TEST
 bin/mfgloader
