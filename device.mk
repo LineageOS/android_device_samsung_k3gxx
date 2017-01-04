@@ -200,9 +200,6 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/gps/SuplRootCert:system/etc/SuplRootCert \
 	$(LOCAL_PATH)/configs/gps/gps.xml:system/etc/gps.xml
 
-PRODUCT_PACKAGES += \
-    libdmitry
-
 ###########################################################
 ### FINGERPRINT
 ###########################################################
@@ -220,9 +217,7 @@ PRODUCT_PACKAGES += \
 	Snap
 
 PRODUCT_PACKAGES += \
-	libhwjpeg \
-	libsamsung_symbols \
-	libdmitry
+	libhwjpeg
 
 # This fixes switching between front/back camera sensors
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -267,6 +262,16 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	SamsungServiceMode \
 	Torch
+
+###########################################################
+### Samsung Shimlibs
+###########################################################
+
+PRODUCT_PACKAGES += \
+        libsamsung_symbols \
+	libshim_gpsd \
+        libshim_wvm \
+	libdmitry
 
 ###########################################################
 ### CONSUMERIR
