@@ -23,6 +23,13 @@ ro.ril.gprsclass=10
 ro.ril.telephony.mqanelements=5
 
 #
+# Audio
+#
+
+af.fast_track_multiplier=1
+audio_hal.force_voice_config=wide
+
+#
 # HWC
 #
 debug.hwc.winupdate=1
