@@ -14,18 +14,17 @@ LOCAL_PATH := device/samsung/k3gxx
 ###########################################################
 
 PRODUCT_PACKAGES += \
-fstab.universal5422 \
-init.recovery.universal5422.rc \
-init.samsung.rc \
-init.universal5422.rc \
-init.universal5422.usb.rc \
-init.universal5422.wifi.rc \
-ueventd.universal5422.rc \
-init.rc \
-recovery.fstab \
-adb_keys \
-init.sec.boot.sh \
-init.goldfish.sh
+	fstab.universal5422 \
+	init.recovery.universal5422.rc \
+	init.samsung.rc \
+	init.universal5422.rc \
+	init.universal5422.usb.rc \
+	init.universal5422.wifi.rc \
+	ueventd.universal5422.rc \
+	init.rc \
+	recovery.fstab \
+	adb_keys \
+	init.goldfish.sh
 
 ###########################################################
 ### PERMISSONS
@@ -73,13 +72,7 @@ PRODUCT_COPY_FILES += \
 # if the xhdpi doesn't exist.
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
-PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.opengles.version=196608 \
-    ro.bq.gpu_to_cpu_unsupported=1 \
-    media.stagefright.legacyencoder=true \
-    media.stagefright.less-secure=true 
+PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi 
 
 PRODUCT_PACKAGES += \
 	libion_exynos \
@@ -90,12 +83,9 @@ PRODUCT_PACKAGES += \
 ### RADIO
 ###########################################################
 
-# cpboot-daemon for modem
-#PRODUCT_COPY_FILES += \
-#   $(LOCAL_PATH)/ril/sbin/cbd:root/sbin/cbd
 PRODUCT_PACKAGES += \
 	modemloader \
-    cbd \
+	cbd \
     
 ###########################################################
 ### WIFI
@@ -105,9 +95,6 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf \
 	$(LOCAL_PATH)/configs/wifi/wpa_supplicant_overlay.conf:system/etc/wifi/wpa_supplicant_overlay.conf
 
-PRODUCT_PROPERTY_OVERRIDES += \
-	wifi.interface=wlan0
-
 PRODUCT_PACKAGES += \
 	libnetcmdiface \
 	macloader \
@@ -116,11 +103,9 @@ PRODUCT_PACKAGES += \
 	libwpa_client \
 	wpa_supplicant
 
-# hardware/broadcom/wlan/bcmdhd/config/Android.mk
 PRODUCT_PACKAGES += \
 	dhcpcd.conf
 
-# external/wpa_supplicant_8/wpa_supplicant/wpa_supplicant_conf.mk
 PRODUCT_PACKAGES += \
 	wpa_supplicant.conf
 
@@ -147,9 +132,6 @@ PRODUCT_PACKAGES += \
 	libnfc-nci \
 	NfcNci \
 	Tag
-
-PRODUCT_PROPERTY_OVERRIDES += \
-	ro.nfc.sec_hal=true
 
 ###########################################################
 ### AUDIO
@@ -219,10 +201,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	libhwjpeg
 
-# This fixes switching between front/back camera sensors
-PRODUCT_PROPERTY_OVERRIDES += \
-    camera2.portability.force_api=1
-
 ###########################################################
 ### TOUCHSCREEN
 ###########################################################
@@ -266,74 +244,22 @@ PRODUCT_PACKAGES += \
 ###########################################################
 ### Samsung Shimlibs
 ###########################################################
-
 PRODUCT_PACKAGES += \
-        libsamsung_symbols \
+	libsamsung_symbols \
 	libshim_gpsd \
-        libshim_wvm \
+	libshim_wvm \
 	libdmitry
 
 ###########################################################
 ### CONSUMERIR
 ###########################################################
+
 PRODUCT_PACKAGES += \
     consumerir.universal5422
 
-###########################################################
-### DALVIK/ART
-###########################################################
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapgrowthlimit=256m \
-    dalvik.vm.heapsize=512m \
-    dalvik.vm.heaptargetutilization=0.75 \
-    dalvik.vm.heapminfree=2m \
-    dalvik.vm.heapmaxfree=8m
-
-###########################################################
-### HWUI
-###########################################################
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    	ro.hwui.texture_cache_size=50 \
-	ro.hwui.layer_cache_size=34 \
-	ro.hwui.path_cache_size=10 \
-	ro.hwui.shape_cache_size=4 \
-	ro.hwui.gradient_cache_size=2 \
-	ro.hwui.drop_shadow_cache_size=6 \
-	ro.hwui.text_small_cache_width=2048 \
-	ro.hwui.text_small_cache_height=2048 \
-	ro.hwui.text_large_cache_width=4096 \
-	ro.hwui.text_large_cache_height=4096
-
-# Default.prop overrides to get adb working at boot   
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    	ro.secure=0 \
-    	ro.adb.secure=0 \
-	ro.hardware=universal5422 \
-	ro.zygote=zygote32 \
-    	persist.service.adb.enable=1 \
-	persist.service.debuggable=1 \
-	persist.sys.usb.config=mtp,adb \
-	persist.security.ams.enforcing=0 \
-	ro.allow.mock.location=0 \
-	persist.sys.strict_op_enable=false \
-	ro.securestorage.support=false \
-	androidboot.selinux=0 \
-	ro.security.mdpp.ux=Disabled \
-	security.mdpp=None \
-	security.mdpp.result=None \
-	ro.config.tima=0 \
-	ro.build.selinux=1 \
-	ro.config.knox=0 \
-	ro.securestorage.knox=false \
-	security.knox_kap_mode=false \
-	selinux.reload_policy=0 \
-	persist.security.mdm.policy=0 \
-
 $(call inherit-product-if-exists, build/target/product/full.mk)
 # call Samsung LSI board support package
+
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5422/exynos5422.mk)
 
