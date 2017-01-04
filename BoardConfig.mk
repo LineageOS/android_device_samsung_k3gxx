@@ -1,5 +1,7 @@
 LOCAL_PATH := device/samsung/k3gxx
 
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+
 # Platform
 BOARD_VENDOR := samsung
 TARGET_BOARD_PLATFORM := exynos5
@@ -14,6 +16,7 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := cortex-a7
+TARGET_BOARD_PLATFORM_GPU := mali-t628mp6
 # big.LITTLE load balancing
 ENABLE_CPUSETS := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
@@ -24,7 +27,7 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 BOARD_OVERRIDE_RS_CPU_VARIANT_32 := cortex-a15
 
 # LibVideoCodec
-COMMON_GLOBAL_CFLAGS += -DSOC_EXYNOS5430
+TARGET_GLOBAL_CFLAGS += -DSOC_EXYNOS5430
 
 # Bootloader
 TARGET_OTA_ASSERT_DEVICE := k3g,k3gxx
@@ -40,28 +43,22 @@ BOARD_USES_SCALER := true
 BOARD_USES_DT := true
 BOARD_USES_DT_SHORTNAME := true
 # frameworks/av/camera, camera blob support
-COMMON_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
+TARGET_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
 # frameworks/av/media/libstagefright, for libwvm.so
-COMMON_GLOBAL_CFLAGS += -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
+TARGET_GLOBAL_CFLAGS += -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
 # device specific gralloc header
-COMMON_GLOBAL_CFLAGS += -DEXYNOS5_ENHANCEMENTS
+TARGET_GLOBAL_CFLAGS += -DEXYNOS5_ENHANCEMENTS
 # frameworks/av/media/libstagefright
-COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED
+TARGET_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED
 BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
-USE_CAMERA_STUB := true
 
-COMMON_GLOBAL_CFLAGS += -DUSE_ANB_REF
-COMMON_GLOBAL_CFLAGS += -DUSE_ANB
-#libcamera
-COMMON_GLOBAL_CFLAGS += -DSENSOR_NAME_GET_FROM_FILE
-
-#CAMERA_BUILD_ON := true
-#BOARD_USES_CAMERAWRAPPER := true
+TARGET_GLOBAL_CFLAGS += -DUSE_ANB_REF
+TARGET_GLOBAL_CFLAGS += -DUSE_ANB
 
 ##################################################
 
 #Enable ValidityService for fingerprint
-BOARD_USES_VALIDITY := true
+#BOARD_USES_VALIDITY := true
 
 # HEALTH DAEMON (CHARGER) DEFINES
 TARGET_PROVIDES_LIBLIGHT := false
@@ -75,15 +72,9 @@ CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/k3gxx/mkdtbhbootimg.mk
 BOARD_CUSTOM_MKBOOTIMG := mkdtbhbootimg
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --tags_offset 0x10000100
-BOARD_MKBOOTIMG_ARGS += --dt_dir $(OUT)/obj/KERNEL_OBJ/arch/arm/boot/dts/
-#BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --dt device/samsung/k3gxx/recovery/dt.img --tags_offset 0x10000100
-#BOARD_KERNEL_SEPARATED_DT := true
-#TARGET_PREBUILT_KERNEL := device/samsung/k3gxx/recovery/zImage
-TARGET_KERNEL_SOURCE := kernel/samsung/exynos5422
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --tags_offset 0x10000100 --dt_dir $(OUT)/obj/KERNEL_OBJ/arch/arm/boot/dts/
+TARGET_KERNEL_SOURCE := kernel/samsung/exynos5422-lp
 TARGET_KERNEL_CONFIG := exynos5422-k3g_00_defconfig
-#BOARD_KERNEL_CMDLINE := console=ram vmalloc=256m androidboot.console=null user_debug=31
-#BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive user_debug=31
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 
@@ -119,17 +110,8 @@ TARGET_POWERHAL_VARIANT := k3gxx
 BOARD_PROVIDES_LIBRIL := true
 BOARD_MODEM_TYPE := xmm6360
 # we need define it (because audio.primary.universal5422.so requires it)
-COMMON_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
+TARGET_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 BOARD_RIL_CLASS := ../../../device/samsung/k3gxx/ril
-
-##TWRP
-#Uncomment this to build TWRP
-#RECOVERY_VARIANT := twrp
-TW_NO_REBOOT_BOOTLOADER := true
-TW_HAS_DOWNLOAD_MODE := true
-TW_THEME := portrait_hdpi
-TW_BRIGHTNESS_PATH := /sys/devices/14400000.fimd_fb/backlight/panel/brightness
-TW_MAX_BRIGHTNESS := 255
 
 # Recovery
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -159,7 +141,7 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 #BOARD_EGL_NEEDS_HANDLE_VALUE := true
 ENABLE_WEBGL := true
 # Samsung LSI OpenMAX
-COMMON_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED
+TARGET_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED
 
 # Disable HDMI for now
 BOARD_HDMI_INCAPABLE := true
@@ -174,7 +156,7 @@ BOARD_USES_TRUST_KEYMASTER := true
 TARGET_NO_SENSOR_PERMISSION_CHECK := true
 
 # frameworks/native/libs/binder/Parcel.cpp
-COMMON_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
+TARGET_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
 
 ### FONTS
 EXTENDED_FONT_FOOTPRINT := true
