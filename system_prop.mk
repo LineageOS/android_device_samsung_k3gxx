@@ -3,10 +3,12 @@
 ###########################################################
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.opengles.version=196608 \
-    ro.bq.gpu_to_cpu_unsupported=1\
-    ro.sf.lcd_density=432 \
-    debug.hwc.force_gpu=1
+	ro.opengles.version=196608 \
+	ro.bq.gpu_to_cpu_unsupported=1\
+	ro.sf.lcd_density=432 \
+	debug.hwc.force_gpu=1 \
+	debug.hwc.winupdate=1 \
+	debug.hwc.otf=1 
 
 ###########################################################
 ### WIFI
@@ -40,21 +42,21 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # This fixes switching between front/back camera sensors
 PRODUCT_PROPERTY_OVERRIDES += \
-    camera2.portability.force_api=1 \
-    media.stagefright.legacyencoder=true \
-    media.stagefright.less-secure=true
+	camera2.portability.force_api=1 \
+	media.stagefright.legacyencoder=true \
+	media.stagefright.less-secure=true
 
 ###########################################################
 ### DALVIK/ART
 ###########################################################
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapgrowthlimit=256m \
-    dalvik.vm.heapsize=512m \
-    dalvik.vm.heaptargetutilization=0.75 \
-    dalvik.vm.heapminfree=2m \
-    dalvik.vm.heapmaxfree=8m
+	dalvik.vm.heapstartsize=8m \
+	dalvik.vm.heapgrowthlimit=256m \
+	dalvik.vm.heapsize=512m \
+	dalvik.vm.heaptargetutilization=0.75 \
+	dalvik.vm.heapminfree=2m \
+	dalvik.vm.heapmaxfree=8m
 
 ###########################################################
 ### HWUI
