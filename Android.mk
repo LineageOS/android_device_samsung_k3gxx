@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2013 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -25,8 +25,5 @@ include $(CLEAR_VARS)
 ALL_PREBUILT += $(INSTALLED_KERNEL_TARGET)
 
 include $(call all-makefiles-under,$(LOCAL_PATH))
-
-#$(shell mkdir -p $(OUT_DIR_COMMON_BASE)/cm13/target/product/$(TARGET_DEVICE)/obj/KERNEL_OBJ)
-#$(shell cp -p $(TOP)/kernel/samsung/exynos5422/arch/arm/configs/clean $(OUT_DIR_COMMON_BASE)/cm13/target/product/$(TARGET_DEVICE)/obj/KERNEL_OBJ/.config)
 
 endif

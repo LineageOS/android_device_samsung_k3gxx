@@ -1,2 +1,2 @@
-add_lunch_combo cm_k3gxx-eng
-add_lunch_combo cm_k3gxx-userdebug
+add_lunch_combo lineage_k3gxx-eng
+add_lunch_combo lineage_k3gxx-userdebug

@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2011 The Android Open Source Project
  * Copyright (C) 2012 Wolfson Microelectronics plc
- * Copyright (C) 2013 The CyanogenMod Project
+ * Copyright (C) 2013 The LineageOS Project
  *               Daniel Hillenbrand <codeworkx@cyanogenmod.com>
  *               Guillaume "XpLoDWilD" Lesniak <xplodgui@gmail.com>
  *
@@ -2057,7 +2057,7 @@ struct audio_module HAL_MODULE_INFO_SYM = {
         .hal_api_version = HARDWARE_HAL_API_VERSION,
         .id = AUDIO_HARDWARE_MODULE_ID,
         .name = "k3gxx audio HW HAL",
-        .author = "The CyanogenMod Project",
+        .author = "The LineageOS Project",
         .methods = &hal_module_methods,
     },
 };

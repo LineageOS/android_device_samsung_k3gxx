@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2014 The Android Open Source Project
- * Copyright (C) 2016 The CyanogenMod Project
+ * Copyright (C) 2016 The LineageOS Project
  * Copyright (C) 2016 The Mokee Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

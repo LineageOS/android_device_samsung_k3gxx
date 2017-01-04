@@ -529,7 +529,7 @@ struct exynos5422_power_module HAL_MODULE_INFO_SYM = {
             .hal_api_version = HARDWARE_HAL_API_VERSION,
             .id = POWER_HARDWARE_MODULE_ID,
             .name = "exynos5422 Power HAL",
-            .author = "The CyanogenMod Project",
+            .author = "The LineageOS Project",
             .methods = &power_module_methods,
         },
 
