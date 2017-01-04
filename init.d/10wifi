@@ -1,0 +1,3 @@
+#!/system/bin/sh
+wifiloader
+/sbin/cbd -d -txmm626 -bh -mh -p 13
