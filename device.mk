@@ -77,7 +77,9 @@ PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196608 \
-    ro.bq.gpu_to_cpu_unsupported=1
+    ro.bq.gpu_to_cpu_unsupported=1 \
+    media.stagefright.legacyencoder=true \
+    media.stagefright.less-secure=true 
 
 PRODUCT_PACKAGES += \
 	libion_exynos \
