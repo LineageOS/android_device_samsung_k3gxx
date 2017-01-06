@@ -187,6 +187,9 @@ bin/mcDriverDaemon
 ### IR
 lib/hw/consumerir.default.so
 
+### Gralloc
+lib/hw/gralloc.exynos5.so
+
 ### NFC
 vendor/firmware/libpn547_fw.so
 lib/hw/nfc_nci.universal5422.so
