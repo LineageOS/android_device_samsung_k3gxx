@@ -14,10 +14,6 @@ TARGET_BOOTANIMATION_HALF_RES := true
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
-$(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
- 
-$(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui-memory.mk)
-
 # Shims/Samsung symbols
 PRODUCT_PACKAGES += \
     libsamsung_symbols
@@ -33,7 +29,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libpcap \
     tcpdump
-	
+
 # OMX
 PRODUCT_PACKAGES += \
     libcsc \
@@ -49,18 +45,17 @@ sys.io.scheduler=bfq
 ###########################################################
 
 PRODUCT_PACKAGES += \
-fstab.universal5422 \
-init.recovery.universal5422.rc \
-init.samsung.rc \
-init.universal5422.rc \
-init.universal5422.usb.rc \
-init.universal5422.wifi.rc \
-ueventd.universal5422.rc \
-init.rc \
-recovery.fstab \
-adb_keys \
-init.sec.boot.sh \
-init.goldfish.sh
+	fstab.universal5422 \
+	init.recovery.universal5422.rc \
+	init.samsung.rc \
+	init.universal5422.rc \
+	init.universal5422.usb.rc \
+	init.universal5422.wifi.rc \
+	ueventd.universal5422.rc \
+	init.rc \
+	recovery.fstab \
+	adb_keys \
+	init.goldfish.sh
 
 ###########################################################
 ### PERMISSONS
@@ -71,6 +66,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
+	frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
@@ -240,7 +236,8 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/gps/gps.xml:system/etc/gps.xml
 
 PRODUCT_PACKAGES += \
-    libdmitry
+    libdmitry \
+	gps.universal5422
 
 ###########################################################
 ### FINGERPRINT
@@ -303,74 +300,24 @@ PRODUCT_PACKAGES += \
 	keystore.exynos5
 
 ###########################################################
-### PACKAGES
+### PACKAGES/Display
 ###########################################################
 
 PRODUCT_PACKAGES += \
-	SamsungServiceMode \
-	Torch
+    SamsungDoze \
+    SamsungServiceMode \
+    Torch
 
 ###########################################################
 ### CONSUMERIR
 ###########################################################
+
 PRODUCT_PACKAGES += \
     consumerir.universal5422
 
-###########################################################
-### DALVIK/ART
-###########################################################
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapgrowthlimit=256m \
-    dalvik.vm.heapsize=512m \
-    dalvik.vm.heaptargetutilization=0.75 \
-    dalvik.vm.heapminfree=2m \
-    dalvik.vm.heapmaxfree=8m
-
-###########################################################
-### HWUI
-###########################################################
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    	ro.hwui.texture_cache_size=50 \
-	ro.hwui.layer_cache_size=34 \
-	ro.hwui.path_cache_size=10 \
-	ro.hwui.shape_cache_size=4 \
-	ro.hwui.gradient_cache_size=2 \
-	ro.hwui.drop_shadow_cache_size=6 \
-	ro.hwui.text_small_cache_width=2048 \
-	ro.hwui.text_small_cache_height=2048 \
-	ro.hwui.text_large_cache_width=4096 \
-	ro.hwui.text_large_cache_height=4096
-
-# Default.prop overrides to get adb working at boot   
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    	ro.secure=0 \
-    	ro.adb.secure=0 \
-	ro.hardware=universal5422 \
-	ro.zygote=zygote32 \
-    	persist.service.adb.enable=1 \
-	persist.service.debuggable=1 \
-	persist.sys.usb.config=mtp,adb \
-	persist.security.ams.enforcing=0 \
-	ro.allow.mock.location=0 \
-	persist.sys.strict_op_enable=false \
-	ro.securestorage.support=false \
-	androidboot.selinux=0 \
-	ro.security.mdpp.ux=Disabled \
-	security.mdpp=None \
-	security.mdpp.result=None \
-	ro.config.tima=0 \
-	ro.build.selinux=1 \
-	ro.config.knox=0 \
-	ro.securestorage.knox=false \
-	security.knox_kap_mode=false \
-	selinux.reload_policy=0 \
-	persist.security.mdm.policy=0 \
-
 $(call inherit-product-if-exists, build/target/product/full.mk)
 # call Samsung LSI board support package
+
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5422/exynos5422.mk)
 

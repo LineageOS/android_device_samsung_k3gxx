@@ -9,11 +9,8 @@ on init
     export LD_SHIM_LIBS "/system/lib/omx/libOMX.Exynos.AVC.Encoder.so|/system/lib/libsamsung_symbols.so:/system/lib/libexynoscamera.so|libsamsung_symbols.so:/system/bin/gpsd|libdmitry.so"
     mkdir /preload 0771 system system
 
-    symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
     symlink /sdcard1 /storage/sdcard1
-    symlink /sdcard1 /mnt/extSdCard
-    symlink /sdcard1 /mnt/sdcard1
     symlink /sdcard1 /external_sd
     symlink /storage/usbdisk /mnt/usbdisk
 
@@ -344,7 +341,7 @@ on boot
     chmod 0660 /dev/s5p-smem
     chown system system /dev/mobicore
     chown radio system /dev/mobicore-user
-    chown system system /dev/s5p-smem
+    chown drm drmrpc /dev/s5p-smem
 
 # DRK permission
     mkdir /efs/prov 0770 radio system
@@ -398,6 +395,10 @@ on fs
 
     # Fingerprint_sensor
     chown system radio /sys/class/fingerprint/fingerprint/type_check
+
+# OTG power mode
+    chmod 0660 /sys/class/sec/switch/otg_cable_type
+    chown system radio /sys/class/sec/switch/otg_cable_type
 
 # SENSORS
 # Accelerometer_sensor
@@ -505,11 +506,11 @@ on fs
     chown system system /sys/class/backlight/panel/auto_brightness
 
 # Permissions for LCD
+    chown system radio /sys/class/lcd/panel/contrast
+    chown system radio /sys/class/lcd/panel/lcd_power
     chown system radio /sys/class/lcd/panel/lcd_type
-    chown system system /sys/class/lcd/panel/power_reduce
-    chown system system /sys/class/lcd/panel/siop_enable
-    chown system system /sys/class/lcd/panel/temperature
-    chown system system /sys/class/lcd/panel/alpm
+    chown system radio /sys/class/lcd/panel/max_contrast
+    chown system radio /sys/class/lcd/panel/window_type
 
 # Permissions for MDNIE
     chown system media_rw /sys/class/mdnie/mdnie/mode

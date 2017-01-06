@@ -16,6 +16,8 @@
 
 LOCAL_PATH := device/samsung/k3gxx
 
+TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+
 # Platform
 BOARD_VENDOR := samsung
 TARGET_BOARD_PLATFORM := exynos5
@@ -51,6 +53,9 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Camera
+# Camera
+BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 BOARD_CAMERA_SNUMINTS := 34
 BOARD_NEEDS_MEMORYHEAPION := true
 COMMON_GLOBAL_CFLAGS += -DCAMERA_SNUMINTS=$(BOARD_CAMERA_SNUMINTS)
@@ -77,14 +82,19 @@ CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/k3gxx/mkdtbhbootimg.mk
 BOARD_CUSTOM_MKBOOTIMG := mkdtbhbootimg
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --tags_offset 0x10000100
-TARGET_KERNEL_SOURCE := kernel/samsung/exynos5422
+TARGET_KERNEL_SOURCE := kernel/samsung/exynosRR
 TARGET_KERNEL_CONFIG := exynos5422-k3g_01_defconfig
+#TARGET_KERNEL_CONFIG := exynos5422-k3g_defconfig
+#TARGET_KERNEL_SOURCE := kernel/samsung/exynos5422
 BOARD_MKBOOTIMG_ARGS += --dt device/samsung/k3gxx/dt.img
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
+#KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
+#KERNEL_TOOLCHAIN := /opt/toolchains/arm-eabi-7.0/bin/
 
 # Battery / charging mode
 BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 BOARD_BATTERY_DEVICE_NAME := battery
 
@@ -117,15 +127,6 @@ BOARD_MODEM_TYPE := xmm6360
 COMMON_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 BOARD_RIL_CLASS := ../../../device/samsung/k3gxx/ril
 
-##TWRP
-#Uncomment this to build TWRP
-#RECOVERY_VARIANT := twrp
-TW_NO_REBOOT_BOOTLOADER := true
-TW_HAS_DOWNLOAD_MODE := true
-TW_THEME := portrait_hdpi
-TW_BRIGHTNESS_PATH := /sys/devices/14400000.fimd_fb/backlight/panel/brightness
-TW_MAX_BRIGHTNESS := 255
-
 # Recovery
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_RECOVERY_SWIPE := true
@@ -143,8 +144,8 @@ TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/fstab.universal5422
 endif
 
 # SELinux
-BOARD_SEPOLICY_DIRS += \
-    device/samsung/k3gxx/sepolicy
+#BOARD_SEPOLICY_DIRS += \
+#    device/samsung/k3gxx/sepolicy
 
 # Graphics
 USE_OPENGL_RENDERER := true
@@ -225,7 +226,19 @@ BOARD_NFC_CHIPSET := pn547
 BOARD_NFC_HAL_SUFFIX := $(TARGET_BOOTLOADER_BOARD_NAME)
 
 # CMHW
+#BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
+# CMHW
 BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
+
+# Exynos display
+#BOARD_USES_VIRTUAL_DISPLAY := true
+
+# Extended filesystem support
+TARGET_KERNEL_HAVE_EXFAT := true
+TARGET_KERNEL_HAVE_NTFS := true
+
+# IR Blaster
+IR_HAS_ONE_FREQ_RANGE := true
 
 #Trying to get work the WIFI
 #-include hardware/broadcom/wlan/bcmdhd/firmware/bcm4354/device-bcm.mk

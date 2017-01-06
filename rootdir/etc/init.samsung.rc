@@ -38,14 +38,15 @@ on init
     chown root net_bw_stats /proc/net/xt_qtaguid/stats
 
 on post-fs-data
-    # SEC_SELINUX
-    mkdir /data/misc/audit 02775 audit system 
-    mkdir /data/misc/bluedroiddump 0770 system system
-    mkdir /data/misc/wifi_share_profile 0771 wifi system
-    mkdir /data/misc/jack 0770 jack system
-    
+    # sec_efs_file
+    mkdir /efs/sec_efs 0775 radio system
+    chmod 0775 /efs/sec_efs
+    chown radio system /efs/sec_efs
+
     # Latin SSMS feature
     mkdir /efs/SMS 0775 radio system
+    chmod 0775 /efs/SMS
+    chown radio system /efs/SMS
 
     # PMK permission
     mkdir /efs/mc 0770 radio system
@@ -71,8 +72,10 @@ on post-fs-data
 
     # h2k		
     chmod 0644 /efs/redata.bin
-    chown radio radio /efs/h2k.dat
+    chown radio radio /efs/redata.bin
     chmod 0644 /efs/h2k.dat
+    chown radio radio /efs/h2k.dat
+    chown system system /efs/drm/h2k
 
     # icd
     check_icd
@@ -116,19 +119,26 @@ on post-fs-data
     chmod 0775 /system/etc/security/.drm
 
     # Added for Playready DRM Support
-    mkdir /data/data/.drm 0775
-    chown drm system /data/data/.drm
+    mkdir /data/data/.drm 0775 drm system
     chmod 0775 /data/data/.drm
-    mkdir /data/data/.drm/.playready 0775
-    chown drm system /data/data/.drm/.playready
+    chown drm system /data/data/.drm
+    mkdir /data/data/.drm/.playready 0775 drm system
     chmod 0775 /data/data/.drm/.playready
+    chown drm system /data/data/.drm/.playready
 
-    # Added drm folder to copy drm plugins
-    mkdir /system/lib/drm 0775
-    chown root root /system/lib/drm
-    chmod 0775 /system/lib/drm
+    # Added for Playready DCM DRM Support
+    mkdir /data/.dcmdrm 0775 drm system
+    chown drm system /data/.dcmdrm
+    chmod 0775 /data/.dcmdrm
+    mkdir /data/.dcmdrm/.playready 0775 drm system
+    chown drm system /data/.dcmdrm/.playready
+    chmod 0775 /data/.dcmdrm/.playready
 
-    restorecon -R /efs
+    restorecon_recursive /efs
+    restorecon_recursive /carrier
+    restorecon_recursive /data/misc/keystore
+    restorecon_recursive /data/property
+    restorecon_recursive /data/security
 # ]
 
 on boot
@@ -240,6 +250,7 @@ on boot
     # Switch Device
     chown system radio /sys/class/sec/switch/usb_sel
     chown system radio /sys/class/sec/switch/uart_sel
+    chown system radio /sys/class/sec/switch/uart_en
     chown system radio /sys/class/sec/switch/otg_test
     chown system radio /sys/class/sec/switch/apo_factory
 
@@ -248,11 +259,17 @@ on boot
     chown radio system /sys/class/secgpio_check/secgpio_check_all/gpiosleep_check
     chown radio system /sys/class/secgpio_check/secgpio_check_all/checked_sleepGPIO
 
-    # permission for CHARGING
+    # Define default initial receive window size in segments.
+    setprop net.tcp.default_init_rwnd 60
+
+ # permission for CHARGING
+    chown system radio /sys/class/power_supply/battery/fg_full_voltage
+    chmod 0664 /sys/class/power_supply/battery/fg_full_voltage
     chown system radio /sys/class/power_supply/battery/batt_reset_soc
     chown system radio /sys/class/power_supply/battery/batt_slate_mode
     chown system radio /sys/class/power_supply/battery/factory_mode
     chown system radio /sys/class/power_supply/battery/siop_level
+    chown system radio /sys/class/power_supply/battery/siop_event
     chown system radio /sys/class/power_supply/battery/wc_enable
     chown system radio /sys/class/power_supply/battery/update
     chown sdcard_rw sdcard_rw /sys/class/power_supply/battery/call
@@ -274,8 +291,75 @@ on boot
     chmod 0664 /sys/class/power_supply/battery/batt_temp_table
     chown system radio /sys/class/power_supply/battery/batt_temp_table
     chown system radio /sys/class/power_supply/battery/batt_high_current_usb
+    chown system radio /sys/class/power_supply/battery/batt_inbat_voltage
     chmod 0664 /sys/class/power_supply/battery/batt_high_current_usb
-
+    chown system radio /sys/class/power_supply/battery/hmt_ta_connected
+    chown system radio /sys/class/power_supply/battery/hmt_ta_charge
+    chown system radio /sys/class/power_supply/battery/battery_cycle
+    chown system radio /sys/class/power_supply/otg/online
+    chmod 0664 /sys/class/power_supply/otg/online
+    chown system radio /sys/class/power_supply/max77833-charger/charge_otg_control
+    chown system radio /sys/class/power_supply/battery/charge_otg_control
+    chown system radio /sys/class/power_supply/battery/batt_wireless_firmware_update
+    chown system radio /sys/class/power_supply/battery/otp_firmware_result
+    chown system radio /sys/class/power_supply/battery/wc_ic_grade
+    chown system radio /sys/class/power_supply/battery/otp_firmware_ver_bin
+    chown system radio /sys/class/power_supply/battery/otp_firmware_ver
+    chown system radio /sys/class/power_supply/battery/tx_firmware_result
+    chown system radio /sys/class/power_supply/battery/batt_tx_firmware
+    chown system radio /sys/class/power_supply/battery/batt_hv_wireless_status
+    chown system radio /sys/class/power_supply/battery/batt_hv_wireless_pad_ctrl
+    chmod 0664 /sys/class/power_supply/max77833-charger/charge_otg_control
+    chmod 0664 /sys/class/power_supply/battery/charge_otg_control
+    chmod 0664 /sys/class/power_supply/battery/batt_wireless_firmware_update
+    chmod 0664 /sys/class/power_supply/battery/otp_firmware_result
+    chmod 0664 /sys/class/power_supply/battery/wc_ic_grade
+    chmod 0664 /sys/class/power_supply/battery/otp_firmware_ver_bin
+    chmod 0664 /sys/class/power_supply/battery/otp_firmware_ver
+    chmod 0664 /sys/class/power_supply/battery/tx_firmware_result
+    chmod 0664 /sys/class/power_supply/battery/tx_firmware_ver
+    chmod 0664 /sys/class/power_supply/battery/batt_tx_firmware
+    chmod 0664 /sys/class/power_supply/battery/batt_hv_wireless_status
+    chmod 0664 /sys/class/power_supply/battery/batt_hv_wireless_pad_ctrl
+    chown system radio /sys/class/power_supply/battery/tx_firmware_result
+    chown system radio /sys/class/power_supply/battery/batt_tune_chg_limit_cur
+    chown system radio /sys/class/power_supply/battery/batt_tune_chg_temp_high
+    chown system radio /sys/class/power_supply/battery/batt_tune_chg_temp_rec
+    chown system radio /sys/class/power_supply/battery/batt_tune_coil_limit_cur
+    chown system radio /sys/class/power_supply/battery/batt_tune_coil_temp_high
+    chown system radio /sys/class/power_supply/battery/batt_tune_coil_temp_rec
+    chown system radio /sys/class/power_supply/battery/batt_tune_fast_charge_current
+    chown system radio /sys/class/power_supply/battery/batt_tune_float_voltage
+    chown system radio /sys/class/power_supply/battery/batt_tune_intput_charge_current
+    chown system radio /sys/class/power_supply/battery/batt_tune_temp_high_event
+    chown system radio /sys/class/power_supply/battery/batt_tune_temp_high_normal
+    chown system radio /sys/class/power_supply/battery/batt_tune_temp_high_rec_event
+    chown system radio /sys/class/power_supply/battery/batt_tune_temp_high_rec_normal
+    chown system radio /sys/class/power_supply/battery/batt_tune_temp_low_event
+    chown system radio /sys/class/power_supply/battery/batt_tune_temp_low_normal
+    chown system radio /sys/class/power_supply/battery/batt_tune_temp_low_rec_event
+    chown system radio /sys/class/power_supply/battery/batt_tune_temp_low_rec_normal
+    chown system radio /sys/class/power_supply/battery/batt_tune_ui_term_cur_1st
+    chown system radio /sys/class/power_supply/battery/batt_tune_ui_term_cur_2nd
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_chg_limit_cur
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_chg_temp_high
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_chg_temp_rec
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_coil_limit_cur
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_coil_temp_high
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_coil_temp_rec
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_fast_charge_current
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_float_voltage
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_intput_charge_current
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_temp_high_event
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_temp_high_normal
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_temp_high_rec_event
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_temp_high_rec_normal
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_temp_low_event
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_temp_low_normal
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_temp_low_rec_event
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_temp_low_rec_normal
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_ui_term_cur_1st
+    chmod 0664 /sys/class/power_supply/battery/batt_tune_ui_term_cur_2nd
 # usb detect
     mkdir /dev/bus 0755 root root
     mkdir /dev/bus/usb 0755 root root
@@ -290,52 +374,8 @@ on boot
 on charger
     chmod 0664 /sys/class/power_supply/battery/batt_temp_table
     chown system radio /sys/class/power_supply/battery/batt_temp_table
-
-service scs /system/bin/scs
-    class main
-    user system
-    group system
-    oneshot
-
-service epmd /system/bin/epmd
-    class main
-    socket epm stream 0660 system system
-    socket ppm stream 0660 system system
-    ioprio be 2
-
-# icd
-service icd /system/bin/icd
-    class main
-    user system
-    group system log
-    onrestart check_icd
-    oneshot
-
-# MobiCore startup
-service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
-    class core
-    user system
-    group system
-
-# icd
-on property:init.svc.media=restarting
-    check_icd
-    start icd
-
-# Sensorhub service
-service sensorhubservice /system/bin/sensorhubservice
-    class main
-    user system
-    group input
-
-# for Bluetooth Tethering
-service dhcpcd_bt-pan /system/bin/dhcpcd -ABKL
-    class main
-    disabled
-    oneshot
-
-service iprenew_bt-pan /system/bin/dhcpcd -n
-    class late_start
-    disabled
-    oneshot
-# end of BT
+    chmod 0664 /sys/class/power_supply/battery/batt_capacity_max
+    chown system radio /sys/class/power_supply/battery/batt_capacity_max
+    chown radio system /efs
+    chmod 0771 /efs
+    class_start charger
