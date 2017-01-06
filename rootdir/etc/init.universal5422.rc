@@ -37,20 +37,20 @@ on post-fs-data
     setprop vold.post_fs_data_done 1
 
     # Permissions Camera
-    chown system radio /sys/class/camera/rear/rear_camfw
-    chown system radio /sys/class/camera/rear/rear_camfw_full
-    chown system radio /sys/class/camera/rear/rear_camtype
-	chown system radio /sys/class/camera/rear/rear_checkfw_factory
-	chown system radio /sys/class/camera/rear/rear_checkfw_user
-    chown system radio /sys/class/camera/rear/rear_companionfw
-    chown system radio /sys/class/camera/rear/rear_companionfw_full
-	chown system radio /sys/class/camera/rear/rear_sensorid
-    chown system radio /sys/class/camera/rear/rear_calcheck
-    chown system radio /sys/class/camera/rear/isp_core
-    chown system radio /sys/class/camera/flash/rear_flash
-    chown system radio /sys/class/camera/front/front_camfw
-    chown system radio /sys/class/camera/front/front_camtype
-    chown system radio /sys/class/camera/front/front_sensorid
+    chown media drmrpc /sys/class/camera/rear/rear_camfw
+    chown media drmrpc /sys/class/camera/rear/rear_camfw_full
+    chown media drmrpc /sys/class/camera/rear/rear_camtype
+	chown media drmrpc /sys/class/camera/rear/rear_checkfw_factory
+	chown media drmrpc /sys/class/camera/rear/rear_checkfw_user
+    chown media drmrpc /sys/class/camera/rear/rear_companionfw
+    chown media drmrpc /sys/class/camera/rear/rear_companionfw_full
+	chown media drmrpc /sys/class/camera/rear/rear_sensorid
+    chown media drmrpc /sys/class/camera/rear/rear_calcheck
+    chown media drmrpc /sys/class/camera/rear/isp_core
+    chown media drmrpc /sys/class/camera/flash/rear_flash
+    chown media drmrpc /sys/class/camera/front/front_camfw
+    chown media drmrpc /sys/class/camera/front/front_camtype
+    chown media drmrpc /sys/class/camera/front/front_sensorid
 
     #Permissions for Camera to flush cache buffers
     chown system system /sys/devices/virtual/sec/sec_misc/drop_caches
