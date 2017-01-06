@@ -28,11 +28,11 @@
         "target_path": "hardware/samsung_slsi-cm/openmax"
     },
     {
-        "repository": "kernel_samsung_exynos5422",
-        "target_path": "kernel/samsung/exynos5422"
+        "repository": "android_kernel_samsung_k3gxx",
+        "target_path": "kernel/samsung/k3gxx"
     }
     {
-        "repository": "vendor_samsung_k3gxx",
+        "repository": "android_vendor_samsung_k3gxx",
         "target_path": "vendor/samsung/k3gxx"
     }
 ]
