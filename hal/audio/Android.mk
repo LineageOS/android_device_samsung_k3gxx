@@ -23,17 +23,28 @@ LOCAL_MODULE_TAGS := optional
 
 LOCAL_SRC_FILES := audio_hw.c ril_interface.c
 
+ifeq ($(BOARD_HDMI_INCAPABLE), true)
+	LOCAL_CFLAGS += -DHDMI_INCAPABLE
+endif
+
 LOCAL_C_INCLUDES += \
+	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include \
 	external/tinyalsa/include \
 	$(call include-path-for, audio-effects) \
 	$(call include-path-for, audio-utils) \
 	$(call include-path-for, audio-route) \
-        $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include \
+	hardware/samsung/ril/libsecril-client
 
 LOCAL_ADDITIONAL_DEPENDENCIES += \
 	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 
-LOCAL_SHARED_LIBRARIES := liblog libcutils libtinyalsa libaudioutils libdl \
-	libaudioroute libsecril-client
+LOCAL_SHARED_LIBRARIES := \
+	liblog \
+	libcutils \
+	libtinyalsa \
+	libaudioutils \
+	libdl \
+	libaudioroute \
+	libsecril-client
 
 include $(BUILD_SHARED_LIBRARY)
