@@ -236,12 +236,16 @@
 
     <!-- ### Device ### -->
 
-    <path name="device-earpiece">
+    <path name="device-earpiece-enable">
         <ctl name="RCV Switch" value="1" />
 	<ctl name="DSP1L Input 1" value="None" />
 	<ctl name="DSP1L Input 2" value="None" />
 	<ctl name="DSP1 Aux 1" value="None" />
 	<ctl name="DSP1 Aux 2" value="None" />
+    </path>
+
+    <path name="device-earpiece-disable">
+        <ctl name="RCV Switch" value="0" />
     </path>
 
     <!-- ### Scenario ### -->
@@ -311,8 +315,12 @@
 
     <!-- ### Device ### -->
 
-    <path name="device-speaker">
+    <path name="device-speaker-enable">
         <ctl name="SPK Switch" value="1" />
+    </path>
+
+    <path name="device-speaker-disable">
+        <ctl name="SPK Switch" value="0" />
     </path>
 
     <!-- ### Scenario ### -->
@@ -384,8 +392,12 @@
 
     <!-- ### Device ### -->
 
-    <path name="device-headphones">
+    <path name="device-headphones-enable">
         <ctl name="HP Switch" value="1" />
+    </path>
+
+    <path name="device-headphones-disable">
+        <ctl name="HP Switch" value="0" />
     </path>
 
     <!-- ### Scenario ### -->
@@ -666,8 +678,12 @@
 
     <!-- ### Device ### -->
 
-    <path name="device-builtin-mic">
+    <path name="device-builtin-mic-enable">
         <ctl name="Main Mic Switch" value="1" />
+    </path>
+
+    <path name="device-builtin-mic-disable">
+        <ctl name="Main Mic Switch" value="0" />
     </path>
 
     <!-- ### Scenario ### -->
@@ -803,8 +819,12 @@
 
     <!-- ### Device ### -->
 
-    <path name="device-back-mic">
+    <path name="device-back-mic-enable">
         <ctl name="Sub Mic Switch" value="1" />
+    </path>
+
+    <path name="device-back-mic-disable">
+        <ctl name="Sub Mic Switch" value="0" />
     </path>
 
     <!-- ### Scenario ### -->
@@ -862,9 +882,14 @@
 
     <!-- ### Device ### -->
 
-    <path name="device-two-mic">
-        <path name="device-builtin-mic" />
-        <path name="device-back-mic" />
+    <path name="device-two-mic-enable">
+        <path name="device-builtin-mic-enable" />
+        <path name="device-back-mic-enable" />
+    </path>
+
+    <path name="device-two-mic-disable">
+        <path name="device-builtin-mic-disable" />
+        <path name="device-back-mic-disable" />
     </path>
 
     <!-- ### Scenario ### -->
@@ -1140,7 +1165,6 @@
 
         <path name="scenario-earpiece-incall-nb" />
         <path name="volume-earpiece-incall" />
-        <path name="device-earpiece" />
     </path>
 
     <path name="voice-earpiece-wb">
@@ -1148,7 +1172,6 @@
 
         <path name="scenario-earpiece-incall-wb" />
         <path name="volume-earpiece-incall" />
-        <path name="device-earpiece" />
     </path>
 
     <path name="voice-speaker">
@@ -1156,7 +1179,6 @@
 
         <path name="scenario-speaker-incall-nb" />
         <path name="volume-speaker-incall" />
-        <path name="device-speaker" />
     </path>
 
     <path name="voice-speaker-wb">
@@ -1164,7 +1186,6 @@
 
         <path name="scenario-speaker-incall-wb" />
         <path name="volume-speaker-incall" />
-        <path name="device-speaker" />
     </path>
 
     <path name="voice-headphones">
@@ -1172,7 +1193,6 @@
 
         <path name="scenario-headphones-incall-nb" />
         <path name="volume-headphones-incall" />
-        <path name="device-headphones" />
     </path>
 
     <path name="voice-headphones-wb">
@@ -1180,7 +1200,6 @@
 
         <path name="scenario-headphones-incall-wb" />
         <path name="volume-headphones-incall" />
-        <path name="device-headphones" />
     </path>
 
     <path name="voice-bt-sco">
@@ -1220,7 +1239,6 @@
 
         <path name="scenario-earpiece-default" />
         <path name="volume-earpiece-default" />
-        <path name="device-earpiece" />
     </path>
 
     <path name="media-speaker">
@@ -1228,7 +1246,6 @@
 
         <path name="scenario-speaker-default" />
         <path name="volume-speaker-default" />
-        <path name="device-speaker" />
     </path>
 
     <path name="media-headphones">
@@ -1236,7 +1253,6 @@
 
         <path name="scenario-headphones-default" />
         <path name="volume-headphones-default" />
-        <path name="device-headphones" />
     </path>
 
     <path name="media-bt-sco">
@@ -1260,7 +1276,6 @@
 
         <path name="scenario-speaker-default" />
         <path name="volume-speaker-default" />
-        <path name="device-speaker" />
     </path>
 
     <path name="voice-rec-headphones">
@@ -1268,7 +1283,6 @@
 
         <path name="scenario-headphones-default" />
         <path name="volume-headphones-default" />
-        <path name="device-headphones" />
     </path>
 
     <path name="communication-speaker">
@@ -1276,7 +1290,6 @@
 
         <path name="scenario-speaker-default" />
         <path name="volume-speaker-default" />
-        <path name="device-speaker" />
     </path>
 
     <path name="communication-earpiece">
@@ -1284,7 +1297,6 @@
 
         <path name="scenario-earpiece-default" />
         <path name="volume-earpiece-default" />
-        <path name="device-earpiece" />
     </path>
 
     <path name="communication-headphones">
@@ -1292,7 +1304,6 @@
 
         <path name="scenario-headphones-default" />
         <path name="volume-headphones-default" />
-        <path name="device-headphones" />
     </path>
 
     <path name="speaker-and-headphones">
@@ -1302,8 +1313,6 @@
         <path name="scenario-headphones-default" />
         <path name="volume-speaker-default" />
         <path name="volume-headphones-default" />
-        <path name="device-speaker" />
-        <path name="device-headphones" />
     </path>
 
     <path name="bt-sco-carkit">
@@ -1316,36 +1325,36 @@
 
     <!-- ### Capture ### -->
 
-    <path name="voice-earpiece-main-mic">
+    <path name="voice-earpiece-two-mic">
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-earpiece-incall-nb" />
         <path name="volume-two-mic-incall" />
-        <path name="device-two-mic" />
+        <path name="device-two-mic-enable" />
     </path>
 
-    <path name="voice-earpiece-main-mic-wb">
+    <path name="voice-earpiece-two-mic-wb">
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-earpiece-incall-wb" />
         <path name="volume-two-mic-incall" />
-        <path name="device-two-mic" />
+        <path name="device-two-mic-enable" />
     </path>
 
-    <path name="voice-speaker-main-mic">
+    <path name="voice-speaker-two-mic">
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-speaker-incall-nb" />
         <path name="volume-two-mic-incall" />
-        <path name="device-two-mic" />
+        <path name="device-two-mic-enable" />
     </path>
 
-    <path name="voice-speaker-main-mic-wb">
+    <path name="voice-speaker-two-mic-wb">
         <path name="channel-stereo" />
 
         <path name="scenario-two-mic-speaker-incall-wb" />
         <path name="volume-two-mic-incall" />
-        <path name="device-two-mic" />
+        <path name="device-two-mic-enable" />
     </path>
 
     <path name="voice-rec-main-mic">
@@ -1353,7 +1362,6 @@
 
         <path name="scenario-builtin-mic-default" />
         <path name="volume-builtin-mic-default" />
-        <path name="device-builtin-mic" />
     </path>
 
     <path name="voice-headset-mic">
@@ -1394,12 +1402,12 @@
         <path name="device-sco-headset-in" />
     </path>
 
-    <path name="media-main-mic">
+    <path name="media-builtin-mic">
         <path name="channel-left" />
 
         <path name="scenario-builtin-mic-default" />
         <path name="volume-builtin-mic-default" />
-        <path name="device-builtin-mic" />
+        <path name="device-builtin-mic-enable" />
     </path>
 
     <path name="media-second-mic">
@@ -1407,7 +1415,6 @@
 
         <path name="scenario-back-mic-default" />
         <path name="volume-back-mic-default" />
-        <path name="device-back-mic" />
     </path>
 
     <path name="media-headset-mic">
@@ -1430,7 +1437,6 @@
 
         <path name="scenario-builtin-mic-default" />
         <path name="volume-builtin-mic-default" />
-        <path name="device-builtin-mic" />
     </path>
 
     <path name="communication-headset-mic">
