@@ -73,9 +73,7 @@ CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 # Kernel
 
-BOARD_CUSTOM_BOOTIMG_MK := device/samsung/k3gxx/mkdtbhbootimg.mk
-BOARD_CUSTOM_MKBOOTIMG := mkdtbhbootimg
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --tags_offset 0x10000100 --dt_dir $(OUT)/obj/KERNEL_OBJ/arch/arm/boot/dts/
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --tags_offset 0x10000100 --dt $(LOCAL_PATH)/dt.img
 TARGET_KERNEL_SOURCE := kernel/samsung/k3gxx
 TARGET_KERNEL_CONFIG := exynos5422-k3g_00_defconfig
 BOARD_KERNEL_BASE := 0x10000000
