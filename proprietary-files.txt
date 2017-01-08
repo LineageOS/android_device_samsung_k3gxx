@@ -108,12 +108,12 @@ vendor/lib/liblvverx_3.21.13.so
 vendor/lib/liblvvetx_3.21.13.so
 
 ### Camera
-#lib/hw/camera.universal5422.so
-#lib/libsecnativefeature.so
-#lib/libexynoscamera.so
+lib/hw/camera.universal5422.so
+lib/libsecnativefeature.so
+lib/libexynoscamera.so
 #lib/libexynosv4l2.so
-#lib/libhwjpeg.so
-#lib/libvdis.so
+lib/libhwjpeg.so
+lib/libvdis.so
 
 ### BIN
 bin/sensorhubservice
