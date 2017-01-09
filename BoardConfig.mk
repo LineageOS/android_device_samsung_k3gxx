@@ -60,9 +60,6 @@ TARGET_GLOBAL_CFLAGS += -DUSE_ANB
 
 ##################################################
 
-#Enable ValidityService for fingerprint
-#BOARD_USES_VALIDITY := true
-
 # HEALTH DAEMON (CHARGER) DEFINES
 TARGET_PROVIDES_LIBLIGHT := false
 RED_LED_PATH := "/sys/devices/virtual/sec/led/led_r"
