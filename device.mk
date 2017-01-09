@@ -197,7 +197,7 @@ PRODUCT_PACKAGES += \
 ###########################################################
 
 PRODUCT_PACKAGES += \
-	Snap
+	Camera2
 
 PRODUCT_PACKAGES += \
 	libhwjpeg
