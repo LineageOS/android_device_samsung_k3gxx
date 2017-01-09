@@ -46,6 +46,9 @@ else
     fi
 fi
 
+DEVICE=k3gxx
+VENDOR=samsung
+
 setup_vendor "$DEVICE" "$VENDOR" "$CM_ROOT" true
 
 extract "$MY_DIR"/proprietary-files.txt "$SRC"
