@@ -30,6 +30,9 @@ if [ ! -f "$HELPER" ]; then
 fi
 . "$HELPER"
 
+DEVICE=k3gxx
+VENDOR=samsung
+
 # Initialize the helper for common device
 setup_vendor "$DEVICE" "$VENDOR" "$CM_ROOT" true
 
