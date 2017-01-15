@@ -1,5 +1,5 @@
-import init.universal5422.wifi.rc
 import init.universal5422.usb.rc
+import init.wifi.rc
 import init.samsung.rc
 
 on early-init
@@ -36,26 +36,32 @@ on post-fs-data
 
     setprop vold.post_fs_data_done 1
 
+    # Permission for flashlight control for HAL3.3
+    chmod 0660 /sys/class/camera/flash/rear_torch_flash
+    chown media drmrpc /sys/class/camera/flash/rear_torch_flash
+
     # Permissions Camera
-    chown media drmrpc /sys/class/camera/rear/rear_camfw
-    chown media drmrpc /sys/class/camera/rear/rear_camfw_full
-    chown media drmrpc /sys/class/camera/rear/rear_camtype
-	chown media drmrpc /sys/class/camera/rear/rear_checkfw_factory
-	chown media drmrpc /sys/class/camera/rear/rear_checkfw_user
-    chown media drmrpc /sys/class/camera/rear/rear_companionfw
-    chown media drmrpc /sys/class/camera/rear/rear_companionfw_full
-	chown media drmrpc /sys/class/camera/rear/rear_sensorid
-    chown media drmrpc /sys/class/camera/rear/rear_calcheck
-    chown media drmrpc /sys/class/camera/rear/isp_core
+    chown system radio /sys/class/camera/rear/rear_camfw
+    chown system radio /sys/class/camera/rear/rear_camfw_full
+    chown system radio /sys/class/camera/rear/rear_camtype
+    chown system radio /sys/class/camera/rear/rear_companionfw
+    chown system radio /sys/class/camera/rear/rear_companionfw_full
+    chown system radio /sys/class/camera/rear/rear_calcheck
+    chown system radio /sys/class/camera/rear/isp_core
     chown media drmrpc /sys/class/camera/flash/rear_flash
-    chown media drmrpc /sys/class/camera/front/front_camfw
-    chown media drmrpc /sys/class/camera/front/front_camtype
-    chown media drmrpc /sys/class/camera/front/front_sensorid
+    chown system radio /sys/class/camera/front/front_camfw
+    chown system radio /sys/class/camera/front/front_camtype
+    chown system radio /sys/class/camera/front/front_sensorid
+    chown system radio /sys/class/camera/rear/rear_checkfw_factory
+    chown system radio /sys/class/camera/rear/rear_checkfw_user
+    chown system radio /sys/class/camera/rear/rear_sensorid
 
     #Permissions for Camera to flush cache buffers
     chown system system /sys/devices/virtual/sec/sec_misc/drop_caches
 
 #Private Mode
+    mkdir /mnt/shell/privatemode 0700 system system
+    mkdir /storage/Private 0000 system system
     mkdir /data/privatemode 0770 system system
     chown system system /data/privatemode
     restorecon /data/privatemode
@@ -75,7 +81,7 @@ on boot
 # MSP FactoryApp
     mkdir /efs/FactoryApp 0775 system system
 
-# SSWAP
+    # SSWAP
     write /proc/sys/vm/swappiness 130
 
     # Reduce reserved lowmem from ~48MB to ~12MB
@@ -95,17 +101,20 @@ on boot
     chown system system /data/system
     mkdir /data/system/gps 0771 system system
     chown system system /data/system/gps
-    rm /data/gps_started
-    rm /data/glonass_started
-    rm /data/beidou_started
-    rm /data/smd_started
-    rm /data/sv_cno.info
+    rm /data/system/gps/gps_started
+    rm /data/system/gps/glonass_started
+    rm /data/system/gps/beidou_started
+    rm /data/system/gps/smd_started
+    rm /data/system/gps/sv_cno.info
     # Reduce reserved lowmem from ~48MB to ~12MB
     write /proc/sys/vm/lowmem_reserve_ratio "128 128"
 
     # For kernel lock in BT/WiFi race condtion
     chmod 0600 /dev/btlock
     chown bluetooth bluetooth /dev/btlock
+
+	# DualWave
+    chown system system /sys/kernel/DualWave/sound/DUALWAVE_CONFIG
 
     # override init.rc to keep plenty of large order chunks around
     # to improve allocation times
@@ -118,24 +127,6 @@ on boot
     # Set up kernel tracing, but disable it by default
     chmod 0222 /sys/kernel/debug/tracing/trace_marker
     write /sys/kernel/debug/tracing/tracing_on 0
-
-###############################################################################
-# System LSI
-# Comment : add permission to device driver
-
-# NFC : Permissions for NFC
-    chmod 0660 /dev/sec-nfc
-# NFC : change owner
-    chown nfc nfc /dev/sec-nfc
-# NFC : create data/nfc for nv storage
-    mkdir /data/nfc 0700 nfc nfc
-    mkdir /data/nfc/param 0700 nfc nfc
-
-# Set up nfc test option
-    setprop snfc.test.fwdownload 2
-    setprop snfc.test.power      sec
-    setprop snfc.test.tag        sec
-###############################################################################
 
     # PMS DVFS
     chown radio system /sys/power/cpufreq_table
@@ -329,19 +320,9 @@ on boot
     chown system radio /sys/class/sec/switch/usb_state
     chown system radio /sys/class/sec/switch/chg_type
 
-    # mobicore
-    mkdir /data/app/mcRegistry 0775 system system
-    chmod 0700 /dev/mobicore
-    chmod 0666 /dev/mobicore-user
-    chmod 0660 /dev/s5p-smem
-    chown system system /dev/mobicore
-    chown radio system /dev/mobicore-user
-    chown system system /dev/s5p-smem
-
 # DRK permission
     mkdir /efs/prov 0770 radio system
-    chown radio system /efs/prov_data
-    chmod 0770 /efs/prov_data
+    mkdir /efs/prov_data 0770 radio system
     chown radio system /efs/prov_data/dev_root
     chmod 0770 /efs/prov_data/dev_root
     chown radio system /efs/prov_data/knox
@@ -367,8 +348,8 @@ on fs
     chown radio system /sys/devices/virtual/misc/umts_dm0/dm_state
 	
     # Support Preload install apks
-    wait  /dev/block/platform/12200000.dwmmc0/by-name/HIDDEN
-    mount ext4  /dev/block/platform/12200000.dwmmc0/by-name/HIDDEN /preload nosuid nodev ro barrier=1
+    wait  /dev/block/mmcblk0p20
+    mount ext4  /dev/block/mmcblk0p20 /preload nosuid nodev ro barrier=1
     setprop storage.preload.complete 1
 
     #For Absolute Persistence Partition
@@ -382,16 +363,15 @@ on fs
     chown system system /persdata 
     chmod 0755 /persdata 
     chown system system /persdata/absolute 
-    chmod 0750 /persdata/absolute     
+    chmod 0750 /persdata/absolute
 
 # Fingerprint
     mkdir /dev/validity 0770 system system
     mkdir /data/validity 0770 system system
 
-    # Fingerprint_sensor
-    chown system radio /sys/class/fingerprint/fingerprint/type_check
-
 # SENSORS
+# Fingerprint_sensor
+    chown system radio /sys/class/fingerprint/fingerprint/type_check
 # Accelerometer_sensor
     chown system radio /sys/class/sensors/accelerometer_sensor/raw_data
     chown system radio /sys/class/sensors/accelerometer_sensor/calibration
@@ -428,6 +408,7 @@ on fs
     chown system radio /sys/class/sensors/barometer_sensor/vendor
     chown system radio /sys/class/sensors/barometer_sensor/name
     chown system radio /sys/class/sensors/barometer_sensor/calibration
+    chown system radio /sys/class/sensors/barometer_sensor/temperature
 # Magnetic_sensor
     chown system radio /sys/class/sensors/magnetic_sensor/raw_data
     chown system radio /sys/class/sensors/magnetic_sensor/vendor
@@ -457,9 +438,10 @@ on fs
     chown system radio /sys/class/sensors/hrm_sensor/look_mode_red
     chown system radio /sys/class/sensors/hrm_sensor/led_current
     chown system radio /sys/class/sensors/hrm_sensor/int_pin_check
-	chown system radio /sys/class/sensors/hrm_sensor/lib_ver
+    chown system radio /sys/class/sensors/hrm_sensor/lib_ver
     chown system radio /sys/class/sensors/hrm_sensor/name
     chown system radio /sys/class/sensors/hrm_sensor/vendor
+    chown system radio /sys/class/sensors/hrm_sensor/hrm_flush
 # SHTC1 BULK
     chmod 0600 /dev/shtc1_sensor
     chown system system /dev/shtc1_sensor
@@ -472,6 +454,7 @@ on fs
     chown system radio /sys/class/sensors/ssp_sensor/mcu_update
     chown system radio /sys/class/sensors/ssp_sensor/mcu_sleep_test
     chown system radio /sys/class/sensors/ssp_sensor/ori_poll_delay
+    chown system radio /sys/class/sensors/ssp_sensor/mag_poll_delay
 # Sensorhub IIO
     chown system radio /sys/class/sensors/ssp_sensor/accel_poll_delay
     chown system radio /sys/class/sensors/ssp_sensor/rot_poll_delay
@@ -484,7 +467,6 @@ on fs
     chown system radio /sys/class/sensors/ssp_sensor/pressure_poll_delay
     chown system radio /sys/class/sensors/ssp_sensor/ssp_flush
     chmod 0600 /dev/batch_io
-    chown system system /dev/batch_io
 # MOBEAM
     chown system radio /sys/class/sec/sec_barcode_emul/vendor
     chown system radio /sys/class/sec/sec_barcode_emul/name
@@ -536,11 +518,6 @@ on fs
 # Permissions for gpio_keys
     chown radio system /sys/class/sec/sec_key/wakeup_keys
     write /sys/class/sec/sec_key/wakeup_keys 116,172
-    chown system system /sys/devices/gpio_keys.9/input/input7/enabled
-    chown system system /sys/devices/gpio_keys.10/input/input8/enabled
-    chown system system /sys/devices/gpio_keys.11/input/input9/enabled
-#true one
-    chown system system /sys/devices/gpio_keys.16/input/input14/enabled
 
 # terminal mode
 	chmod 0660 /sys/class/android_usb/android0/terminal_version
@@ -565,18 +542,6 @@ on fs
     mkdir /efs/drm 0774 drm system
     mkdir /efs/drm/playready 0775 drm system
 
-# ExyRng startup
-service exyrngd /system/bin/exyrngd -b
-    user root
-    group root
-    class main
-    oneshot
-
-# MobiCore startup
-service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
-    class core
-    user system
-    group system
 
 # Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
 service watchdogd /sbin/watchdogd 10 20
@@ -588,22 +553,19 @@ service cpboot-daemon /sbin/cbd -d -txmm626 -bh -mh -p 13
     class main
     user root
     group radio cache inet misc audio sdcard_rw log sdcard_r shell
-    seclabel u:r:cpboot-daemon:s0
+    seclabel u:r:cbd:s0
 
 # on userdebug and eng builds, enable kgdb on the serial console
 on property:ro.debuggable=1
     write /sys/module/kgdboc/parameters/kgdboc ttyFIQ1
     write /sys/module/fiq_debugger/parameters/kgdb_enable 1
-    
-    
-service goldfish-setup /system/etc/init.goldfish.sh
-    user root
-    group root
-    oneshot
-
-on property:init.svc.bootanim=stopped
-    start camera_id    
-    
+# SecEDS
+service TvoutService_C /system/bin/bintvoutservice
+     class main
+     user system
+     group graphics
+on property:ro.SecEDS.enable=false
+    stop TvoutService_C
 
 # SENSOR FRAMEWORK : starts fingerprintService
 service vcsFPService /system/bin/vcsFPService
@@ -612,18 +574,12 @@ service vcsFPService /system/bin/vcsFPService
     group system
 
 
-service fingerprintd /system/bin/fingerprintd
-    class late_start
-    user system
-    group input
-	
 # GPS
 service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     class main
     user gps
     group system inet net_raw
     ioprio be 0
-    seclabel u:r:gpsd:s0
 
 # CS service
 service cs_service /system/bin/cs
@@ -631,9 +587,10 @@ service cs_service /system/bin/cs
     user system
     group system
     disabled
-    seclabel u:r:cpboot-daemon:s0
+
 on property:sys.mobicoredaemon.enable=true
     start cs_service
+    write /proc/iccc_ready 1
 
 # Kick watchdogd if debug_level is low
 on property:ro.debug_level=0x4f4c
@@ -657,10 +614,6 @@ service scranton_RD /system/bin/scranton_RD
 on property:sys.mobicoredaemon.enable=true
     start scranton_RD
 
-service playlpm /system/bin/lpm
-    class sec-charger
-    critical
-
 # Secure Storage startup
 service secure_storage /system/bin/secure_storage_daemon
     class core
@@ -675,3 +628,5 @@ on property:ro.securestorage.support=true
     restorecon -R /dev/.secure_storage
     start secure_storage
 
+on property:sys.boot_completed=1
+    chown system system /dev/batch_io
