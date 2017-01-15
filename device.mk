@@ -19,7 +19,7 @@ PRODUCT_PACKAGES += \
 	init.samsung.rc \
 	init.universal5422.rc \
 	init.universal5422.usb.rc \
-	init.universal5422.wifi.rc \
+	init.wifi.rc \
 	ueventd.universal5422.rc \
 	init.rc \
 	recovery.fstab \
