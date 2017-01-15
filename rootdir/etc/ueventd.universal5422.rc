@@ -81,68 +81,71 @@
 /dev/video52              0660   media      graphics
 
 # camera
-/dev/video100             0660   media      drmrpc
-/dev/video101             0660   media      drmrpc
-/dev/video102             0660   media      drmrpc
-/dev/video103             0660   media      drmrpc
-/dev/video104             0660   media      drmrpc
-/dev/video105             0660   media      drmrpc
-/dev/video106             0660   media      drmrpc
-/dev/video107             0660   media      drmrpc
-/dev/video108             0660   media      drmrpc
-/dev/video109             0660   media      drmrpc
-/dev/video110             0660   media      drmrpc
-/dev/video111             0660   media      drmrpc
-/dev/video112             0660   media      drmrpc
-/dev/video114             0660   media      drmrpc
-/dev/video115             0660   media      drmrpc
-/dev/video116             0660   media      drmrpc
-/dev/video130             0660   media      drmrpc
-/dev/video134             0660   media      drmrpc
-/dev/video137             0660   media      drmrpc
-/dev/video140             0660   media      drmrpc
-/dev/video141             0660   media      drmrpc
-/dev/video146             0660   media      drmrpc
-/dev/video149             0660   media      drmrpc
+/dev/video100             0660   media      media
+/dev/video101             0660   media      media
+/dev/video102             0660   media      media
+/dev/video103             0660   media      media
+/dev/video104             0660   media      media
+/dev/video105             0660   media      media
+/dev/video106             0660   media      media
+/dev/video107             0660   media      media
+/dev/video108             0660   media      media
+/dev/video109             0660   media      media
+/dev/video110             0660   media      media
+/dev/video111             0660   media      media
+/dev/video112             0660   media      media
+/dev/video114             0660   media      media
+/dev/video115             0660   media      media
+/dev/video116             0660   media      media
+/dev/video130             0660   media      media
+/dev/video134             0660   media      media
+/dev/video137             0660   media      media
+/dev/video140             0660   media      media
+/dev/video141             0660   media      media
+/dev/video146             0660   media      media
+/dev/video149             0660   media      media
 
 /dev/block/mmcblk0p13     0660   system     radio
 /dev/umts*                0660   system     radio
 
-# MobiCore
-/dev/mobicore             0700   system     system
-/dev/mobicore-user        0666   radio     system
-
-# rfkill
-/dev/rfkill               0660   root       wifi
-
-# Secure MEM driver
-/dev/s5p-smem             0660   system     system
-
-# for PL2303 driver
-/dev/ttyUSB*              0660   system     usb
-
-# Reactivation Lock
-/dev/block/mmcblk0rpmb	0660	system	system
-
-# NFC
-/dev/pn547                0660   nfc        nfc
-/dev/sec-nfc              0660   nfc        nfc
+# vfs
+/dev/vfsspi       		  0660   system     system
 
 /dev/block/mmcblk0p8      0660   system     system
 # sensor sysfs properties
 /sys/devices/virtual/input/input*	poll_delay	0660	system	radio
 /sys/devices/virtual/input/input*	enable		0660	system	radio
-
-# fingerprint sensor
-/dev/vfsspi        0660   system     system
-
-# USB Accessories (printer and so on) - duki994
-/dev/usb/lp*              0660   system     usb
+/sys/devices/virtual/input/input*   name        0440    root    input
 
 # Sensorhub IIO
-/dev/ssp_sensorhub        0660   system     system
-/dev/iio:device*          0660   system     system
+/dev/ssp_sensorhub        0660   system  system
+/dev/iio:device*          0660   system  system
 /sys/devices/12d20000.spi/spi_master/spi0/spi0.0/iio:device*    buffer/enable       0660    system    system
 /sys/devices/12d20000.spi/spi_master/spi0/spi0.0/iio:device*    buffer/length       0660    system    system
-/sys/bus/iio/devices/iio:device*    0664    system     radio
+/sys/bus/iio/devices/iio:device*    0664   system     radio
+
+/dev/tzic                 0660   system     system
+/dev/hidraw1              0664   root       system
+/dev/ovr*                 0664   root       system
+
+# for PL2303 driver
+/dev/ttyUSB*              0660   system     usb
+
+# MobiCore
+/dev/mobicore             0700   system     system
+/dev/mobicore-user        0666   radio      system
+
+# Secure MEM driver
+/dev/s5p-smem             0660   system     system
+
+# sensorhub
+/dev/ssp_sensorhub        0660   system     system
+/dev/ssp_data_injection   0660   system     system
+
+# Reactivation Lock
+/dev/block/mmcblk0rpmb	  0660	 system	    system
+
+# Fingerprint Sensor
+/dev/vfsspi      		  0660   system     system
+/dev/esfp0    			  0660   system     system
 
