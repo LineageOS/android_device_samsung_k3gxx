@@ -6,19 +6,15 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 on init
-    on init
-    export LD_SHIM_LIBS "/system/lib/omx/libOMX.Exynos.AVC.Encoder.so|/system/lib/libsamsung_symbols.so:/system/lib/libexynoscamera.so|libsamsung_symbols.so:/system/bin/gpsd|libdmitry.so"
+    export LD_SHIM_LIBS "/system/bin/gpsd|libshim_gpsd.so:/system/vendor/lib/libwvm.so|libshim_wvm.so:/system/bin/gpsd|libdmitry.so"
     mkdir /preload 0771 system system
-
-# Support legacy paths
-	 symlink /sdcard /mnt/sdcard0
-	 symlink /sdcard /storage/sdcard1
-	 symlink /sdcard1 /external_sd
-	 symlink /storage/usbdisk /mnt/usbdisk
-	 
-	 export EXTERNAL_STORAGE /sdcard
-	 
-    #export SECONDARY_STORAGE /storage/extSdCard
+	
+    symlink /sdcard /mnt/sdcard
+    symlink /sdcard /storage/sdcard0
+    symlink /sdcard1 /storage/sdcard1
+    symlink /sdcard1 /mnt/extSdCard
+    symlink /sdcard1 /mnt/sdcard1
+    symlink /sdcard1 /external_sd
 
     symlink /data/app /factory
 
@@ -350,7 +346,7 @@ on boot
     chmod 0660 /dev/s5p-smem
     chown system system /dev/mobicore
     chown radio system /dev/mobicore-user
-    chown drm drmrpc /dev/s5p-smem
+    chown system system /dev/s5p-smem
 
 # DRK permission
     mkdir /efs/prov 0770 radio system
@@ -515,11 +511,11 @@ on fs
     chown system system /sys/class/backlight/panel/auto_brightness
 
 # Permissions for LCD
-    chown system radio /sys/class/lcd/panel/contrast
-    chown system radio /sys/class/lcd/panel/lcd_power
     chown system radio /sys/class/lcd/panel/lcd_type
-    chown system radio /sys/class/lcd/panel/max_contrast
-    chown system radio /sys/class/lcd/panel/window_type
+    chown system system /sys/class/lcd/panel/power_reduce
+    chown system system /sys/class/lcd/panel/siop_enable
+    chown system system /sys/class/lcd/panel/temperature
+    chown system system /sys/class/lcd/panel/alpm
 
 # Permissions for MDNIE
     chown system media_rw /sys/class/mdnie/mdnie/mode

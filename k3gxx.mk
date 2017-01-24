@@ -29,17 +29,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libpcap \
     tcpdump
-
+	
 # OMX
 PRODUCT_PACKAGES += \
     libcsc \
     libOMX.Exynos.WMV.Decoder \
     libOMX.Exynos.MPEG2.Decoder
 	
-# IO Scheduler
-PRODUCT_PROPERTY_OVERRIDES += \
-sys.io.scheduler=bfq
-
 ###########################################################
 ### RAMDISK
 ###########################################################
@@ -66,7 +62,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
-	frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.ethernet.xml:system/etc/permissions/android.hardware.ethernet.xml \
@@ -110,11 +105,7 @@ PRODUCT_COPY_FILES += \
 # if the xhdpi doesn't exist.
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
-PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.opengles.version=196608 \
-    ro.bq.gpu_to_cpu_unsupported=1
+PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi 
 
 PRODUCT_PACKAGES += \
 	libion_exynos \
@@ -130,7 +121,7 @@ PRODUCT_PACKAGES += \
 #   $(LOCAL_PATH)/ril/sbin/cbd:root/sbin/cbd
 PRODUCT_PACKAGES += \
 	modemloader \
-    cbd \
+	cbd \
     
 ###########################################################
 ### WIFI
@@ -236,8 +227,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/gps/gps.xml:system/etc/gps.xml
 
 PRODUCT_PACKAGES += \
-    libdmitry \
-	gps.universal5422
+    libdmitry
 
 ###########################################################
 ### FINGERPRINT
@@ -300,24 +290,37 @@ PRODUCT_PACKAGES += \
 	keystore.exynos5
 
 ###########################################################
-### PACKAGES/Display
+### PACKAGES
 ###########################################################
 
 PRODUCT_PACKAGES += \
-    SamsungDoze \
-    SamsungServiceMode \
-    Torch
+	SamsungServiceMode \
+	Torch
 
 ###########################################################
 ### CONSUMERIR
 ###########################################################
-
 PRODUCT_PACKAGES += \
     consumerir.universal5422
 
+###########################################################
+### DALVIK/ART
+###########################################################
+
+PRODUCT_PACKAGES += \
+    consumerir.universal5422
+	
+# Default.prop overrides to get adb working at boot   
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.secure=0 \
+    ro.adb.secure=0 \
+    ro.zygote=zygote32 \
+    persist.service.adb.enable=1 \
+	persist.service.debuggable=1 \
+	persist.sys.usb.config=mtp,adb
+
 $(call inherit-product-if-exists, build/target/product/full.mk)
 # call Samsung LSI board support package
-
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5422/exynos5422.mk)
 

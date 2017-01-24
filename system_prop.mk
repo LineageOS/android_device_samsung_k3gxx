@@ -74,13 +74,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.hwui.text_large_cache_width=4096 \
 	ro.hwui.text_large_cache_height=4096
 
-###########################################################
-### ADB / USB mode
-###########################################################
-     
-	 PRODUCT_PROPERTY_OVERRIDES += \
-	 ro.securestorage.support=false \
-     persist.sys.isUsbOtgEnabled=true \
-	 persist.service.adb.enable=1 \
-	 persist.service.debuggable=1 \
-	 persist.sys.usb.config=mtp,adb

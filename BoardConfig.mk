@@ -33,12 +33,16 @@ TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
-TARGET_CPU_VARIANT := cortex-a15
+TARGET_CPU_VARIANT := cortex-a7
+TARGET_BOARD_PLATFORM_GPU := mali-t628mp6
 # big.LITTLE load balancing
 ENABLE_CPUSETS := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 #WITH_DEXPREOPT := true
 #TARGET_PROVIDES_INIT_RC := true
+
+# RENDERSCRIPT
+BOARD_OVERRIDE_RS_CPU_VARIANT_32 := cortex-a15
 
 # LibVideoCodec
 COMMON_GLOBAL_CFLAGS += -DSOC_EXYNOS5430
@@ -50,9 +54,6 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Camera
-# Camera
-BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
-TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 BOARD_CAMERA_SNUMINTS := 34
 BOARD_NEEDS_MEMORYHEAPION := true
 COMMON_GLOBAL_CFLAGS += -DCAMERA_SNUMINTS=$(BOARD_CAMERA_SNUMINTS)
@@ -67,7 +68,7 @@ COMMON_GLOBAL_CFLAGS += -DWIDEVINE_PLUGIN_PRE_NOTIFY_ERROR
 BOARD_USES_VALIDITY := true
 
 # HEALTH DAEMON (CHARGER) DEFINES
-TARGET_PROVIDES_LIBLIGHT := false
+TARGET_PROVIDES_LIBLIGHT := true
 RED_LED_PATH := "/sys/devices/virtual/sec/led/led_r"
 GREEN_LED_PATH := "/sys/devices/virtual/sec/led/led_g"
 BLUE_LED_PATH := "/sys/devices/virtual/sec/led/led_b"
@@ -76,22 +77,14 @@ CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 # Kernel
 
-BOARD_CUSTOM_BOOTIMG_MK := device/samsung/k3gxx/mkdtbhbootimg.mk
-BOARD_CUSTOM_MKBOOTIMG := mkdtbhbootimg
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --tags_offset 0x10000100
-TARGET_KERNEL_SOURCE := kernel/samsung/exynosRR
-TARGET_KERNEL_CONFIG := exynos5422-k3g_01_defconfig
-#TARGET_KERNEL_CONFIG := exynos5422-k3g_defconfig
-#TARGET_KERNEL_SOURCE := kernel/samsung/exynos5422
-BOARD_MKBOOTIMG_ARGS += --dt device/samsung/k3gxx/dt.img
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --tags_offset 0x10000100 --dt $(LOCAL_PATH)/dt.img
+TARGET_KERNEL_SOURCE := kernel/samsung/k3gxx
+TARGET_KERNEL_CONFIG := lineageos-k3g_defconfig
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
-#KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
-#KERNEL_TOOLCHAIN := /opt/toolchains/arm-eabi-7.0/bin/
 
 # Battery / charging mode
 BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 BOARD_BATTERY_DEVICE_NAME := battery
 
@@ -115,7 +108,7 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200
 BOARD_FLASH_BLOCK_SIZE := 131072
 
 # PowerHAL
-TARGET_POWERHAL_VARIANT := Samsung
+TARGET_POWERHAL_VARIANT := k3gxx
 
 # Radio
 BOARD_PROVIDES_LIBRIL := true
@@ -125,6 +118,12 @@ COMMON_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 BOARD_RIL_CLASS := ../../../device/samsung/k3gxx/ril
 
 # Recovery
+#RECOVERY_VARIANT := twrp
+#TW_NO_REBOOT_BOOTLOADER := true
+#TW_HAS_DOWNLOAD_MODE := true
+#TW_THEME := portrait_hdpi
+TW_BRIGHTNESS_PATH := /sys/devices/14400000.fimd_fb/backlight/panel/brightness
+TW_MAX_BRIGHTNESS := 255
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_RECOVERY_SWIPE := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
@@ -141,8 +140,8 @@ TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/fstab.universal5422
 endif
 
 # SELinux
-#BOARD_SEPOLICY_DIRS += \
-#    device/samsung/k3gxx/sepolicy
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/k3gxx/sepolicy
 
 # Graphics
 USE_OPENGL_RENDERER := true
@@ -162,6 +161,9 @@ BOARD_HDMI_INCAPABLE := true
 
 # HWCServices
 #BOARD_USES_HWC_SERVICES := true
+
+# Keymaster
+BOARD_USES_TRUST_KEYMASTER := true
 
 #HeartRate
 TARGET_NO_SENSOR_PERMISSION_CHECK := true
@@ -187,7 +189,6 @@ BOARD_USE_VP8ENC_SUPPORT := true
 
 # Scaler
 BOARD_USES_SCALER := true
-BOARD_USES_GSC_VIDEO := true
 
 # WFD
 #BOARD_USES_WFD_SERVICE := true
@@ -201,6 +202,8 @@ BOARD_HOSTAPD_DRIVER             := NL80211
 BOARD_HOSTAPD_PRIVATE_LIB        := lib_driver_cmd_bcmdhd
 BOARD_WLAN_DEVICE                := bcmdhd
 WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/dhd/parameters/firmware_path"
+WIFI_DRIVER_NVRAM_PATH_PARAM     := "/sys/module/dhd/parameters/nvram_path"
+WIFI_DRIVER_NVRAM_PATH           := "/etc/wifi/nvram_net.txt"
 WIFI_DRIVER_FW_PATH_STA          := "/etc/wifi/bcmdhd_sta.bin"
 WIFI_DRIVER_FW_PATH_AP           := "/etc/wifi/bcmdhd_apsta.bin"
 # MACLOADER
@@ -218,19 +221,7 @@ BOARD_NFC_CHIPSET := pn547
 BOARD_NFC_HAL_SUFFIX := $(TARGET_BOOTLOADER_BOARD_NAME)
 
 # CMHW
-#BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
-# CMHW
 BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
-
-# Exynos display
-#BOARD_USES_VIRTUAL_DISPLAY := true
-
-# Extended filesystem support
-TARGET_KERNEL_HAVE_EXFAT := true
-TARGET_KERNEL_HAVE_NTFS := true
-
-# IR Blaster
-IR_HAS_ONE_FREQ_RANGE := true
 
 #Trying to get work the WIFI
 #-include hardware/broadcom/wlan/bcmdhd/firmware/bcm4354/device-bcm.mk
