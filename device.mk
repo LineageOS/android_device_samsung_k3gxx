@@ -7,7 +7,7 @@ $(call inherit-product-if-exists, vendor/samsung/k3gxx/k3gxx-vendor.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/samsung/k3gxx/overlay
 
-LOCAL_PATH := device/samsung/k3gxx
+LOCAL_PATH := device/samsung/k3gxxs
 
 ###########################################################
 ### RAMDISK
@@ -19,7 +19,7 @@ PRODUCT_PACKAGES += \
 	init.samsung.rc \
 	init.universal5422.rc \
 	init.universal5422.usb.rc \
-	init.wifi.rc \
+	init_path.wifi.rc \
 	ueventd.universal5422.rc \
 	init.rc \
 	recovery.fstab \
@@ -140,7 +140,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/audio/audio_effects.conf:system/etc/audio_effects.conf \
 	$(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf \
-	$(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml
+	$(LOCAL_PATH)/configs/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
+	$(LOCAL_PATH)/configs/audio/mixer_paths_0.xml:system/etc/mixer_paths_0.xml \
 
 PRODUCT_PACKAGES += \
 	audio.a2dp.default \
