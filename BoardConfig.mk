@@ -9,7 +9,6 @@ TARGET_SLSI_VARIANT := cm
 TARGET_SOC := exynos5422
 
 # Architecture
-TARGET_BUILD_VARIANT := userdebug
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_ABI := armeabi-v7a
