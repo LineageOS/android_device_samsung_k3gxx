@@ -226,17 +226,6 @@ PRODUCT_PACKAGES += \
     libdmitry
 
 ###########################################################
-### FINGERPRINT
-###########################################################
-
-PRODUCT_PACKAGES += \
-    fingerprintd \
-    fingerprint.universal5422 \
-    ValidityService
-	
-PRODUCT_PROPERTY_OVERRIDES += \
-     fingerprint_enabled=1
-###########################################################
 ### CAMERA
 ###########################################################
 
@@ -317,11 +306,6 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 # adb and apps
 ADDITIONAL_BUILD_PROPERTIES += \
     persist.sys.root_access=3
-
-# Legacy stagefright media
-PRODUCT_PROPERTY_OVERRIDES += \
-    media.stagefright.legacyencoder=true \
-    media.stagefright.less-secure=true
 
 $(call inherit-product-if-exists, build/target/product/full.mk)
 # call Samsung LSI board support package
