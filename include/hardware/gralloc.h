@@ -99,6 +99,7 @@ enum {
     /* buffer should be displayed full-screen on an external display when
      * possible */
     GRALLOC_USAGE_EXTERNAL_DISP         = 0x00002000,
+    GRALLOC_USAGE_GPU_BUFFER            = 0x00800000,
 
     /* Must have a hardware-protected path to external display sink for
      * this buffer.  If a hardware-protected path is not available, then
@@ -165,8 +166,6 @@ enum {
     /* SEC Private usage , for Overlay path at HWC */
     GRALLOC_USAGE_HWC_HWOVERLAY         = 0x20000000,
 #endif
-
-    GRALLOC_USAGE_GPU_BUFFER            = 0x00800000,
 };
 
 /*****************************************************************************/
@@ -415,7 +414,11 @@ typedef struct alloc_device_t {
 static inline int gralloc_open(const struct hw_module_t* module, 
         struct alloc_device_t** device) {
     return module->methods->open(module, 
+#ifdef __cplusplus
+            GRALLOC_HARDWARE_GPU0, reinterpret_cast<struct hw_device_t**>(device));
+#else
             GRALLOC_HARDWARE_GPU0, (struct hw_device_t**)device);
+#endif
 }
 
 static inline int gralloc_close(struct alloc_device_t* device) {

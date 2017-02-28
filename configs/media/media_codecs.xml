@@ -91,10 +91,10 @@ Only the three quirks included above are recognized at this point:
             <Quirk name="requires-allocate-on-output-ports" />
             <Quirk name="decoder-ignores-streamcorrupt-error" />
             <Quirk name="video-controller-check-enable" />
-            <Limit name="size" min="32x32" max="2560x1600" />
+            <Limit name="size" min="32x32" max="4096x2160" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="1" max="489600" />
+            <Limit name="blocks-per-second" min="1" max="979200" />
             <Limit name="bitrate" range="1-80000000" />
             <Limit name="concurrent-instances" max="16"/>
             <Feature name="adaptive-playback" />
@@ -109,7 +109,7 @@ Only the three quirks included above are recognized at this point:
             <Limit name="size" min="32x32" max="1920x1088" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="1" max="489600" />
+            <Limit name="blocks-per-second" min="1" max="979200" />
             <Limit name="bitrate" range="1-80000000" />
             <Limit name="concurrent-instances" max="16"/>
             <Feature name="adaptive-playback" />
@@ -124,7 +124,7 @@ Only the three quirks included above are recognized at this point:
             <Limit name="size" min="32x32" max="720x480" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="1" max="489600" />
+            <Limit name="blocks-per-second" min="1" max="979200" />
             <Limit name="bitrate" range="1-80000000" />
             <Limit name="concurrent-instances" max="16"/>
             <Feature name="adaptive-playback" />
@@ -137,7 +137,7 @@ Only the three quirks included above are recognized at this point:
             <Limit name="size" min="32x32" max="2560x1600" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="1" max="489600" />
+            <Limit name="blocks-per-second" min="1" max="979200" />
             <Limit name="bitrate" range="1-40000000" />
             <Limit name="concurrent-instances" max="16"/>
             <Feature name="adaptive-playback" />
@@ -153,7 +153,7 @@ Only the three quirks included above are recognized at this point:
             <Limit name="size" min="32x32" max="1920x1088" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="1" max="489600" />
+            <Limit name="blocks-per-second" min="1" max="979200" />
             <Limit name="bitrate" range="1-80000000" />
             <Limit name="concurrent-instances" max="16"/>
             <Feature name="adaptive-playback" />

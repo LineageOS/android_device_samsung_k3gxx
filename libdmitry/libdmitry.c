@@ -125,6 +125,8 @@ void *CRYPTO_malloc(uint32_t sz, const char *file, uint32_t line);
 void libEvtLoading(void) __attribute__((constructor));
 void libEvtUnloading(void) __attribute__((destructor));
 
+// Android N exports
+void _ZNK7android13SensorManager13getSensorListEPPKPKNS_6SensorE();
 
 /*
  * FUNCTION: android::SensorManager::SensorManager(void)
@@ -187,6 +189,8 @@ void libEvtLoading(void)
     ALOGI("Samsung GPS interposition library loaded. Your GPS should work in M now.");
 }
 
+long (*SSL_CTX_ctrl)(void *ctx, int cmd, long larg, void *parg);
+
 /*
  * FUNCTION: libEvtUnloading()
  * USE:      Handle library unloading
@@ -201,3 +205,4 @@ void libEvtUnloading(void)
         _ZN7android9SingletonINS_13SensorManagerEE9sInstanceE = NULL;
     }
 }
+void _ZNK7android13SensorManager13getSensorListEPPKPKNS_6SensorE() {}

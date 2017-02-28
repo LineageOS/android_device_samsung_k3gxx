@@ -1,2 +1,0 @@
-# /dev/ttySAC2
-allow shell serial_device:chr_file { read write getattr ioctl };

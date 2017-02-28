@@ -21,7 +21,6 @@
 -->
 
 <mms_config version="3">
-
     <!-- Maximum message size in bytes for a MMS message -->
     <int name="maxMessageSize">1045876</int>
 
@@ -45,5 +44,4 @@
 
     <!-- UAProf URL -->
     <string name="uaProfUrl">http://wap.samsungmobile.com/uaprof/SM-G900H.xml</string>
-
 </mms_config>

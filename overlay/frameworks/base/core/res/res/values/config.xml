@@ -153,7 +153,7 @@
     <!-- ### DISPLAY                                                    -->
     <!-- ############################################################## -->
 
-	<!-- If this is true, the screen will fade off. -->
+    <!-- If this is true, the screen will fade off. -->
     <bool name="config_animateScreenLights">false</bool>
 
     <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
@@ -245,4 +245,7 @@
  
      <!-- Our modem doesn't support this query yet -->
      <string name="config_radio_access_family">GSM|WCDMA|LTE</string>
+	
+	<!-- The device supports freeform window management -->
+    <bool name="config_freeformWindowManagement">true</bool>
 </resources>

@@ -201,4 +201,3 @@ int ril_set_two_mic_control(struct ril_handle *ril, enum ril_two_mic_device devi
 
     return _ril_set_two_mic_control(ril->client, device, state);
 }
-

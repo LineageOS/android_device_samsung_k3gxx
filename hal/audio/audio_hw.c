@@ -4,6 +4,8 @@
  * Copyright (C) 2013 The CyanogenMod Project
  *               Daniel Hillenbrand <codeworkx@cyanogenmod.com>
  *               Guillaume "XpLoDWilD" Lesniak <xplodgui@gmail.com>
+ * Copyright (c) 2015-2016 Andreas Schneider <asn@cryptomilk.org>
+ * Copyright (c) 2015-2017 Christopher N. Hesse <raymanfx@gmail.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

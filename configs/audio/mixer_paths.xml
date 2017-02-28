@@ -388,6 +388,10 @@
         <ctl name="HP Switch" value="1" />
     </path>
 
+    <path name="device-headphones-disable">
+        <ctl name="HP Switch" value="0" />
+    </path>
+
     <!-- ### Scenario ### -->
 
     <path name="scenario-headphones-default">
@@ -670,6 +674,10 @@
         <ctl name="Main Mic Switch" value="1" />
     </path>
 
+    <path name="device-builtin-mic-disable">
+        <ctl name="Main Mic Switch" value="0" />
+    </path>
+
     <!-- ### Scenario ### -->
     <path name="scenario-builtin-mic-default">
         <ctl name="DSP3 Aux 1" value="None" />
@@ -805,6 +813,10 @@
 
     <path name="device-back-mic">
         <ctl name="Sub Mic Switch" value="1" />
+    </path>
+
+    <path name="device-back-mic-disable">
+        <ctl name="Sub Mic Switch" value="0" />
     </path>
 
     <!-- ### Scenario ### -->

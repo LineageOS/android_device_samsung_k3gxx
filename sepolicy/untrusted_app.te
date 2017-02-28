@@ -1,4 +1,0 @@
-# For SpenCommand
-allow untrusted_app input_device:chr_file { read ioctl open };
-allow untrusted_app input_device:dir { read open };
-allow untrusted_app input_device:dir search;
