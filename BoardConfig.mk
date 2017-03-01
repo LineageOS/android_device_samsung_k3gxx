@@ -24,8 +24,6 @@ TARGET_BOARD_PLATFORM := exynos5
 TARGET_SLSI_VARIANT := cm
 TARGET_SOC := exynos5422
 
-USE_CLANG_PLATFORM_BUILD := true
-
 # Architecture
 TARGET_BUILD_VARIANT := userdebug
 TARGET_ARCH := arm
@@ -90,8 +88,6 @@ BOARD_BATTERY_DEVICE_NAME := battery
 BOARD_USES_SKIA_FIMGAPI := true
 BOARD_USES_NEON_BLITANTIH := true
 
-BOARD_BATTERY_DEVICE_NAME := battery
-
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/k3gxx/include
 
@@ -114,7 +110,7 @@ TARGET_AUDIOHAL_VARIANT := samsung
 BOARD_PROVIDES_LIBRIL := true
 BOARD_MODEM_TYPE := xmm6360
 # we need define it (because audio.primary.universal5422.so requires it)
-BOARD_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
+TARGET_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 BOARD_RIL_CLASS := ../../../device/samsung/k3gxx/ril
 
 # Recovery
@@ -124,18 +120,8 @@ TW_HAS_DOWNLOAD_MODE := true
 TW_THEME := portrait_hdpi
 TW_BRIGHTNESS_PATH := /sys/devices/14400000.fimd_fb/backlight/panel/brightness
 TW_MAX_BRIGHTNESS := 255
-# Filesystems
-BOARD_HAS_LARGE_FILESYSTEM := true
-TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
-BOARD_SUPPRESS_SECURE_ERASE := true
-# Extended filesystems support
-TARGET_KERNEL_HAVE_EXFAT := true
-TARGET_KERNEL_HAVE_NTFS := true
 # USB Mounting
-TW_MTP_DEVICE := /dev/usb_mtp_gadget
-TW_CRYPTO_REAL_BLKDEV := "/dev/block/platform/dw_mmc.0/by-name/USERDATA"
-PRODUCT_COPY_FILES += device/samsung/k3gxx/rootdir/etc/twrp.fstab:recovery/root/etc/twrp.fstab
+TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_RECOVERY_SWIPE := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 BOARD_HAS_NO_SELECT_BUTTON := true
@@ -145,7 +131,7 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storag
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 
 ifeq ($(RECOVERY_VARIANT),twrp)
-TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/twrp.fstab
+TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/recovery.fstab
 else
 TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/fstab.universal5422
 endif
@@ -159,13 +145,10 @@ USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := device/samsung/k3gxx/configs/egl/egl.cfg
 DEFAULT_FB_NUM := 0
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
-TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
-
 #BOARD_EGL_NEEDS_HANDLE_VALUE := true
-#ENABLE_WEBGL := true
+ENABLE_WEBGL := true
 # Samsung LSI OpenMAX
-BOARD_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED
+TARGET_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED
 
 # Disable HDMI for now
 BOARD_HDMI_INCAPABLE := true
@@ -180,7 +163,7 @@ BOARD_USES_TRUST_KEYMASTER := true
 TARGET_NO_SENSOR_PERMISSION_CHECK := true
 
 # frameworks/native/libs/binder/Parcel.cpp
-BOARD_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
+TARGET_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
 
 ### FONTS
 EXTENDED_FONT_FOOTPRINT := true

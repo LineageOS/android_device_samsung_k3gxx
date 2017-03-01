@@ -4,6 +4,9 @@ import init.samsung.rc
 
 on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
+	
+	mkdir /mnt/media_rw/usbdisk 0700 media_rw media_rw
+	mkdir /storage/usbdisk 0700 root root
 
 on init
     export LD_SHIM_LIBS "/system/bin/gpsd|libdmitry.so"
@@ -21,10 +24,6 @@ on init
 
 # Make param link
     symlink /dev/block/mmcblk0p8 /dev/block/param
-
-#Private Mode
-    mkdir /mnt/shell/privatemode 0700 system system
-    mkdir /storage/Private 0000 system system
 
 on post-fs-data
     mkdir /data/media 0770 media_rw media_rw
