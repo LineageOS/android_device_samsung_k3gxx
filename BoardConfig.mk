@@ -133,10 +133,9 @@ BOARD_SUPPRESS_SECURE_ERASE := true
 TARGET_KERNEL_HAVE_EXFAT := true
 TARGET_KERNEL_HAVE_NTFS := true
 # USB Mounting
-TW_MTP_DEVICE := /dev/mtp_usb
-
+TW_MTP_DEVICE := /dev/usb_mtp_gadget
 TW_CRYPTO_REAL_BLKDEV := "/dev/block/platform/dw_mmc.0/by-name/USERDATA"
-
+PRODUCT_COPY_FILES += device/samsung/k3gxx/rootdir/etc/twrp.fstab:recovery/root/etc/twrp.fstab
 BOARD_RECOVERY_SWIPE := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 BOARD_HAS_NO_SELECT_BUTTON := true
@@ -146,7 +145,7 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storag
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 
 ifeq ($(RECOVERY_VARIANT),twrp)
-TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/twrp.fstab
 else
 TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/fstab.universal5422
 endif
