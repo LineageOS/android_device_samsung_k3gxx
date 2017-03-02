@@ -1,6 +1,6 @@
 LOCAL_PATH := device/samsung/k3gxx
 # Inherit from k3gxx device
-$(call inherit-product, device/samsung/k3gxx/k3gxx.mk)
+$(call inherit-product, device/samsung/k3gxx/device.mk)
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 

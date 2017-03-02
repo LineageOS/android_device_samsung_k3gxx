@@ -1,0 +1,17 @@
+#
+# system.prop for k3gxx
+#
+
+# UI
+ro.sf.lcd_density=480
+
+# Radio
+rild.libpath=/system/lib/libsec-ril.so
+rild.libargs=-d /dev/ttyS0
+ro.telephony.ril_class=k3gxxRIL
+ro.ril.telephony.mqanelements=5
+ro.telephony.default_network=0
+telephony.lteOnCdmaDevice=0
+
+# Wifi
+wlan.wfd.hdcp=disable

@@ -15,15 +15,14 @@
  */
 #define LOG_TAG "ConsumerIrHal"
 
-#include <stdlib.h>
+#include <errno.h>
 #include <malloc.h>
 #include <stdbool.h>
-#include <errno.h>
+#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <pthread.h>
-#include <sched.h>
 #include <cutils/log.h>
 #include <hardware/hardware.h>
 #include <hardware/consumerir.h>

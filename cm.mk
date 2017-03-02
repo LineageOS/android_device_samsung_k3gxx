@@ -20,5 +20,5 @@ PRODUCT_MANUFACTURER := samsung
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
    PRODUCT_NAME="k3gxx" \
-   PRIVATE_BUILD_DESC="k3gxx-user 6.0.1 MMB29K G900HXXS1CPJA release-keys" \
-   BUILD_FINGERPRINT="samsung/k3gxx/k3g:6.0.1/MMB29K/G900HXXS1CPJA:user/release-keys"
+   PRIVATE_BUILD_DESC="k3gxx-user 7.1.1 MMB29K G900HXXS1CPJA release-keys" \
+   BUILD_FINGERPRINT="samsung/k3gxx/k3g:7.1.1/MMB29K/G900HXXS1CPJA:user/release-keys"

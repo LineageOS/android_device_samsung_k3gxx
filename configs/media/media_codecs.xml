@@ -89,12 +89,10 @@ Only the three quirks included above are recognized at this point:
         <MediaCodec name="OMX.Exynos.AVC.Decoder" type="video/avc" >
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
-            <Quirk name="decoder-ignores-streamcorrupt-error" />
-            <Quirk name="video-controller-check-enable" />
-            <Limit name="size" min="32x32" max="4096x2160" />
+            <Limit name="size" min="32x32" max="2560x1600" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="1" max="979200" />
+            <Limit name="blocks-per-second" min="1" max="489600" />
             <Limit name="bitrate" range="1-80000000" />
             <Limit name="concurrent-instances" max="16"/>
             <Feature name="adaptive-playback" />
@@ -104,12 +102,10 @@ Only the three quirks included above are recognized at this point:
             <Type name="video/mpeg4" />
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
-            <Quirk name="decoder-ignores-streamcorrupt-error" />
-            <Quirk name="video-controller-check-enable" />
             <Limit name="size" min="32x32" max="1920x1088" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="1" max="979200" />
+            <Limit name="blocks-per-second" min="1" max="489600" />
             <Limit name="bitrate" range="1-80000000" />
             <Limit name="concurrent-instances" max="16"/>
             <Feature name="adaptive-playback" />
@@ -119,12 +115,10 @@ Only the three quirks included above are recognized at this point:
             <Type name="video/h263" />
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
-            <Quirk name="decoder-ignores-streamcorrupt-error" />
-            <Quirk name="video-controller-check-enable" />
             <Limit name="size" min="32x32" max="720x480" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="1" max="979200" />
+            <Limit name="blocks-per-second" min="1" max="489600" />
             <Limit name="bitrate" range="1-80000000" />
             <Limit name="concurrent-instances" max="16"/>
             <Feature name="adaptive-playback" />
@@ -132,12 +126,10 @@ Only the three quirks included above are recognized at this point:
         <MediaCodec name="OMX.Exynos.VP8.Decoder" type="video/x-vnd.on2.vp8" >
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
-            <Quirk name="decoder-ignores-streamcorrupt-error" />
-            <Quirk name="video-controller-check-enable" />
             <Limit name="size" min="32x32" max="2560x1600" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="1" max="979200" />
+            <Limit name="blocks-per-second" min="1" max="489600" />
             <Limit name="bitrate" range="1-40000000" />
             <Limit name="concurrent-instances" max="16"/>
             <Feature name="adaptive-playback" />
@@ -148,12 +140,10 @@ Only the three quirks included above are recognized at this point:
             <Type name="video/x-ms-wmv" />
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
-            <Quirk name="decoder-ignores-streamcorrupt-error" />
-            <Quirk name="video-controller-check-enable" />
             <Limit name="size" min="32x32" max="1920x1088" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
-            <Limit name="blocks-per-second" min="1" max="979200" />
+            <Limit name="blocks-per-second" min="1" max="489600" />
             <Limit name="bitrate" range="1-80000000" />
             <Limit name="concurrent-instances" max="16"/>
             <Feature name="adaptive-playback" />
@@ -161,8 +151,6 @@ Only the three quirks included above are recognized at this point:
         <MediaCodec name="OMX.Exynos.MPEG2.Decoder" type="video/mpeg2" >
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
-            <Quirk name="decoder-ignores-streamcorrupt-error" />
-            <Quirk name="video-controller-check-enable" />
             <Limit name="size" min="32x32" max="1920x1088" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
@@ -173,8 +161,6 @@ Only the three quirks included above are recognized at this point:
         <MediaCodec name="OMX.Exynos.AVC.Decoder.secure" type="video/avc" >
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
-            <Quirk name="decoder-ignores-streamcorrupt-error" />
-            <Quirk name="video-controller-check-enable" />
             <Limit name="size" min="32x32" max="2560x1600" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
@@ -190,7 +176,6 @@ Only the three quirks included above are recognized at this point:
         <MediaCodec name="OMX.Exynos.AVC.Encoder" type="video/avc" >
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
-            <Quirk name="video-controller-check-enable" />
             <Limit name="size" min="32x32" max="1920x1080" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
@@ -203,7 +188,6 @@ Only the three quirks included above are recognized at this point:
             <Type name="video/mpeg4" />
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
-            <Quirk name="video-controller-check-enable" />
             <Limit name="size" min="32x32" max="1920x1080" />
             <Limit name="alignment" value="2x2" />
             <Limit name="block-size" value="16x16" />
@@ -216,7 +200,6 @@ Only the three quirks included above are recognized at this point:
             <Type name="video/3gpp" />
             <Quirk name="requires-allocate-on-input-ports" />
             <Quirk name="requires-allocate-on-output-ports" />
-            <Quirk name="video-controller-check-enable" />
             <Limit name="size" min="32x32" max="800x480" />
             <Limit name="alignment" value="4x4" />
             <Limit name="block-size" value="16x16" />
@@ -227,7 +210,6 @@ Only the three quirks included above are recognized at this point:
         <MediaCodec name="OMX.Exynos.VP8.Encoder" type="video/x-vnd.on2.vp8" >
              <Quirk name="requires-allocate-on-input-ports" />
              <Quirk name="requires-allocate-on-output-ports" />
-             <Quirk name="video-controller-check-enable" />
              <Limit name="size" min="32x32" max="8192x8192" />
              <Limit name="alignment" value="2x2" />
              <Limit name="block-size" value="16x16" />
@@ -236,8 +218,8 @@ Only the three quirks included above are recognized at this point:
         </MediaCodec>
     </Encoders>
 
+    <Include href="media_codecs_ffmpeg.xml" />
     <Include href="media_codecs_google_audio.xml" />
     <Include href="media_codecs_google_telephony.xml" />
     <Include href="media_codecs_google_video.xml" />
-    <Include href="media_codecs_ffmpeg.xml" />
 </MediaCodecs>

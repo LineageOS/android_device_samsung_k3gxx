@@ -3,38 +3,25 @@
 ###########################################################
 
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.opengles.version=196608 \
 	ro.bq.gpu_to_cpu_unsupported=1\
-	ro.sf.lcd_density=432 \
 	debug.hwc.force_gpu=1 \
 	debug.hwc.winupdate=1 \
 	debug.hwc.otf=1 
 
-###########################################################
-### WIFI
-###########################################################
-
+# Open GL
 PRODUCT_PROPERTY_OVERRIDES += \
-	wifi.interface=wlan0
+    ro.opengles.version=196609
 
-###########################################################
-### RADIO \ RIL
-###########################################################
-
+# Randomly from stock
 PRODUCT_PROPERTY_OVERRIDES += \
-	rild.libargs=-d /dev/ttyS0 \
-	rild.libpath=/system/lib/libsec-ril.so \
-	ro.telephony.ril_class=k3gxxRIL \
-	ro.ril.hsxpa=1 \
-	ro.ril.gprsclass=10 \
-	ro.ril.telephony.mqanelements=5
+    ro.ril.gprsclass=10 \
+    ro.ril.hsxpa=1 \
+    ro.sec.fle.encryption=true \
+    ro.secwvk=220
 
-###########################################################
-### NFC
-###########################################################
-
+# sdcardfs
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.nfc.sec_hal=true
+    ro.sys.sdcardfs=true
 
 ###########################################################
 ### CAMERA
