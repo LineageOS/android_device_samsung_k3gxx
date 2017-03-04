@@ -15,7 +15,7 @@
 /dev/video13              0660   system     system
 /dev/video14              0660   system     system
 /dev/video20              0660   system     system
-/dev/fimg2d               0666   system     media
+/dev/fimg2d               0666   system     graphics
 /dev/i2c-2                0660   system     system
 /dev/CEC                  0660   system     system
 /dev/HPD                  0660   system     system
@@ -76,9 +76,9 @@
 /dev/video27              0660   media      graphics
 
 # scalers
-/dev/video50              0660   media      media
-/dev/video51              0660   media      media
-/dev/video52              0660   media      media
+/dev/video50              0660   media      graphics
+/dev/video51              0660   media      graphics
+/dev/video52              0660   media      graphics
 
 # camera
 /dev/video100             0660   media      media
@@ -148,3 +148,4 @@
 # Fingerprint Sensor
 /dev/vfsspi      		  0660   system     system
 /dev/esfp0    			  0660   system     system
+
