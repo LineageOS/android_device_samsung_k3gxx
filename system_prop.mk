@@ -19,10 +19,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.sec.fle.encryption=true \
     ro.secwvk=220
 
-# sdcardfs
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sys.sdcardfs=true
-
 ###########################################################
 ### CAMERA
 ###########################################################
