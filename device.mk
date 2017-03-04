@@ -59,6 +59,10 @@ PRODUCT_PACKAGES += \
 # Samsung Doze
 PRODUCT_PACKAGES += \
     SamsungDoze
+	
+# Browser
+PRODUCT_PACKAGES += \
+    gello
 
 # Display
 PRODUCT_PACKAGES += \
