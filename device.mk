@@ -150,10 +150,32 @@ PRODUCT_COPY_FILES += \
 
 # OMX
 PRODUCT_PACKAGES += \
-    libcsc \
-    libOMX.Exynos.WMV.Decoder \
-    libOMX.Exynos.MPEG2.Decoder
+	libstagefrighthw \
+	libExynosOMX_Core
 
+PRODUCT_PACKAGES += \
+	libOMX.Exynos.AVC.Decoder \
+	libOMX.Exynos.HEVC.Decoder \
+	libOMX.Exynos.MPEG4.Decoder \
+	libOMX.Exynos.VP8.Decoder \
+	libOMX.Exynos.WMV.Decoder
+
+PRODUCT_PACKAGES += \
+	libOMX.Exynos.AVC.Encoder \
+	libOMX.Exynos.MPEG4.Encoder \
+	libOMX.Exynos.VP8.Encoder
+
+PRODUCT_PACKAGES += \
+	libOMX.Exynos.AAC.Decoder \
+	libOMX.Exynos.MP3.Decoder \
+	libOMX.Exynos.FLAC.Decoder
+
+PRODUCT_COPY_FILES += \
+	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+	frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+	frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
+	$(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
+	$(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \

@@ -38,7 +38,7 @@
 <!ATTLIST Audio sampleRate CDATA #REQUIRED>
 <!ATTLIST Audio channels (1|2) #REQUIRED>
 <!ELEMENT ImageEncoding EMPTY>
-<!ATTLIST ImageEncoding quality (100|90|80|70|60|50|40) #REQUIRED>
+<!ATTLIST ImageEncoding quality (90|80|70|60|50|40) #REQUIRED>
 <!ELEMENT ImageDecoding EMPTY>
 <!ATTLIST ImageDecoding memCap CDATA #REQUIRED>
 <!ELEMENT Camera EMPTY>
@@ -78,7 +78,9 @@
 -->
 <MediaSettings>
     <!-- Each camcorder profile defines a set of predefined configuration parameters -->
+    <!-- Back Camera -->
     <CamcorderProfiles cameraId="0" startOffsetMs="700">
+
     <EncoderProfile quality="low" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="767000"
@@ -123,6 +125,19 @@
              bitRate="767000"
              width="320"
              height="240"
+             frameRate="30" />
+
+      <Audio codec="aac"
+             bitRate="128000"
+             sampleRate="48000"
+             channels="2" />
+    </EncoderProfile>
+
+    <EncoderProfile quality="480p" fileFormat="mp4" duration="30">
+      <Video codec="h264"
+             bitRate="3449000"
+             width="720"
+             height="480"
              frameRate="30" />
 
       <Audio codec="aac"
@@ -220,6 +235,23 @@
             does not capture audio
       -->
       <Audio codec="aac"
+             bitRate="128000"
+             sampleRate="48000"
+             channels="2" />
+    </EncoderProfile>
+
+    <EncoderProfile quality="timelapse480p" fileFormat="mp4" duration="30">
+      <Video codec="h264"
+             bitRate="3449000"
+             width="720"
+             height="480"
+             frameRate="30" />
+
+      <!--
+            The Audio part of the profile will not be used since time lapse mode
+            does not capture audio
+      -->
+            <Audio codec="aac"
              bitRate="128000"
              sampleRate="48000"
              channels="2" />
@@ -321,6 +353,19 @@
              channels="2" />
     </EncoderProfile>
 
+    <EncoderProfile quality="480p" fileFormat="mp4" duration="30">
+      <Video codec="h264"
+             bitRate="3449000"
+             width="720"
+             height="480"
+             frameRate="30" />
+
+      <Audio codec="aac"
+             bitRate="128000"
+             sampleRate="48000"
+             channels="2" />
+    </EncoderProfile>
+
     <EncoderProfile quality="720p" fileFormat="mp4" duration="30">
       <Video codec="h264"
              bitRate="12000000"
@@ -410,6 +455,23 @@
              does not capture audio
        -->
       <Audio codec="aac"
+             bitRate="128000"
+             sampleRate="48000"
+             channels="2" />
+    </EncoderProfile>
+
+    <EncoderProfile quality="timelapse480p" fileFormat="mp4" duration="30">
+      <Video codec="h264"
+             bitRate="3449000"
+             width="720"
+             height="480"
+             frameRate="30" />
+
+      <!--
+            The Audio part of the profile will not be used since time lapse mode
+            does not capture audio
+      -->
+            <Audio codec="aac"
              bitRate="128000"
              sampleRate="48000"
              channels="2" />
@@ -515,5 +577,5 @@
         not perform any checks at all.
     -->
     <VideoDecoderCap name="wmv" enabled="true"/>
-    <AudioDecoderCap name="wma" enabled="false"/>
+    <AudioDecoderCap name="wma" enabled="true"/>
 </MediaSettings>
