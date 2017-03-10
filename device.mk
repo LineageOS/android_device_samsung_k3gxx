@@ -55,10 +55,6 @@ PRODUCT_PACKAGES += \
 # Shims/Samsung symbols
 PRODUCT_PACKAGES += \
     libsamsung_symbols
-
-# Samsung Doze
-PRODUCT_PACKAGES += \
-    SamsungDoze
 	
 # Browser
 PRODUCT_PACKAGES += \
