@@ -141,7 +141,6 @@ BOARD_SEPOLICY_DIRS += \
 
 # Graphics
 USE_OPENGL_RENDERER := true
-BOARD_EGL_CFG := device/samsung/k3gxx/configs/egl/egl.cfg
 DEFAULT_FB_NUM := 0
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 #BOARD_EGL_NEEDS_HANDLE_VALUE := true
