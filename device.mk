@@ -55,10 +55,6 @@ PRODUCT_PACKAGES += \
 # Shims/Samsung symbols
 PRODUCT_PACKAGES += \
     libsamsung_symbols
-	
-# Browser
-PRODUCT_PACKAGES += \
-    gello
 
 # Display
 PRODUCT_PACKAGES += \
