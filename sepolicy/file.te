@@ -3,7 +3,6 @@ type sysfs_input_file, fs_type, sysfs_type;
 type bin_nv_data_efs_file, file_type;
 type app_efs_file, file_type;
 type baro_delta_factoryapp_efs_file, file_type;
-type bin_nv_data_efs_file, file_type;
 # widewine, drm
 type cpk_efs_file, file_type;
 type drm_efs_file, file_type;
@@ -21,5 +20,3 @@ type sysfs_mipi_writable, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_multipdp_writable, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_usb_power_writable, fs_type, sysfs_type, mlstrustedobject;
 type sysfs_vibrator_writeable, fs_type, sysfs_type, mlstrustedobject;
-
-allow sysfs_type tmpfs:filesystem associate;

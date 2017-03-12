@@ -1,6 +1,6 @@
 # /dev/ttySAC3
 type bluetooth_device, dev_type;
-type secmem_device, dev_type;
+
 # Unified Memory Management device
 type ump_device, dev_type;
 
