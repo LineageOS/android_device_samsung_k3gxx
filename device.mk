@@ -270,6 +270,10 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     wpa_supplicant
 
+# Widevine
+PRODUCT_PACKAGES += \
+   libwvm_shim
+
 # Enable multi-window by default
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.debug.multi_window=true

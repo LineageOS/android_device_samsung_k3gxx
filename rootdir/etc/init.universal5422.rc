@@ -6,7 +6,7 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 on init
-    export LD_SHIM_LIBS "/system/bin/gpsd|libdmitry.so"
+    export LD_SHIM_LIBS "/system/vendor/lib/libwvm.so|libwvm_shim.so"
     mkdir /preload 0771 system system
 
     symlink /sdcard /storage/sdcard0
