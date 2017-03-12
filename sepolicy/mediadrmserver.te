@@ -1,0 +1,7 @@
+# /dev/s5p-smem
+allow mediadrmserver device:dir r_dir_perms;
+allow mediadrmserver secmem_device:chr_file rw_file_perms;
+
+# /efs/wv.keys
+allow mediadrmserver efs_file:dir r_dir_perms;
+allow mediadrmserver efs_file:file r_file_perms;

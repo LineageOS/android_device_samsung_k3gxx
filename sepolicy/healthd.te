@@ -1,0 +1,6 @@
+### healthd
+
+#allow healthd self:capability { mknod };
+
+allow healthd device:dir rw_dir_perms;
+allow healthd rtc_device:chr_file rw_file_perms;
