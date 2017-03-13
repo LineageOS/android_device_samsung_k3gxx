@@ -25,6 +25,7 @@ TARGET_SLSI_VARIANT := cm
 TARGET_SOC := exynos5422
 
 # Architecture
+TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := cortex-a15
 TARGET_CPU_ABI := armeabi-v7a
@@ -111,10 +112,10 @@ TARGET_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 BOARD_RIL_CLASS := ../../../device/samsung/k3gxx/ril
 
 # Recovery
-#RECOVERY_VARIANT := twrp
-#TW_NO_REBOOT_BOOTLOADER := true
-#TW_HAS_DOWNLOAD_MODE := true
-#TW_THEME := portrait_hdpi
+RECOVERY_VARIANT := twrp
+TW_NO_REBOOT_BOOTLOADER := true
+TW_HAS_DOWNLOAD_MODE := true
+TW_THEME := portrait_hdpi
 TW_BRIGHTNESS_PATH := /sys/devices/14400000.fimd_fb/backlight/panel/brightness
 TW_MAX_BRIGHTNESS := 255
 # USB Mounting
