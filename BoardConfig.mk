@@ -25,18 +25,15 @@ TARGET_SLSI_VARIANT := cm
 TARGET_SOC := exynos5422
 
 # Architecture
-TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := cortex-a15
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
-TARGET_BOARD_PLATFORM_GPU := mali-t628mp6
-# big.LITTLE load balancing
-ENABLE_CPUSETS := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
-#WITH_DEXPREOPT := true
-#TARGET_PROVIDES_INIT_RC := true
+
+# system/core libcutils
+ENABLE_SCHEDBOOST := true
 
 # RENDERSCRIPT
 BOARD_OVERRIDE_RS_CPU_VARIANT_32 := cortex-a15
@@ -54,6 +51,9 @@ TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 # scaler
 BOARD_USES_SCALER := true
 
+TARGET_GLOBAL_CFLAGS += -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
+# frameworks/av/camera, camera blob support
+TARGET_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
 BOARD_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED # use format from fw/native
 BOARD_GLOBAL_CFLAGS += -DWIDEVINE_PLUGIN_PRE_NOTIFY_ERROR
 
@@ -69,8 +69,6 @@ BACKLIGHT_PATH := "/sys/devices/14400000.fimd_fb/backlight/panel/brightness"
 CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 # Kernel
-#KERNEL_TOOLCHAIN := /opt/toolchains/arm-eabi-7.0/bin
-#KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --tags_offset 0x10000100 --dt $(LOCAL_PATH)/dt.img
 TARGET_KERNEL_SOURCE := kernel/samsung/k3gxx
 TARGET_KERNEL_CONFIG := aosp_k3gxx_defconfig
@@ -152,7 +150,7 @@ TARGET_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED
 BOARD_HDMI_INCAPABLE := true
 
 # HWCServices
-#BOARD_USES_HWC_SERVICES := true
+BOARD_USES_HWC_SERVICES := true
 
 # Keymaster
 BOARD_USES_TRUST_KEYMASTER := true
@@ -232,10 +230,15 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 BOARD_NFC_CHIPSET := pn547
 BOARD_NFC_HAL_SUFFIX := $(TARGET_BOOTLOADER_BOARD_NAME)
 
+### LIGHTS
+TARGET_PROVIDES_LIBLIGHT := false
+
 # CMHW
 BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
 
-#Trying to get work the WIFI
-#-include hardware/broadcom/wlan/bcmdhd/firmware/bcm4354/device-bcm.mk
-# inherit from the proprietary version
+### SECCOMP
+# frameworks/av/services/{mediacodec,mediaextractor}/minijail
+BOARD_SEPOLICY_DIRS += \
+    $(LOCAL_PATH)/seccomp
+
 -include vendor/samsung/k3gxx/BoardConfigVendor.mk
