@@ -275,6 +275,7 @@ PRODUCT_PACKAGES += \
 # Widevine
 PRODUCT_PACKAGES += \
    libwvm_shim
+   libshim_gpsd
 
 # Enable multi-window by default
 PRODUCT_PROPERTY_OVERRIDES += \
