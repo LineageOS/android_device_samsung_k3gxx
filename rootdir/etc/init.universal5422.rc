@@ -11,8 +11,6 @@ on init
     mkdir /preload 0771 system system
 
     symlink /sdcard /storage/sdcard0
-    symlink /sdcard1 /storage/sdcard1
-    symlink /sdcard1 /external_sd
     symlink /storage/usbdisk /mnt/usbdisk
 
     symlink /data/app /factory
