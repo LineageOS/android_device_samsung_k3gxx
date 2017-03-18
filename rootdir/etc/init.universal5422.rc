@@ -561,8 +561,7 @@ service cpboot-daemon /sbin/cbd -d -txmm626 -bh -mh -p 13
 
 # on userdebug and eng builds, enable kgdb on the serial console
 on property:ro.debuggable=1
-    write /sys/module/kgdboc/parameters/kgdboc ttyFIQ1
-    write /sys/module/fiq_debugger/parameters/kgdb_enable 1
+
 # SecEDS
 service TvoutService_C /system/bin/bintvoutservice
      class main
