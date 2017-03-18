@@ -23,7 +23,7 @@
  * Sound card specific defines.
  *
  * This is an example configuration for a WolfsonMicro WM1814 sound card.
- * Codec: Arizona
+ * Codec: Vegas
  *
  * If you driver does not support one of the devices, the id should not be
  * defined.
@@ -33,7 +33,7 @@
 #define SOUND_CARD 0
 
 /* Playback */
-#define SOUND_DEEP_BUFFER_DEVICE 3
+#define SOUND_DEEP_BUFFER_DEVICE 0
 #define SOUND_PLAYBACK_DEVICE 3
 #define SOUND_PLAYBACK_SCO_DEVICE 2
 
@@ -81,6 +81,6 @@
  *
  * #define DSP_POWEROFF_DELAY 10 * 1000
  */
-/* #define DSP_POWEROFF_DELAY 0 */
+#define DSP_POWEROFF_DELAY 10 * 1000 
 
 #endif // SAMSUNG_AUDIO_H
