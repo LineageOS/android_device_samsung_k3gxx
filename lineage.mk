@@ -5,15 +5,16 @@ PRODUCT_RELEASE_NAME := k3gxx
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit device configuration
+$(call inherit-product, device/samsung/k3gxx/device.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_base.mk)
-$(call inherit-product, device/samsung/k3gxx/full_k3gxx.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/samsung/k3gxx/system_prop.mk)
 
 ## Device identifier. This must come after all inclusions
-PRODUCT_NAME := cm_k3gxx
+PRODUCT_NAME := lineage_k3gxx
 PRODUCT_DEVICE := k3gxx
 PRODUCT_BRAND := samsung
-PRODUCT_MODEL=SM-G900H
+PRODUCT_MODEL:= SM-G900H
 PRODUCT_MANUFACTURER := samsung
 
 # Set build fingerprint / ID / Product Name ect.
