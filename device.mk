@@ -31,7 +31,8 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.usb.default \
     audio.r_submix.default \
-    audio.primary.universal5422
+    audio.primary.universal5422 \
+	libtinycompress
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/mixer_paths_0.xml:system/etc/mixer_paths_0.xml \
@@ -82,21 +83,12 @@ PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
 PRODUCT_PACKAGES += \
     libion \
     libfimg \
-    gralloc.exynos5
+    gralloc.exynos5 \
+	hwcomposer.exynos5
 
 # CONSUMERIR
 PRODUCT_PACKAGES += \
     consumerir.universal5422
-
-# IO Scheduler
-PRODUCT_PROPERTY_OVERRIDES += \
-    sys.io.scheduler=bfq
-
-PRODUCT_PACKAGES += \
-    libnetcmdiface \
-    macloader \
-    wifiloader
-
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -107,18 +99,6 @@ PRODUCT_PACKAGES += \
 # add it back
 PRODUCT_PACKAGES += \
     libstlport
-
-# MobiCore setup
-PRODUCT_PACKAGES += \
-    libMcClient \
-    libMcRegistry \
-    libPaApi \
-    libgdmcprov
-
-# Network tools
-PRODUCT_PACKAGES += \
-    libpcap \
-    tcpdump
 
 # Power
 PRODUCT_PACKAGES += \
@@ -202,12 +182,15 @@ PRODUCT_COPY_FILES += \
 # CAMERA
 PRODUCT_PACKAGES += \
     Snap \
-    libhwjpeg \
-    libsamsung_symbols
+    libhwjpeg
 
 # Power
 PRODUCT_PACKAGES += \
     power.universal5422
+	
+PRODUCT_PACKAGES += \
+    charger_res_images \
+    charger
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -249,10 +232,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.carrier=unknown
 
-# Stlport
-PRODUCT_PACKAGES += \
-    libstlport
-
 # MTP
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
@@ -267,6 +246,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/p2p_supplicant_overlay.conf:system/etc/wifi/p2p_supplicant_overlay.conf
 
 PRODUCT_PACKAGES += \
+    libnetcmdiface \
+    macloader \
+    wifiloader \
     hostapd \
     hostapd_default.conf \
     libwpa_client \
