@@ -134,6 +134,9 @@ endif
 #BOARD_SEPOLICY_DIRS += \
 #    device/samsung/k3gxx/sepolicy
 
+# Seccomp filters
+BOARD_SECCOMP_POLICY += device/samsung/k3gxx/seccomp 
+
 # Graphics
 USE_OPENGL_RENDERER := true
 BOARD_EGL_CFG := device/samsung/k3gxx/configs/egl/egl.cfg
