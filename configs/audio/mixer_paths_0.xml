@@ -217,9 +217,8 @@
     <ctl name="IN2 OSR" value="1.536MHz" />
     <ctl name="IN3 OSR" value="1.536MHz" />
     <ctl name="IN4 OSR" value="1.536MHz" />
-	<ctl name="IN4L Digital Volume" value="138" />
+    <ctl name="IN4L Digital Volume" value="138" />
     <ctl name="IN4R Digital Volume" value="138" />
-
 
     <!--
     #######################################################

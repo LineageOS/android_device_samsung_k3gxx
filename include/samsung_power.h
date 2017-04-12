@@ -17,7 +17,6 @@
 #ifndef SAMSUNG_POWER_H
 #define SAMSUNG_POWER_H
 
-#define IO_IS_BUSY_PATH "/sys/devices/system/cpu/cpufreq/interactive/io_is_busy"
 #define CPU0_SYSFS_PATH "/sys/devices/system/cpu/cpu0"
 #define CPU0_INTERACTIVE_PATH "/sys/devices/system/cpu/cpufreq/interactive"
 #define CPU4_SYSFS_PATH "/sys/devices/system/cpu/cpufreq/scaling_max_freq"
