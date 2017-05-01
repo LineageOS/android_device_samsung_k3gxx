@@ -107,21 +107,15 @@ lib/libdrmdecrypt.so
 lib/libexynoscamera.so
 lib/libexynosv4l2.so
 lib/libgnustl_shared.so
-lib/libhdcp2.so
 lib/libhr.so
 #lib/libhwjpeg.so
 lib/libmysound.so
 lib/liboemcrypto.so
-lib/lib_SA_GoogleFX_ver124b.so
 lib/libsecnativefeature.so
 lib/libsensorhub.so
 lib/libsensorhubservice.so
-lib/lib_SoundAlive_play_ver125e.so
-lib/libstagefright_hdcp.so
 lib/libvdis.so
 lib/libwrappergps.so
-lib/libxml2.so
-lib/libprotobuf-cpp-full.so
 
 ### Android radio daemon
 lib/libaudio-ril.so
@@ -178,7 +172,7 @@ app/mcRegistry/02010000080300030000000000000000.tlbin
 app/mcRegistry/07010000000000000000000000000000.tlbin
 app/mcRegistry/07060000000000000000000000000000.tlbin
 app/mcRegistry/ffffffff00000000000000000000000a.tlbin
-app/mcRegistry/ffffffff00000000000000000000000a.tlbin
+app/mcRegistry/ffffffff00000000000000000000000c.tlbin
 app/mcRegistry/ffffffff00000000000000000000000d.tlbin
 app/mcRegistry/ffffffff00000000000000000000000e.tlbin
 app/mcRegistry/ffffffff00000000000000000000000f.tlbin

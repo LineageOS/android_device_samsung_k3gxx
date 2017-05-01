@@ -32,7 +32,7 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     audio.r_submix.default \
     audio.primary.universal5422 \
-	libtinycompress
+    libtinycompress
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/mixer_paths_0.xml:system/etc/mixer_paths_0.xml \
@@ -81,10 +81,10 @@ PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
 
 # HW composer
 PRODUCT_PACKAGES += \
-    libion \
+    libion_exynos \
     libfimg \
     gralloc.exynos5 \
-	hwcomposer.exynos5
+    hwcomposer.exynos5
 
 # CONSUMERIR
 PRODUCT_PACKAGES += \
@@ -98,6 +98,7 @@ PRODUCT_PACKAGES += \
 # M removes libstlport, but some of our binary-only prebuilts need it, so we'll
 # add it back
 PRODUCT_PACKAGES += \
+    libxml2 \
     libstlport
 
 # Power
@@ -111,43 +112,23 @@ PRODUCT_PACKAGES += \
     Tag \
     com.android.nfc_extras
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.nfc.port="I2C" \
-	ro.nfc.sec_hal=true
+    ro.nfc.sec_hal=true
 
 # NFCEE access control + configuration
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml \
     $(LOCAL_PATH)/configs/nfc/libnfc-sec-hal.conf:system/etc/libnfc-sec-hal.conf \
+    $(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
     $(LOCAL_PATH)/configs/nfc/libnfc-sec.conf:system/etc/libnfc-sec.conf
-
-# OMX
-PRODUCT_PACKAGES += \
-	libstagefrighthw \
-	libExynosOMX_Core
-
-PRODUCT_PACKAGES += \
-	libOMX.Exynos.AVC.Decoder \
-	libOMX.Exynos.HEVC.Decoder \
-	libOMX.Exynos.MPEG4.Decoder \
-	libOMX.Exynos.VP8.Decoder \
-	libOMX.Exynos.WMV.Decoder
-
-PRODUCT_PACKAGES += \
-	libOMX.Exynos.AVC.Encoder \
-	libOMX.Exynos.MPEG4.Encoder \
-	libOMX.Exynos.VP8.Encoder
-
-PRODUCT_PACKAGES += \
-	libOMX.Exynos.AAC.Decoder \
-	libOMX.Exynos.MP3.Decoder \
-	libOMX.Exynos.FLAC.Decoder
 
 PRODUCT_COPY_FILES += \
 	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
 	$(LOCAL_PATH)/configs/media/media_codecs.xml:system/etc/media_codecs.xml \
-	$(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml
+	$(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml \
+	$(LOCAL_PATH)/configs/media/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
+	$(LOCAL_PATH)/configs/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -181,8 +162,11 @@ PRODUCT_COPY_FILES += \
 
 # CAMERA
 PRODUCT_PACKAGES += \
-    Snap \
     libhwjpeg
+	
+# Browser
+PRODUCT_PACKAGES += \
+    Gello
 
 # Power
 PRODUCT_PACKAGES += \
@@ -217,17 +201,8 @@ PRODUCT_COPY_FILES += \
 
 # Radio
 PRODUCT_PACKAGES += \
-    libril \
-    librilutils \
-    rild \
-    libxml2 \
-    libprotobuf-cpp-full \
-    modemloader \
+        modemloader \
 	cbd
-# Radio (needed for audio controls even on wifi-only)
-PRODUCT_PACKAGES += \
-    libsecril-client \
-    libsecril-client-sap
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.carrier=unknown

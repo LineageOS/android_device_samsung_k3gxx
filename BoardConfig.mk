@@ -70,7 +70,8 @@ CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 # Kernel
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --tags_offset 0x10000100 --dt $(LOCAL_PATH)/dt.img
-TARGET_KERNEL_SOURCE := kernel/samsung/k3gxx
+# TARGET_KERNEL_SOURCE := kernel/samsung/k3gxx
+TARGET_KERNEL_SOURCE := kernel/samsung/CQB2
 TARGET_KERNEL_CONFIG := aosp_k3gxx_defconfig
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
@@ -78,7 +79,6 @@ BOARD_KERNEL_PAGESIZE := 2048
 # Battery / charging mode
 WITH_CM_CHARGER := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
-BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
 
 # FIMG2D
@@ -147,8 +147,11 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 # Samsung LSI OpenMAX
 TARGET_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED
 
+ # Exynos display
+BOARD_USES_VIRTUAL_DISPLAY := true
+
 # Disable HDMI for now
-BOARD_HDMI_INCAPABLE := true
+#BOARD_HDMI_INCAPABLE := true
 
 # HWCServices
 BOARD_USES_HWC_SERVICES := true
@@ -232,7 +235,6 @@ BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
 
 ### SECCOMP
 # frameworks/av/services/{mediacodec,mediaextractor}/minijail
-BOARD_SEPOLICY_DIRS += \
-    $(LOCAL_PATH)/seccomp
+BOARD_SECCOMP_POLICY += device/samsung/k3gxx/seccomp
 
 -include vendor/samsung/k3gxx/BoardConfigVendor.mk

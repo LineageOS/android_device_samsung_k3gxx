@@ -80,6 +80,9 @@
 /data/gps/.gpslogd.pipe                              u:object_r:gps_data_file:s0
 /data/gps/nmeapipe                                   u:object_r:gps_data_file:s0
 
+# Sensors
+/dev/batch_io                                        u:object_r:sensors_device:s0
+
 ####################################
 # sysfs files
 /sys/class/power_supply/battery/music -- u:object_r:sysfs_writable:s0
@@ -99,6 +102,7 @@
 
 # rild
 /sys/devices/virtual/misc/multipdp(/.*)     u:object_r:sysfs_multipdp_writable:s0
+
 
 # vibrator
 /sys/class/timed_output/vibrator/pwm_value  u:object_r:sysfs_vibrator_writeable:s0

@@ -17,9 +17,17 @@
 #ifndef SAMSUNG_POWER_H
 #define SAMSUNG_POWER_H
 
+/*
+ * Board specific nodes
+ *
+ * If your kernel exposes these controls in another place, you can either
+ * symlink to the locations given here, or override this header in your
+ * device tree.
+ */
+
 #define CPU0_SYSFS_PATH "/sys/devices/system/cpu/cpu0"
-#define CPU0_INTERACTIVE_PATH "/sys/devices/system/cpu/cpufreq/interactive"
-#define CPU4_SYSFS_PATH "/sys/devices/system/cpu/cpufreq/scaling_max_freq"
-#define CPU4_INTERACTIVE_PATH "/sys/devices/system/cpu/cpufreq/interactive/hispeed_freq"
+#define CPU4_SYSFS_PATH "/sys/devices/system/cpu/cpu4"
+#define CPU0_INTERACTIVE_PATH "/sys/devices/system/cpu/cpu0/cpufreq/interactive"
+#define CPU4_INTERACTIVE_PATH "/sys/devices/system/cpu/cpu4/cpufreq/interactive"
 
 #endif // SAMSUNG_POWER_H

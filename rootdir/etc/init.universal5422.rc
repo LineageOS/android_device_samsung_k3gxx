@@ -6,12 +6,14 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
 on init
-    export LD_SHIM_LIBS "/system/vendor/lib/libwvm.so|libwvm_shim.so"
-	export LD_SHIM_LIBS /system/bin/gpsd|libshim_gpsd.so
+    export LD_SHIM_LIBS "/system/bin/gpsd|libshim_gpsd.so:/system/vendor/lib/libwvm.so|libshim_wvm.so:/system/bin/gpsd|libdmitry.so"
     mkdir /preload 0771 system system
 
+# RIL <-> audioserver comm
+    chmod 0644 /proc/cmdline
+
+    symlink /sdcard /mnt/sdcard
     symlink /sdcard /storage/sdcard0
-    symlink /storage/usbdisk /mnt/usbdisk
 
     symlink /data/app /factory
 
@@ -26,14 +28,8 @@ on init
 # Make param link
     symlink /dev/block/mmcblk0p8 /dev/block/param
 
-#Private Mode
-    mkdir /mnt/shell/privatemode 0700 system system
-    mkdir /storage/Private 0000 system system
-
 on post-fs-data
     mkdir /data/media 0770 media_rw media_rw
-
-    setprop vold.post_fs_data_done 1
 
     # Permission for flashlight control for HAL3.3
     chmod 0660 /sys/class/camera/flash/rear_torch_flash
@@ -138,8 +134,8 @@ on boot
     chmod 0664 /sys/power/cpufreq_max_limit
     chmod 0664 /sys/power/cpufreq_min_limit
     chmod 0664 /sys/power/enable_dm_hotplug
-    chmod 0664 /sys/power/ipa/control_temp
-    chmod 0664 /sys/power/ipa/hotplug_out_threshold
+    chmod 664 /sys/power/ipa/control_temp
+    chmod 664 /sys/power/ipa/hotplug_out_threshold
     chown radio system /sys/devices/platform/exynos5-devfreq-mif/devfreq/exynos5-devfreq-mif/available_frequencies
     chown radio system /sys/devices/platform/exynos5-devfreq-int/devfreq/exynos5-devfreq-int/available_frequencies
     chown radio system /sys/devices/platform/exynos5-devfreq-isp/devfreq/exynos5-devfreq-isp/available_frequencies
@@ -466,6 +462,8 @@ on fs
     chown system radio /sys/class/sensors/ssp_sensor/pressure_poll_delay
     chown system radio /sys/class/sensors/ssp_sensor/ssp_flush
     chmod 0600 /dev/batch_io
+    chown system system /dev/batch_io
+
 # MOBEAM
     chown system radio /sys/class/sec/sec_barcode_emul/vendor
     chown system radio /sys/class/sec/sec_barcode_emul/name
@@ -561,7 +559,8 @@ service cpboot-daemon /sbin/cbd -d -txmm626 -bh -mh -p 13
 
 # on userdebug and eng builds, enable kgdb on the serial console
 on property:ro.debuggable=1
-
+    write /sys/module/kgdboc/parameters/kgdboc ttyFIQ1
+    write /sys/module/fiq_debugger/parameters/kgdb_enable 1
 # SecEDS
 service TvoutService_C /system/bin/bintvoutservice
      class main
@@ -630,6 +629,3 @@ on property:ro.securestorage.support=true
     chown system system /dev/.secure_storage
     restorecon -R /dev/.secure_storage
     start secure_storage
-
-on property:sys.boot_completed=1
-    chown system system /dev/batch_io
