@@ -402,6 +402,7 @@ typedef struct {
     char            als;        /* ALS line indicator if available
                                    (0 = line 1) */
     char            isVoice;    /* nonzero if this is is a voice call */
+    char            isVideo;    /* Samsung xmm7260 */
 
     char            isVoicePrivacy;     /* nonzero if CDMA voice privacy mode is active */
     char *          number;     /* Remote party number */
@@ -5212,11 +5213,6 @@ typedef struct {
 #define RIL_REQUEST_HOLD 10022
 #define RIL_REQUEST_SET_SIM_POWER 10023
 #define RIL_REQUEST_SET_LTE_BAND_MODE 10024
-#define RIL_REQUEST_UICC_GBA_AUTHENTICATE_BOOTSTRAP 10025
-#define RIL_REQUEST_UICC_GBA_AUTHENTICATE_NAF 10026
-#define RIL_REQUEST_GET_INCOMING_COMMUNICATION_BARRING 10027
-#define RIL_REQUEST_SET_INCOMING_COMMUNICATION_BARRING 10028
-#define RIL_REQUEST_QUERY_CNAP 10029
 
 /***********************************************************************/
 
@@ -5809,8 +5805,8 @@ typedef struct {
  *
  * "data" is const RIL_StkCcUnsolSsResponse *
  *
- */
-#define RIL_UNSOL_ON_SS 1043
+ *
+#define RIL_UNSOL_ON_SS 1043*/
 
 /**
  * RIL_UNSOL_STK_CC_ALPHA_NOTIFY
@@ -5875,11 +5871,8 @@ typedef struct {
 #define RIL_UNSOL_CP_POSITION 11038
 #define RIL_UNSOL_HOME_NETWORK_NOTI 11043
 #define RIL_UNSOL_STK_CALL_STATUS 11054
-#define RIL_UNSOL_MODEM_CAP 11056
-#define RIL_UNSOL_DUN 11060
+#define RIL_UNSOL_ON_SS 11055
 #define RIL_UNSOL_IMS_PREFERENCE_CHANGED 11061
-#define RIL_UNSOL_SIM_APPLICATION_REFRESH 11062
-#define RIL_UNSOL_UICC_APPLICATION_STATUS 11063
 
 /***********************************************************************/
 

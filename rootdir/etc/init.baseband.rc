@@ -1,0 +1,37 @@
+on init
+    mkdir /efs 0771 radio system
+    symlink /dev/block/mmcblk0p13 /dev/mbin0
+    restorecon /dev/mbin0
+    symlink /sys/devices/platform/s5p-ehci/ehci_power /dev/ehci_power
+
+    write /sys/class/net/rmnet0/queues/rx-0/rps_cpus 1
+    write /sys/class/net/rmnet1/queues/rx-0/rps_cpus 1
+    write /sys/class/net/rmnet2/queues/rx-0/rps_cpus 1
+    write /proc/sys/net/core/netdev_max_backlog 2048
+
+on fs
+    chown radio system /efs
+    chmod 0771 /efs
+
+    chown radio radio /sys/devices/virtual/misc/multipdp/waketime
+    chown radio radio /sys/devices/platform/s5p-ehci/ehci_cpu_core
+
+on post-fs-data
+    # Remove symlinks to avoid issues with migrate after nandroid restores
+    rm -r -d /data/data/com.android.providers.telephony/databases
+    rm -r -d /data/data/com.android.providers.telephony/shared_prefs
+
+    symlink /data/user_de/0/com.android.providers.telephony/databases /data/data/com.android.providers.telephony/databases
+    symlink /data/user_de/0/com.android.providers.telephony/shared_prefs /data/data/com.android.providers.telephony/shared_prefs
+
+    restart cpboot-daemon
+    restart ril-daemon
+
+service modemloader /system/bin/modemloader
+    class core
+    oneshot
+
+service cpboot-daemon /system/bin/cbd -d -txmm626x -bh -mh -p 13
+    class main
+    user root
+    group radio cache inet misc audio sdcard_rw log sdcard_r shell

@@ -21,6 +21,7 @@ import static com.android.internal.telephony.RILConstants.*;
 
 import android.content.Context;
 import android.telephony.Rlog;
+import android.os.AsyncResult;
 import android.os.Message;
 import android.os.Parcel;
 import android.os.SystemProperties;
@@ -31,6 +32,7 @@ import com.android.internal.telephony.uicc.IccCardApplicationStatus;
 import com.android.internal.telephony.uicc.IccCardStatus;
 import com.android.internal.telephony.uicc.IccRefreshResponse;
 import com.android.internal.telephony.uicc.IccUtils;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -40,7 +42,6 @@ import java.util.Collections;
  * {@hide}
  */
 public class SlteRIL extends RIL {
-
     static final boolean RILJ_LOGD = true;
     static final boolean RILJ_LOGV = true;
 
@@ -48,8 +49,7 @@ public class SlteRIL extends RIL {
      * SAMSUNG RESPONSE
      **********************************************************/
     private static final int RIL_UNSOL_STK_SEND_SMS_RESULT = 11002;
-    private static final int RIL_UNSOL_STK_CALL_CONTROL_RESULT = 11003;
-
+    private static final int RIL_UNSOL_STK_CALL_CONTROL_RESULT =11003;
     private static final int RIL_UNSOL_DEVICE_READY_NOTI = 11008;
     private static final int RIL_UNSOL_AM = 11010;
     private static final int RIL_UNSOL_SIM_PB_READY = 11021;
@@ -143,6 +143,15 @@ public class SlteRIL extends RIL {
           if (RILJ_LOGD) riljLog(rr.serialString() + "> " + requestToString(rr.mRequest));
 
           send(rr);
+        }
+    }
+
+    public void setDataAllowed(boolean allowed, Message result) {
+        Rlog.v(RILJ_LOG_TAG, "XMM7260RIL: setDataAllowed");
+
+        if (result != null) {
+            AsyncResult.forMessage(result, 0, null);
+            result.sendToTarget();
         }
     }
 
@@ -350,7 +359,7 @@ public class SlteRIL extends RIL {
      */
     @Override
     public void sendSMSExpectMore(String smscPDU, String pdu, Message result) {
-        Rlog.v(RILJ_LOG_TAG, "XMM6360: sendSMSExpectMore");
+        Rlog.v(RILJ_LOG_TAG, "XMM7260: sendSMSExpectMore");
 
         RILRequest rr = RILRequest.obtain(RIL_REQUEST_SEND_SMS, result);
         constructGsmSendSmsRilRequest(rr, smscPDU, pdu);
@@ -380,7 +389,7 @@ public class SlteRIL extends RIL {
             String strState = strings[i+3].toLowerCase();
 
             Rlog.v(RILJ_LOG_TAG,
-                   "XMM6360: Add OperatorInfo: " + strOperatorLong +
+                   "XMM7260: Add OperatorInfo: " + strOperatorLong +
                    ", " + strOperatorLong +
                    ", " + strOperatorNumeric +
                    ", " + strState);
@@ -409,7 +418,7 @@ public class SlteRIL extends RIL {
             case RIL_UNSOL_DEVICE_READY_NOTI: /* Registrant notification */
             case RIL_UNSOL_SIM_PB_READY: /* Registrant notification */
                 Rlog.v(RILJ_LOG_TAG,
-                       "XMM6360: ignoring unsolicited response " +
+                       "XMM7260: ignoring unsolicited response " +
                        origResponse);
                 return;
         }
@@ -441,7 +450,7 @@ public class SlteRIL extends RIL {
             case RIL_UNSOL_AM:
                 String strAm = (String)ret;
                 // Add debug to check if this wants to execute any useful am command
-                Rlog.v(RILJ_LOG_TAG, "XMM6360: am=" + strAm);
+                Rlog.v(RILJ_LOG_TAG, "XMM7260: am=" + strAm);
                 break;
         }
     }
