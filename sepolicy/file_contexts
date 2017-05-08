@@ -5,8 +5,7 @@
 
 /dev/seiren                  u:object_r:seiren_device:s0
 
-/dev/bcm2079x                u:object_r:nfc_device:s0
-/dev/sec-nfc                 u:object_r:nfc_device:s0
+/dev/pn547                   u:object_r:nfc_device:s0
 
 /dev/ttySAC3                 u:object_r:bluetooth_device:s0
 
