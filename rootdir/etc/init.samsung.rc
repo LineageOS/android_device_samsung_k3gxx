@@ -4,6 +4,10 @@ on early-init
     write /proc/sys/net/ipv6/conf/all/use_optimistic 1
 
 on init
+    # SEC_SELINUX
+    # for audit message
+    chown system system /proc/avc_msg
+    chmod 0660 /proc/avc_msg
     mkdir /acct
     
 # Process group parameters that differ from AOSP init.rc

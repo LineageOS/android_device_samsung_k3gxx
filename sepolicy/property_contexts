@@ -1,2 +1,8 @@
 # Camera
-persist.sys.camera			u:object_r:camera_prop:s0
+persist.sys.camera u:object_r:camera_prop:s0
+
+# modemloader
+hw.revision        u:object_r:modemloader_prop:s0
+
+# ril
+persist.ril.       u:object_r:radio_prop:s0
