@@ -124,7 +124,7 @@ lib/libsec-ril.so
 ### lib/hw
 lib/hw/camera.universal5422.so
 lib/hw/gps.default.so
-#lib/hw/gralloc.exynos5.so
+lib/hw/gralloc.exynos5.so
 #lib/hw/gps.universal5422.so
 lib/hw/nfc_nci.universal5422.so
 lib/hw/sensorhubs.universal5422.so
