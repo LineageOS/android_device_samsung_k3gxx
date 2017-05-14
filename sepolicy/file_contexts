@@ -13,13 +13,10 @@
 
 /dev/v4l-subdev[0-9]*        u:object_r:camera_device:s0
 /dev/media[0-3]*             u:object_r:camera_device:s0
-/dev/__properties__          u:object_r:properties_device:s0
 /dev/mtp_usb*                u:object_r:mtp_device:s0
 
 /dev/umts.*                  u:object_r:mif_device:s0
 /dev/ehci_power              u:object_r:mif_device:s0
-
-/dev/ttySAC[0-9]*            u:object_r:uart_device:s0
 
 /dev/block/mmcblk0p[0-9]*    u:object_r:emmcblk_device:s0
 
@@ -28,10 +25,6 @@
 /dev/block/mmcblk0p18        u:object_r:system_block_device:s0
 /dev/block/mmcblk0p19        u:object_r:cache_block_device:s0
 /dev/block/mmcblk0p21        u:object_r:userdata_block_device:s0
-
-/dev/rfkill                  u:object_r:wpa_device:s0
-
-/dev/fimg2d(/.*)?            u:object_r:fimg2d_video_device:s0
 
 ####################################
 # efs files
@@ -62,19 +55,13 @@
 /data/misc/radio(/.*)?       u:object_r:radio_data_file:s0
 
 # gps
-/data/gps(/.*)?	 	         u:object_r:gps_data_file:s0
 /data/system/gps/alt\.dat                            u:object_r:gps_data_file:s0
 /data/system/gps/lto2\.dat                           u:object_r:gps_data_file:s0
 /data/system/gps/ltoStatus\.txt                      u:object_r:gps_data_file:s0
 
-# Sensors
-/dev/batch_io                                        u:object_r:io_device:s0
-
 ####################################
 # sysfs files
-/sys/class/power_supply/battery(/.*)?	     -- u:object_r:sysfs_battery_supply:s0
 /sys/class/power_supply/battery/music        -- u:object_r:sysfs_writable:s0
-/sys/class/power_supply/usb(/.*)?	         --     u:object_r:sysfs_usb_supply:s0
 
 /sys/class/devfreq/exynos5-busfreq-mif(/.*)? -- u:object_r:sysfs_writable:s0
 /sys/class/lcd(/.*)?         -- u:object_r:sysfs_writable:s0
