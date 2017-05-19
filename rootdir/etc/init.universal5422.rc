@@ -1,3 +1,4 @@
+import init.baseband.rc
 import init.universal5422.usb.rc
 import init.wifi.rc
 import init.samsung.rc
@@ -16,11 +17,6 @@ on init
     symlink /sdcard /storage/sdcard0
 
     symlink /data/app /factory
-
-    mkdir /efs 0771 radio system
-    symlink /dev/block/mmcblk0p13 /dev/mbin0
-    restorecon /dev/mbin0
-    symlink  /sys/devices/12110000.usb/ehci_power /dev/ehci_power
 
 # Support Preload install apks
     mkdir /preload 0771 system system
@@ -337,10 +333,6 @@ on boot
 on fs
     mount_all /fstab.universal5422
 #    setprop ro.crypto.fuse_sdcard true
-
-    chown radio radio /sys/devices/virtual/misc/multipdp/waketime
-    chmod 0660 /sys/devices/virtual/misc/umts_dm0/dm_state
-    chown radio system /sys/devices/virtual/misc/umts_dm0/dm_state
 	
     # Support Preload install apks
     wait  /dev/block/mmcblk0p20
@@ -530,10 +522,6 @@ on fs
     chown system system /dev/ttyGS1
     chown system system /dev/ttyGS2
     chown system system /dev/ttyGS3
-
-# EFS
-    chown radio system /efs
-    chmod 0771 /efs
 
 # Added for TZ Playready DRM Support
     mkdir /efs/drm 0774 drm system
