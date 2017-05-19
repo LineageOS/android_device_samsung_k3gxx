@@ -158,6 +158,9 @@ BOARD_USES_VIRTUAL_DISPLAY := true
 # HWCServices
 BOARD_USES_HWC_SERVICES := true
 
+#HeartRate
+TARGET_NO_SENSOR_PERMISSION_CHECK := true
+
 # Media, frameworks/av
 TARGET_OMX_LEGACY_RESCALING := true
 
