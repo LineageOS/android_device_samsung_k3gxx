@@ -16,10 +16,3 @@ PRODUCT_DEVICE := k3gxx
 PRODUCT_BRAND := samsung
 PRODUCT_MODEL:= SM-G900H
 PRODUCT_MANUFACTURER := samsung
-
-# Set build fingerprint / ID / Product Name ect.
-
-PRODUCT_BUILD_PROP_OVERRIDES += \
-   PRODUCT_NAME="k3gxx" \
-   PRIVATE_BUILD_DESC="k3gxx-user 7.1.1 MMB29K G900HXXS1CPJA release-keys" \
-   BUILD_FINGERPRINT="samsung/k3gxx/k3g:7.1.1/MMB29K/G900HXXS1CPJA:user/release-keys"
