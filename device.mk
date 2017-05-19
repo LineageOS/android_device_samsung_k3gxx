@@ -164,6 +164,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     Gello
 
+# Apache Hack
+PRODUCT_COPY_FILES += \
+    prebuilts/sdk/org.apache.http.legacy/org.apache.http.legacy.jar:/system/framework/org.apache.http.legacy.jar
+
 # Power
 PRODUCT_PACKAGES += \
     power.universal5422
