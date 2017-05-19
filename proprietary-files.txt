@@ -107,15 +107,21 @@ lib/libdrmdecrypt.so
 lib/libexynoscamera.so
 lib/libexynosv4l2.so
 lib/libgnustl_shared.so
+lib/libhdcp2.so
 lib/libhr.so
 #lib/libhwjpeg.so
 lib/libmysound.so
 lib/liboemcrypto.so
+lib/lib_SA_GoogleFX_ver124b.so
 lib/libsecnativefeature.so
 lib/libsensorhub.so
 lib/libsensorhubservice.so
+lib/lib_SoundAlive_play_ver125e.so
+lib/libstagefright_hdcp.so
 lib/libvdis.so
 lib/libwrappergps.so
+lib/libxml2.so
+lib/libprotobuf-cpp-full.so
 
 ### Android radio daemon
 lib/libaudio-ril.so
@@ -131,11 +137,11 @@ lib/hw/sensorhubs.universal5422.so
 lib/hw/sensors.universal5422.so
 
 ### FingerPrint
-#lib/libfpasmtztransport.so
-#lib/libvalAuth.so
-#lib/libvcsfp.so
-#lib/libvfmClient.so
-#lib/libvfmtztransport.so
+lib/libfpasmtztransport.so
+lib/libvalAuth.so
+lib/libvcsfp.so
+lib/libvfmClient.so
+lib/libvfmtztransport.so
 
 ### Audio
 lib/soundfx/libaudiosa_sec.so
