@@ -225,6 +225,12 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     wpa_supplicant
 
+ # Fingerprint
+PRODUCT_PACKAGES += \
+    fingerprintd \
+    fingerprint.universal5422 \
+    ValidityService
+
 # Widevine
 PRODUCT_PACKAGES += \
    libwvm_shim \
