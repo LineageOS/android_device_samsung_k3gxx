@@ -105,9 +105,6 @@
         <item>7</item>
     </integer-array>
 
-    <!-- The default iface on which to monitor data use -->
-    <string name="config_datause_iface" translatable="false">rmnet0</string>
-
     <!-- ############################################################## -->
     <!-- ### HARDWARE KEYS                                              -->
     <!-- ############################################################## -->
