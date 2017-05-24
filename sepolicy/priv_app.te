@@ -1,0 +1,10 @@
+allow priv_app self:udp_socket ioctl;
+allow priv_app device:dir { open read };
+
+# exFAT
+allow platform_app exfat:dir rw_dir_perms;
+allow platform_app exfat:file rw_file_perms;
+allow priv_app exfat:dir rw_dir_perms;
+allow priv_app exfat:file rw_file_perms;
+
+allow priv_app device:dir { open read };

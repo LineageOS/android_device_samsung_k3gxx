@@ -21,3 +21,6 @@ type secmem_device, dev_type;
 
 # /dev/fimg2d
 type fimg2d_video_device, dev_type;
+
+#/dev/batch_io
+type batch_io_device, dev_type;

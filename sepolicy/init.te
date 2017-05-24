@@ -25,3 +25,5 @@ allow init tmpfs:lnk_file create;
 # LD_SHIM_LIBS
 allow init gpsd:process { noatsecure };
 allow init mediaserver:process { noatsecure };
+
+allow init socket_device:sock_file create;

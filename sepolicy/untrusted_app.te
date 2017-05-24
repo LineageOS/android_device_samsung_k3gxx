@@ -1,0 +1,18 @@
+# For SpenCommand
+allow untrusted_app input_device:chr_file { ioctl open read };
+allow untrusted_app input_device:dir { open read };
+allow untrusted_app input_device:dir search;
+
+# File manager
+allow untrusted_app block_device:dir { open read };
+allow untrusted_app device:dir { open read };
+allow untrusted_app efs_file:dir getattr;
+allow untrusted_app rootfs:dir { open read };
+allow untrusted_app sysfs:dir { open read };
+allow untrusted_app unlabeled:dir getattr;
+
+# exFAT
+allow untrusted_app exfat:file getattr;
+allow untrusted_app exfat:file write;
+
+allow untrusted_app debugfs:dir { open read };

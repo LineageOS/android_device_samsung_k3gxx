@@ -50,3 +50,8 @@ allow cpboot-daemon proc:file r_file_perms;
 
 # ril.cbd.boot_done
 allow cpboot-daemon radio_prop:property_service set;
+
+allow cpboot-daemon device:dir { add_name remove_name write };
+allow cpboot-daemon rootfs:file { entrypoint read };
+
+
