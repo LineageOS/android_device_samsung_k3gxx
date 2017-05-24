@@ -18,10 +18,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.hsxpa=1 \
     ro.sec.fle.encryption=true \
     ro.secwvk=220
-	
-# #Simulate sdcard on /data/media
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.sys.sdcardfs=true
 
 ###########################################################
 ### CAMERA
