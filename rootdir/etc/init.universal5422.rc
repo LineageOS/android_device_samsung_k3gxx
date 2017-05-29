@@ -556,6 +556,12 @@ service TvoutService_C /system/bin/bintvoutservice
      group graphics
 on property:ro.SecEDS.enable=false
     stop TvoutService_C
+	
+# CS service
+service fingerprintd /system/bin/fingerprintd
+    class late_start
+    user system
+    group input
 
 # SENSOR FRAMEWORK : starts fingerprintService
 service vcsFPService /system/bin/vcsFPService
