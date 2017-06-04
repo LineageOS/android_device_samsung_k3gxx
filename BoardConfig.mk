@@ -135,7 +135,7 @@ endif
 #    device/samsung/k3gxx/sepolicy
 
 # Seccomp filters
-BOARD_SECCOMP_POLICY += device/samsung/k3gxx/seccomp 
+BOARD_SECCOMP_POLICY += device/samsung/k3gxx/seccomp
 
 # Graphics
 USE_OPENGL_RENDERER := true
