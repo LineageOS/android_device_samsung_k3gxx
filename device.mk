@@ -60,9 +60,9 @@ TARGET_SCREEN_WIDTH := 1080
 PRODUCT_PACKAGES += \
     libhwjpeg
 
-# Shims/Samsung symbols
+# Shims
 PRODUCT_PACKAGES += \
-    libsamsung_symbols
+    libshim_camera  
 
 # Display
 PRODUCT_PACKAGES += \
