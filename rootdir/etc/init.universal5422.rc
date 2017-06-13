@@ -504,9 +504,6 @@ on fs
     chown system radio /sys/class/sec/sec_touchkey/boost_level
     chown system system /sys/class/sec/sec_touchkey/input/enabled
 
-# Touchkeys
-    write /sys/devices/virtual/sec/sec_touchkey/touchkey_led_on_keypress 1   
-    
 # Permissions for gpio_keys
     chown radio system /sys/class/sec/sec_key/wakeup_keys
     write /sys/class/sec/sec_key/wakeup_keys 116,172
