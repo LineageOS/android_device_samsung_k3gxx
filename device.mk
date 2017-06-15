@@ -39,6 +39,13 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
     $(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf
 
+
+# Audio
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.config.media_vol_steps=30 \
+    ro.config.vc_call_vol_steps=20 \
+    audio_hal.force_voice_config=wide
+
 # Bluetooth
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/bluetooth/bt_did.conf:system/etc/bluetooth/bt_did.conf \
