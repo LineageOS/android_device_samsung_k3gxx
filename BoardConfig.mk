@@ -69,11 +69,13 @@ BACKLIGHT_PATH := "/sys/devices/14400000.fimd_fb/backlight/panel/brightness"
 CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 # Kernel
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-linux-androideabi-5.3/bin
+KERNEL_TOOLCHAIN_PREFIX := arm-linux-androideabi-
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --tags_offset 0x10000100 --dt $(LOCAL_PATH)/dt.img
 # TARGET_KERNEL_SOURCE := kernel/samsung/k3gxx
 TARGET_KERNEL_SOURCE := kernel/samsung/CQB2
 TARGET_KERNEL_CONFIG := aosp_k3gxx_defconfig
-KERNEL_TOOLCHAIN := /opt/toolchains/arm-linux-eabi-UB-5.3/bin
+#KERNEL_TOOLCHAIN := /opt/toolchains/arm-linux-eabi-UB-5.3/bin
 KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
