@@ -156,6 +156,8 @@ bin/vcsFPService
 ### GPS
 bin/gpsd
 bin/gps.cer
+lib/hw/gps.default.so:lib/hw/gps.universal5422.so
+lib/libwrappergps.so
 
 ### HWC
 vendor/lib/libmalicore.bc
