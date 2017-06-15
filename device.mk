@@ -70,10 +70,10 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    libdmitry
+    libshim_gpsd
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/gps/gps.cer:system/bin/gps.cer \
+    $(LOCAL_PATH)/configs/gps/SuplRootCert:system/etc/SuplRootCert \
     $(LOCAL_PATH)/configs/gps/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/configs/gps/gps.xml:system/etc/gps.xml
 
