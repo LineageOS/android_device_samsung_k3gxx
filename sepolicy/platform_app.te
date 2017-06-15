@@ -1,0 +1,22 @@
+# /dev/rfkill
+allow wpa rfkill_device:chr_file r_file_perms;
+
+# /efs
+allow wpa efs_file:dir r_dir_perms;
+
+# /efs/wifi
+allow wpa wifi_efs_file:dir r_dir_perms;
+allow wpa wifi_efs_file:file r_file_perms;
+allow wpa wifi_data_file:file open;
+allow wpa wifi_efs_file:dir search;
+allow wpa wifi_efs_file:file { open read write };
+allow wpa efs_file:dir search;
+
+# First boot
+allow platform_app atrace_exec:file getattr;
+allow platform_app audioserver_exec:file getattr;
+allow platform_app blkid_exec:file getattr;
+allow platform_app bootanim_exec:file getattr;
+allow platform_app bootstat_exec:file getattr;
+allow platform_app clatd_exec:file getattr;
+
