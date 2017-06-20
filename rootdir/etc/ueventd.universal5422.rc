@@ -2,7 +2,7 @@
 /dev/ion                  0666   system     system
 /dev/ump                  0666   system     graphics
 /dev/exynos-mem           0660   system     graphics
-/dev/video6               0660   media      media
+/dev/video6               0660   media      drmrpc
 /dev/video7               0660   media      media
 /dev/video8               0660   media      media
 /dev/video9               0660   media      media
@@ -46,12 +46,6 @@
 /dev/m2m1shot_scaler0     0660   media      graphics
 /dev/m2m1shot_scaler1     0660   media      graphics
 /dev/m2m1shot_scaler2     0660   media      graphics
-
-# mfc
-/dev/video6               0660   media      media
-/dev/video7               0660   media      media
-/dev/video8               0660   media      media
-/dev/video9               0660   media      media
 
 # mfc 1
 /dev/video66              0660   media      media
