@@ -166,11 +166,7 @@ vendor/lib/libRSDriverArm.so
 
 ### Widevine
 lib/liboemcrypto.so
-vendor/lib/mediadrm/libdrmclearkeyplugin.so
 vendor/lib/mediadrm/libwvdrmengine.so
-vendor/lib/libwvdrm_L1.so
-vendor/lib/libwvm.so
-vendor/lib/libWVStreamControlAPI_L1.so
 
 # app
 app/FFFFFFFF000000000000000000000001.drbin
