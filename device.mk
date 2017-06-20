@@ -246,7 +246,6 @@ PRODUCT_PACKAGES += \
 
 # Widevine
 PRODUCT_PACKAGES += \
-   libshim_wvm \
    libshim_gpsd
 
 # Enable multi-window by default
