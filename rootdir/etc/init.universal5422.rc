@@ -593,7 +593,7 @@ service vcsFPService /system/bin/vcsFPService
 service gpsd /system/bin/gpsd -c /system/etc/gps.xml
     class main
     user gps
-    group system inet net_raw
+    group system inet net_raw wakelock
     ioprio be 0
 
 # CS service
