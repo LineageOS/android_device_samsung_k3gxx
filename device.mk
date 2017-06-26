@@ -211,8 +211,7 @@ PRODUCT_COPY_FILES += \
 
 # Radio
 PRODUCT_PACKAGES += \
-        modemloader \
-	cbd
+        modemloader
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.carrier=unknown
