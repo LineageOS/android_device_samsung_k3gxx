@@ -209,9 +209,12 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
 	$(LOCAL_PATH)/configs/idc/Synaptics_HID_TouchPad.idc:/system/usr/idc/Synaptics_HID_TouchPad.idc
 
-# Radio
 PRODUCT_PACKAGES += \
-        modemloader
+        libsecril-client \
+        libsecril-client-sap \
+        modemloader \
+        libxml2 \
+        libprotobuf-cpp-full
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.carrier=unknown
