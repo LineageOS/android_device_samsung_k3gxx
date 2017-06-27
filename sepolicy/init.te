@@ -1,17 +1,8 @@
-### init
-
-#allow init kernel:security { setcheckreqprot };
-
-# Mount debugfs on /sys/kernel/debug.
-allow init debugfs_type:dir { mounton };
 # read/chown mDNIE symlinks
 allow init sysfs_mdnie_writable:lnk_file { read setattr };
 
 # /dev/block/mmcblk0p[0-9]
 allow init emmcblk_device:blk_file rw_file_perms;
-
-allow init block_device:lnk_file { setattr };
-allow init tmpfs:lnk_file create_file_perms;
 
 # /data
 allow init sdcardd_exec:file r_file_perms;
@@ -26,4 +17,9 @@ allow init tmpfs:lnk_file create;
 allow init gpsd:process { noatsecure };
 allow init mediaserver:process { noatsecure };
 
-allow init socket_device:sock_file create;
+# Debugfs
+allow init debugfs:dir mounton;
+allow init debugfs:file write;
+
+# denied { setattr relabelto } name="rear_camfw"
+allow init camera_device:file { relabelto setattr };
