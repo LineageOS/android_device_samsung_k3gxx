@@ -200,6 +200,10 @@ PRODUCT_PACKAGES += \
     adb_keys \
     init.goldfish.sh
 
+# Doze
+PRODUCT_PACKAGES += \
+    SamsungDoze
+
 ###########################################################
 ### TOUCHSCREEN
 ###########################################################
