@@ -12,12 +12,29 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196608
 
+###########################################################
+### LCD
+###########################################################
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.sf.lcd_density=480
+
+###########################################################
+### RIL
+###########################################################
+
 # Randomly from stock
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.gprsclass=10 \
     ro.ril.hsxpa=1 \
     ro.sec.fle.encryption=true \
-    ro.secwvk=220
+    ro.secwvk=220 \
+	rild.libpath=/system/lib/libsec-ril.so \
+    rild.libargs=-d /dev/ttyS0 \
+    ro.telephony.ril_class=SlteRIL \
+    ro.ril.telephony.mqanelements=5 \
+    ro.telephony.default_network=0 \
+    telephony.lteOnCdmaDevice=0
 
 ###########################################################
 ### CAMERA
@@ -57,3 +74,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	ro.hwui.text_large_cache_width=4096 \
 	ro.hwui.text_large_cache_height=4096
 
+###########################################################
+### WIFI
+###########################################################
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    wlan.wfd.hdcp=disable
