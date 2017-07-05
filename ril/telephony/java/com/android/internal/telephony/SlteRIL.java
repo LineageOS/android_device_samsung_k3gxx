@@ -23,6 +23,7 @@ import android.content.Context;
 import android.telephony.Rlog;
 import android.os.Message;
 import android.os.Parcel;
+import android.os.SystemProperties;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SignalStrength;
 import android.telephony.SmsManager;
@@ -40,11 +41,14 @@ import java.util.Collections;
  */
 public class SlteRIL extends RIL {
 
-    /**********************************************************
-     * SAMSUNG REQUESTS
-     **********************************************************/
     static final boolean RILJ_LOGD = true;
-    static final boolean RILJ_LOGV = false;
+    static final boolean RILJ_LOGV = true;
+
+    /**********************************************************
+     * SAMSUNG RESPONSE
+     **********************************************************/
+    private static final int RIL_UNSOL_STK_SEND_SMS_RESULT = 11002;
+    private static final int RIL_UNSOL_STK_CALL_CONTROL_RESULT = 11003;
 
     private static final int RIL_UNSOL_DEVICE_READY_NOTI = 11008;
     private static final int RIL_UNSOL_AM = 11010;
@@ -59,8 +63,13 @@ public class SlteRIL extends RIL {
 
     private Message mPendingGetSimStatus;
 
+    // Number of per-network elements expected in QUERY_AVAILABLE_NETWORKS's response.
+    // 4 elements is default, but many RILs actually return 5, making it impossible to
+    // divide the response array without prior knowledge of the number of elements.
+    protected int mQANElements = SystemProperties.getInt("ro.ril.telephony.mqanelements", 4);
+
     public SlteRIL(Context context, int preferredNetworkType, int cdmaSubscription) {
-        super(context, preferredNetworkType, cdmaSubscription, null);
+        this(context, preferredNetworkType, cdmaSubscription, null);
     }
 
     public SlteRIL(Context context, int preferredNetworkType,
@@ -73,9 +82,8 @@ public class SlteRIL extends RIL {
         RILRequest rr =
             RILRequest.obtain(RIL_REQUEST_ANSWER, result);
 
-        if (RILJ_LOGD) {
-            riljLog(rr.serialString() + "> " + requestToString(rr.mRequest));
-        }
+        if (RILJ_LOGD) riljLog(rr.serialString() + "> " + requestToString(rr.mRequest));
+
         rr.mParcel.writeInt(1);
         rr.mParcel.writeInt(index);
 
@@ -131,12 +139,23 @@ public class SlteRIL extends RIL {
 
     @Override
     public void
-    dial(String address, int clirMode, UUSInfo uusInfo, Message result) {
-        if (PhoneNumberUtils.isEmergencyNumber(address)) {
-            dialEmergencyCall(address, clirMode, result);
-            return;
-        }
+    getIccCardStatus(Message result) {
+        if (mState != RadioState.RADIO_ON) {
+            mPendingGetSimStatus = result;
+        } else {
+          //Note: This RIL request has not been renamed to ICC,
+          //       but this request is also valid for SIM and RUIM
+          RILRequest rr = RILRequest.obtain(RIL_REQUEST_GET_SIM_STATUS, result);
 
+          if (RILJ_LOGD) riljLog(rr.serialString() + "> " + requestToString(rr.mRequest));
+
+          send(rr);
+        }
+    }
+
+    @Override
+    public void
+    dial(String address, int clirMode, UUSInfo uusInfo, Message result) {
         RILRequest rr = RILRequest.obtain(RIL_REQUEST_DIAL, result);
 
         rr.mParcel.writeString(address);
@@ -153,23 +172,6 @@ public class SlteRIL extends RIL {
             rr.mParcel.writeInt(uusInfo.getDcs());
             rr.mParcel.writeByteArray(uusInfo.getUserData());
         }
-
-        if (RILJ_LOGD) riljLog(rr.serialString() + "> " + requestToString(rr.mRequest));
-
-        send(rr);
-    }
-
-    private void
-    dialEmergencyCall(String address, int clirMode, Message result) {
-        RILRequest rr;
-
-        rr = RILRequest.obtain(RIL_REQUEST_DIAL_EMERGENCY_CALL, result);
-        rr.mParcel.writeString(address);
-        rr.mParcel.writeInt(clirMode);
-        rr.mParcel.writeInt(0);        // CallDetails.call_type
-        rr.mParcel.writeInt(3);        // CallDetails.call_domain
-        rr.mParcel.writeString("");    // CallDetails.getCsvFromExtra
-        rr.mParcel.writeInt(0);        // Unknown
 
         if (RILJ_LOGD) riljLog(rr.serialString() + "> " + requestToString(rr.mRequest));
 
@@ -243,10 +245,6 @@ public class SlteRIL extends RIL {
             dc.als = p.readInt();
             dc.isVoice = (0 != p.readInt());
 
-            int call_type = p.readInt();            // Samsung CallDetails
-            int call_domain = p.readInt();          // Samsung CallDetails
-            String csv = p.readString();            // Samsung CallDetails
-
             dc.isVoicePrivacy = (0 != p.readInt());
             dc.number = p.readString();
             if (RILJ_LOGV) {
@@ -308,35 +306,43 @@ public class SlteRIL extends RIL {
     @Override
     protected Object
     responseSignalStrength(Parcel p) {
-        int numInts = 12;
-        int response[];
+        int gsmSignalStrength = p.readInt() & 0xff;
+        int gsmBitErrorRate = p.readInt();
+        int cdmaDbm = p.readInt();
+        int cdmaEcio = p.readInt();
+        int evdoDbm = p.readInt();
+        int evdoEcio = p.readInt();
+        int evdoSnr = p.readInt();
+        int lteSignalStrength = p.readInt();
+        int lteRsrp = p.readInt();
+        int lteRsrq = p.readInt();
+        int lteRssnr = p.readInt();
+        int lteCqi = p.readInt();
+        int tdScdmaRscp = p.readInt();
+        // constructor sets default true, makeSignalStrengthFromRilParcel does not set it
+        boolean isGsm = true;
 
-        // Get raw data
-        response = new int[numInts];
-        for (int i = 0; i < numInts; i++) {
-            response[i] = p.readInt();
+        if ((lteSignalStrength & 0xff) == 255 || lteSignalStrength == 99) {
+            lteSignalStrength = 99;
+            lteRsrp = SignalStrength.INVALID;
+            lteRsrq = SignalStrength.INVALID;
+            lteRssnr = SignalStrength.INVALID;
+            lteCqi = SignalStrength.INVALID;
+        } else {
+            lteSignalStrength &= 0xff;
         }
-        // gsm
-        response[0] &= 0xff;
-        // cdma
-        response[2] %= 256;
-        response[4] %= 256;
-        // lte
-        response[7] &= 0xff;
 
-        return new SignalStrength(response[0],
-                                  response[1],
-                                  response[2],
-                                  response[3],
-                                  response[4],
-                                  response[5],
-                                  response[6],
-                                  response[7],
-                                  response[8],
-                                  response[9],
-                                  response[10],
-                                  response[11],
-                                  true);
+        if (RILJ_LOGD)
+            riljLog("gsmSignalStrength:" + gsmSignalStrength + " gsmBitErrorRate:" + gsmBitErrorRate +
+                    " cdmaDbm:" + cdmaDbm + " cdmaEcio:" + cdmaEcio + " evdoDbm:" + evdoDbm +
+                    " evdoEcio: " + evdoEcio + " evdoSnr:" + evdoSnr +
+                    " lteSignalStrength:" + lteSignalStrength + " lteRsrp:" + lteRsrp +
+                    " lteRsrq:" + lteRsrq + " lteRssnr:" + lteRssnr + " lteCqi:" + lteCqi +
+                    " tdScdmaRscp:" + tdScdmaRscp + " isGsm:" + (isGsm ? "true" : "false"));
+
+        return new SignalStrength(gsmSignalStrength, gsmBitErrorRate, cdmaDbm, cdmaEcio, evdoDbm,
+                evdoEcio, evdoSnr, lteSignalStrength, lteRsrp, lteRsrq, lteRssnr, lteCqi,
+                tdScdmaRscp, isGsm);
     }
 
     private void constructGsmSendSmsRilRequest(RILRequest rr, String smscPDU, String pdu) {
@@ -406,18 +412,7 @@ public class SlteRIL extends RIL {
 
         /* Remap incorrect respones or ignore them */
         switch (origResponse) {
-            case 11055:
-                newResponse = RIL_UNSOL_ON_SS;
-                break;
-            case 1041:
-                newResponse = RIL_UNSOL_STK_CC_ALPHA_NOTIFY;
-                break;
-            case 11031:
-                newResponse = RIL_UNSOL_UICC_SUBSCRIPTION_STATUS_CHANGED;
-                break;
-            case 1038: // RIL_UNSOL_TETHERED_MODE_STATE_CHANGED
-            case 1039: // RIL_UNSOL_DATA_NETWORK_STATE_CHANGED
-            case 1042: // RIL_UNSOL_QOS_STATE_CHANGED_IND
+            case RIL_UNSOL_STK_CALL_CONTROL_RESULT:
             case RIL_UNSOL_DEVICE_READY_NOTI: /* Registrant notification */
             case RIL_UNSOL_SIM_PB_READY: /* Registrant notification */
                 Rlog.v(RILJ_LOG_TAG,
