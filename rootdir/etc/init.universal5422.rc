@@ -113,13 +113,13 @@ on boot
     chmod 0600 /dev/btlock
     chown bluetooth bluetooth /dev/btlock
 
-	# DualWave
+    # DualWave
     chown system system /sys/kernel/DualWave/sound/DUALWAVE_CONFIG
 
     # override init.rc to keep plenty of large order chunks around
     # to improve allocation times
-	#write /proc/sys/vm/min_free_kbytes 32768
-	#write /proc/sys/vm/min_free_order_shift 1
+    #write /proc/sys/vm/min_free_kbytes 32768
+    #write /proc/sys/vm/min_free_order_shift 1
 
     # Allow to access debugfs for system:system
     chown system system /sys/kernel/debug
@@ -338,6 +338,19 @@ on boot
 # CS socket
     mkdir /dev/socket/cs_socket 0770 system system
 
+on charger
+    # Set cpu governor to powersave while in charging mode
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu1/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor powersave
+    write /sys/devices/system/cpu/cpu3/cpufreq/scaling_governor powersave
+
+    # EHCI runtime enable for LPA
+    write /sys/devices/platform/s5p-ehci/power/control auto
+
+    # Do not set any USB mode while charging
+    setprop sys.usb.config charging
+
 
 on fs
     mount_all /fstab.universal5422
@@ -346,7 +359,7 @@ on fs
     chown radio radio /sys/devices/virtual/misc/multipdp/waketime
     chmod 0660 /sys/devices/virtual/misc/umts_dm0/dm_state
     chown radio system /sys/devices/virtual/misc/umts_dm0/dm_state
-	
+
     # Support Preload install apks
     wait  /dev/block/mmcblk0p20
     mount ext4  /dev/block/mmcblk0p20 /preload nosuid nodev ro barrier=1
@@ -520,8 +533,8 @@ on fs
     write /sys/class/sec/sec_key/wakeup_keys 116,172
 
 # terminal mode
-	chmod 0660 /sys/class/android_usb/android0/terminal_version
-	chown system system /sys/class/android_usb/android0/terminal_version
+    chmod 0660 /sys/class/android_usb/android0/terminal_version
+    chown system system /sys/class/android_usb/android0/terminal_version
 
 # Switch USB20 to USB30
     chown system system /sys/class/android_usb/android0/usb30en
@@ -547,6 +560,12 @@ service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF0000000000000
     class core
     user system
     group system
+
+# LPM
+service charger /sbin/healthd -c
+    class charger
+    critical
+    seclabel u:r:healthd:s0
 
 # Set watchdog timer to 30 seconds and pet it every 10 seconds to get a 20 second margin
 service watchdogd /sbin/watchdogd 10 20
@@ -593,14 +612,12 @@ on property:sys.mobicoredaemon.enable=true
 
 # Kick watchdogd if debug_level is low
 on property:ro.debug_level=0x4f4c
-	start watchdogd
+    start watchdogd
 
 # LPM
 on property:ro.bootmode=charger
     mount ext4 /dev/block/mmcblk0p18 /system wait ro
 
-on property:ro.bootmode=charger
-    class_start sec-charger
 
 # service for TZPR provisioning version check app
 service scranton_RD /system/bin/scranton_RD
