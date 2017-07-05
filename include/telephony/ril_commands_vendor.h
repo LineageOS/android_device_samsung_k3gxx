@@ -14,7 +14,6 @@
 ** See the License for the specific language governing permissions and
 ** limitations under the License.
 */
-    {10000, NULL, NULL},
     {RIL_REQUEST_DIAL_EMERGENCY_CALL, dispatchDial, responseVoid}, // 10001
     {RIL_REQUEST_CALL_DEFLECTION, dispatchVoid, responseVoid}, // 10002
     {RIL_REQUEST_MODIFY_CALL_INITIATE, dispatchVoid, responseVoid}, // 10003
@@ -30,7 +29,7 @@
     {RIL_REQUEST_LOCK_INFO, dispatchVoid, responseVoid}, // 10013
     {RIL_REQUEST_STK_SIM_INIT_EVENT, dispatchVoid, responseVoid}, // 10014
     {RIL_REQUEST_SET_PREFERRED_NETWORK_LIST, dispatchVoid, responseVoid}, // 10015
-    {RIL_REQUEST_GET_PREFERRED_NETWORK_LIST, dispatchDial, responseVoid}, // 10016
+    {RIL_REQUEST_GET_PREFERRED_NETWORK_LIST, dispatchVoid, responseVoid}, // 10016
     {RIL_REQUEST_CHANGE_SIM_PERSO, dispatchVoid, responseVoid}, // 10017
     {RIL_REQUEST_ENTER_SIM_PERSO, dispatchVoid, responseVoid}, // 10018
     {RIL_REQUEST_SEND_ENCODED_USSD, dispatchVoid, responseVoid}, // 10019
@@ -46,4 +45,3 @@
     {RIL_REQUEST_SET_TRANSFER_CALL, dispatchVoid, responseVoid}, // 10030
     {RIL_REQUEST_GET_DISABLE_2G, dispatchVoid, responseVoid}, // 10031
     {RIL_REQUEST_SET_DISABLE_2G, dispatchVoid, responseVoid}, // 10032
-
