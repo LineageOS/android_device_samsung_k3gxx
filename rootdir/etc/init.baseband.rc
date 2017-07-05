@@ -1,0 +1,64 @@
+on init
+    mkdir /efs 0771 radio system
+    symlink /dev/block/mmcblk0p13 /dev/mbin0
+    restorecon /dev/mbin0
+    symlink  /sys/devices/12110000.usb/ehci_power /dev/ehci_power
+
+    write /sys/class/net/rmnet0/queues/rx-0/rps_cpus 1
+    write /sys/class/net/rmnet1/queues/rx-0/rps_cpus 1
+    write /sys/class/net/rmnet2/queues/rx-0/rps_cpus 1
+    write /proc/sys/net/core/netdev_max_backlog 2048
+
+on fs
+    chown radio system /efs
+    chmod 0771 /efs
+
+
+    chown radio radio /sys/devices/virtual/misc/multipdp/waketime
+    chmod 0660 /sys/devices/virtual/misc/umts_dm0/dm_state
+    chown radio system /sys/devices/virtual/misc/umts_dm0/dm_state
+
+# Parse hardware revision (needs to happen before cbd starts)
+service modemloader /system/bin/modemloader
+    class core
+    oneshot
+        disabled
+
+service cpboot-daemon /system/bin/cbd -d -txmm626x -bh -mh -p 13
+    class main
+    user root
+    group radio cache inet misc audio sdcard_rw log sdcard_r shell
+        disabled
+
+service_redefine ril-daemon /system/bin/rild
+    class main
+    socket rild stream 660 root radio
+    socket sap_uim_socket1 stream 660 bluetooth bluetooth
+    socket rild-debug stream 660 radio system
+    user root
+    group radio cache inet misc audio sdcard_r sdcard_rw diag log readproc wakelock
+    disabled
+    onrestart restart cpboot-daemon
+
+on property:persist.sys.cpboot=disable
+    stop ril-daemon
+    stop cpboot-daemon
+
+# Modem Logging daemon
+#service ML-daemon /system/bin/mlexe
+#    class main
+#    user root
+# group system radio inet net_raw
+
+on post-fs-data
+    # Remove symlinks to avoid issues with migrate after nandroid restores
+    # Will be recreated at end of boot
+    rm -r -d /data/data/com.android.providers.telephony/databases
+    rm -r -d /data/data/com.android.providers.telephony/shared_prefs
+
+    # Symlink directories to access telephony.db and preferred-apn.xml required by cbd
+    symlink /data/user_de/0/com.android.providers.telephony/databases /data/data/com.android.providers.telephony/databases
+    symlink /data/user_de/0/com.android.providers.telephony/shared_prefs /data/data/com.android.providers.telephony/shared_prefs
+    start modemloader
+    start cpboot-daemon
+    start ril-daemon
