@@ -402,6 +402,7 @@ typedef struct {
     char            als;        /* ALS line indicator if available
                                    (0 = line 1) */
     char            isVoice;    /* nonzero if this is is a voice call */
+    char            isVideo;
 
     char            isVoicePrivacy;     /* nonzero if CDMA voice privacy mode is active */
     char *          number;     /* Remote party number */
@@ -1012,11 +1013,11 @@ typedef struct
   int              pin1_replaced;   /* applicable to USIM, CSIM & ISIM */
   RIL_PinState     pin1;
   RIL_PinState     pin2;
-  int              foo1;            /* Samsung */
-  int              foo2;            /* Samsung */
-  int              foo3;            /* Samsung */
-  int              foo4;            /* Samsung */
-  int              foo5;            /* Samsung */
+  int              foo1;            // pin1_num_retries
+  int              foo2;            // puk1_num_retries
+  int              foo3;            // pin2_num_retries
+  int              foo4;            // puk2_num_retries
+  int              foo5;            // perso_unblock_retries
 } RIL_AppStatus;
 
 /* Deprecated, use RIL_CardStatus_v6 */
@@ -5852,8 +5853,8 @@ typedef struct {
  * SAMSUNG RESPONSE
  **********************************************************/
 
-#define SAMSUNG_UNSOL_RESPONSE_BASE 11000
-
+#define RIL_OEM_UNSOL_RESPONSE_BASE 11000
+#define RIL_UNSOL_RESPONSE_NEW_CB_MSG 11000
 #define RIL_UNSOL_RELEASE_COMPLETE_MESSAGE 11001
 #define RIL_UNSOL_STK_SEND_SMS_RESULT 11002
 #define RIL_UNSOL_STK_CALL_CONTROL_RESULT 11003
@@ -5886,10 +5887,6 @@ typedef struct {
 #define RIL_UNSOL_VOICE_RADIO_BEARER_HO_STATUS 11064
 #define RIL_UNSOL_CLM_NOTI 11065
 #define RIL_UNSOL_SIM_ICCID_NOTI 11066
-
-/* SNDMGR */
-
-#define RIL_UNSOL_SNDMGR_WB_AMR_REPORT 20017
 
 /***********************************************************************/
 
