@@ -1,4 +1,5 @@
 import init.universal5422.usb.rc
+import init.baseband.rc
 import init.wifi.rc
 import init.samsung.rc
 
@@ -553,12 +554,6 @@ service watchdogd /sbin/watchdogd 10 20
     class core
     seclabel u:r:watchdogd:s0
     disabled
-
-service cpboot-daemon /sbin/cbd -d -txmm626 -bh -mh -p 13
-    class main
-    user root
-    group radio cache inet misc audio sdcard_rw log sdcard_r shell
-    seclabel u:r:cpboot-daemon:s0
 
 # on userdebug and eng builds, enable kgdb on the serial console
 on property:ro.debuggable=1
