@@ -242,6 +242,7 @@ TARGET_PROVIDES_LIBLIGHT := false
 
 # CMHW
 BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
+BOARD_HARDWARE_CLASS += device/samsung/k3gxx/cmhw
 
 ### SECCOMP
 # frameworks/av/services/{mediacodec,mediaextractor}/minijail
