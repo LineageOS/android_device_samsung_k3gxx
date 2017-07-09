@@ -69,6 +69,7 @@ PRODUCT_PACKAGES += \
     SamsungServiceMode
 
 # GPS
+# SHIM LIBS
 PRODUCT_PACKAGES += \
     libshim_gpsd
 
@@ -202,7 +203,7 @@ PRODUCT_PACKAGES += \
     adb_keys \
     init.goldfish.sh
 
-# Doze
+#Samsung Doze
 PRODUCT_PACKAGES += \
     SamsungDoze
 
