@@ -97,9 +97,11 @@ service wlandutservice /system/bin/wlandutservice
     oneshot
 
 service macloader /system/bin/macloader
-    class main
-    disabled
+    class late_start
     oneshot
+
+on property:wlan.driver.status=ok
+    start macloader
 
 on property:init.svc.macloader=stopped
     chown system root /data/misc/conn/.cid.info
