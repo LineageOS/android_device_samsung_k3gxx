@@ -586,11 +586,11 @@ service vcsFPService /system/bin/vcsFPService
 
 
 # GPS
-#service gpsd /system/bin/gpsd -c /system/etc/gps.xml
-#    class main
-#   user gps
-#    group system inet net_raw wakelock
-#    ioprio be 0
+service gpsd /system/bin/gpsd -c /system/etc/gps.xml
+    class main
+    user gps
+    group system inet net_raw wakelock
+    ioprio be 0
 
 # CS service
 service cs_service /system/bin/cs
