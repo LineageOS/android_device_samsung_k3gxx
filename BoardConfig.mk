@@ -131,8 +131,8 @@ TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/fstab.universal5422
 endif
 
 # SELinux
-#BOARD_SEPOLICY_DIRS += \
-#    device/samsung/k3gxx/sepolicy
+BOARD_SEPOLICY_DIRS += \
+    device/samsung/k3gxx/sepolicy
 
 # Seccomp filters
 BOARD_SECCOMP_POLICY += device/samsung/k3gxx/seccomp
