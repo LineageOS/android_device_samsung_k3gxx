@@ -213,6 +213,7 @@ BOARD_NFC_HAL_SUFFIX := $(TARGET_BOOTLOADER_BOARD_NAME)
 
 # CMHW
 BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
+BOARD_HARDWARE_CLASS += device/samsung/k3gxx/cmhw
 
 #Trying to get work the WIFI
 #-include hardware/broadcom/wlan/bcmdhd/firmware/bcm4354/device-bcm.mk
