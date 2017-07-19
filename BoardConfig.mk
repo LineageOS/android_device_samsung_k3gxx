@@ -64,6 +64,9 @@ TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 TARGET_GLOBAL_CFLAGS += -DUSE_ANB_REF
 TARGET_GLOBAL_CFLAGS += -DUSE_ANB
 
+#Enable ValidityService for fingerprint
+BOARD_USES_VALIDITY := true
+
 ##################################################
 
 # HEALTH DAEMON (CHARGER) DEFINES
