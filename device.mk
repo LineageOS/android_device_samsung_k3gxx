@@ -196,7 +196,6 @@ PRODUCT_PACKAGES += \
     ueventd.universal5422.rc \
     init.rc \
     recovery.fstab \
-    adb_keys \
     init.goldfish.sh
 
 #Samsung Doze
