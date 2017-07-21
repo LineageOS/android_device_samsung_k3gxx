@@ -193,9 +193,7 @@ PRODUCT_PACKAGES += \
     init.universal5422.usb.rc \
     init.wifi.rc \
     ueventd.universal5422.rc \
-    init.rc \
-    recovery.fstab \
-    init.goldfish.sh
+    init.rc
 
 #Samsung Doze
 PRODUCT_PACKAGES += \

@@ -120,27 +120,8 @@ TARGET_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 BOARD_RIL_CLASS := ../../../device/samsung/k3gxx/ril
 
 # Recovery
-#RECOVERY_VARIANT := twrp
-TW_NO_REBOOT_BOOTLOADER := true
-TW_HAS_DOWNLOAD_MODE := true
-TW_THEME := portrait_hdpi
-TW_BRIGHTNESS_PATH := /sys/devices/14400000.fimd_fb/backlight/panel/brightness
-TW_MAX_BRIGHTNESS := 255
-# USB Mounting
 TARGET_USERIMAGES_USE_EXT4 := true
-BOARD_RECOVERY_SWIPE := true
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
-BOARD_HAS_NO_SELECT_BUTTON := true
-TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
-#BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/k3gxx/recovery/recovery_keys.c
-BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
-
-ifeq ($(RECOVERY_VARIANT),twrp)
-TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/recovery.fstab
-else
 TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/fstab.universal5422
-endif
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
