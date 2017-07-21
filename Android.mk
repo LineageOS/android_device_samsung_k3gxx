@@ -18,12 +18,6 @@ LOCAL_PATH := $(call my-dir)
 
 ifeq ($(TARGET_DEVICE),k3gxx)
 
-TARGET_PRODUCT := k3gxx
-
-include $(CLEAR_VARS)
-
-ALL_PREBUILT += $(INSTALLED_KERNEL_TARGET)
-
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
 endif

@@ -1,5 +1,6 @@
 #
 # Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,13 +19,7 @@ LOCAL_PATH := device/samsung/k3gxx
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-
-# The gps config appropriate for this device
-$(call inherit-product, device/common/gps/gps_eu_supl.mk)
-
-$(call inherit-product-if-exists, vendor/samsung/k3gxx/k3gxx-vendor.mk)
-
+$(call inherit-product, vendor/samsung/k3gxx/k3gxx-vendor.mk)
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -32,13 +27,13 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     audio.r_submix.default \
     audio.primary.universal5422 \
-    libtinycompress
+    libtinycompress \
+    tinymix
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/mixer_paths_0.xml:system/etc/mixer_paths_0.xml \
     $(LOCAL_PATH)/configs/audio/audio_effects.conf:system/vendor/etc/audio_effects.conf \
     $(LOCAL_PATH)/configs/audio/audio_policy.conf:system/etc/audio_policy.conf
-
 
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -90,7 +85,7 @@ PRODUCT_PACKAGES += \
     gralloc.exynos5 \
     hwcomposer.exynos5
 
-# CONSUMERIR
+# Consumerir
 PRODUCT_PACKAGES += \
     consumerir.universal5422
 
@@ -102,7 +97,6 @@ PRODUCT_PACKAGES += \
 # M removes libstlport, but some of our binary-only prebuilts need it, so we'll
 # add it back
 PRODUCT_PACKAGES += \
-    libxml2 \
     libstlport
 
 # Power
@@ -115,6 +109,7 @@ PRODUCT_PACKAGES += \
     NfcNci \
     Tag \
     com.android.nfc_extras
+
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.nfc.sec_hal=true
 
@@ -126,6 +121,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/nfc/libnfc-sec.conf:system/etc/libnfc-sec.conf \
     $(LOCAL_PATH)/configs/nfc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf
 
+# Media profile
 PRODUCT_COPY_FILES += \
 	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
 	frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
@@ -134,6 +130,7 @@ PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml \
 	$(LOCAL_PATH)/configs/media/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
 	$(LOCAL_PATH)/configs/media/media_codecs_performance.xml:system/etc/media_codecs_performance.xml \
+
 # Permissions
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
@@ -155,7 +152,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
     frameworks/native/data/etc/android.hardware.sensor.barometer.xml:system/etc/permissions/android.hardware.sensor.barometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml \
-    frameworks/native/data/etc/android.hardware.sensor.heartrate.ecg.xml:system/etc/permissions/android.hardware.sensor.heartrate.ecg.xml \
     frameworks/native/data/etc/android.hardware.sensor.heartrate.xml:system/etc/permissions/android.hardware.sensor.heartrate.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
     frameworks/native/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
@@ -165,24 +161,11 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
     frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
-    frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml \
-    frameworks/native/data/etc/android.software.freeform_window_management.xml:system/etc/permissions/android.software.freeform_window_management.xml
-	
-# Browser
-PRODUCT_PACKAGES += \
-    Gello
-
-# Apache Hack
-PRODUCT_COPY_FILES += \
-    prebuilts/sdk/org.apache.http.legacy/org.apache.http.legacy.jar:/system/framework/org.apache.http.legacy.jar
+    frameworks/native/data/etc/android.hardware.fingerprint.xml:system/etc/permissions/android.hardware.fingerprint.xml
 
 # Power
 PRODUCT_PACKAGES += \
     power.universal5422
-	
-PRODUCT_PACKAGES += \
-    charger_res_images \
-    charger
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -195,25 +178,23 @@ PRODUCT_PACKAGES += \
     ueventd.universal5422.rc \
     init.rc
 
-#Samsung Doze
+# Samsung Doze
 PRODUCT_PACKAGES += \
     SamsungDoze
 
-###########################################################
-### TOUCHSCREEN
-###########################################################
-
+# Keylayouts
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/keylayout/gpio_keys_8.kl:system/usr/keylayout/gpio_keys_8.kl \
 	$(LOCAL_PATH)/configs/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
 	$(LOCAL_PATH)/configs/idc/Synaptics_HID_TouchPad.idc:/system/usr/idc/Synaptics_HID_TouchPad.idc
 
+# Radio
 PRODUCT_PACKAGES += \
-        libsecril-client \
-        libsecril-client-sap \
-        modemloader \
-        libxml2 \
-        libprotobuf-cpp-full
+    libsecril-client \
+    libsecril-client-sap \
+    modemloader \
+    libxml2 \
+    libprotobuf-cpp-full
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.carrier=unknown
@@ -222,6 +203,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
+# Keystore
 PRODUCT_PACKAGES += \
     keystore.exynos5
 
@@ -240,43 +222,22 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     wpa_supplicant
 
- # Fingerprint
+# Fingerprint
 PRODUCT_PACKAGES += \
     fingerprintd \
     fingerprint.universal5422 \
     ValidityService
-
-# Widevine
-PRODUCT_PACKAGES += \
-   libshim_gpsd
-
-# Enable multi-window by default
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.debug.multi_window=true
-
 
 # Legacy stagefright media
 PRODUCT_PROPERTY_OVERRIDES += \
     media.stagefright.legacyencoder=true \
     media.stagefright.less-secure=true
 
-# adb has root
-ADDITIONAL_DEFAULT_PROPERTIES += \
-    ro.adb.secure=0 \
-    persist.adb.notify=0 \
-    ro.secure=0 \
-    ro.debuggable=1 \
-    persist.service.adb.enable=1 \
-    persist.sys.isUsbOtgEnabled=true
-
-# adb and apps
-ADDITIONAL_BUILD_PROPERTIES += \
-    persist.sys.root_access=3
-
-$(call inherit-product-if-exists, build/target/product/full.mk)
 # call Samsung LSI board support package
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5422/exynos5422.mk)
 
 PRODUCT_NAME := full_k3gxx
 PRODUCT_DEVICE := k3gxx
+
+$(call inherit-product, device/samsung/k3gxx/system_prop.mk)

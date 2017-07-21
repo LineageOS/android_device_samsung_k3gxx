@@ -21,6 +21,6 @@
     },
     {
         "repository": "kernel_samsung_k3gxx",
-        "target_path": "kernel/samsung/CQB2"
+        "target_path": "kernel/samsung/k3gxx"
     }
 ]

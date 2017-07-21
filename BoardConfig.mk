@@ -1,5 +1,6 @@
 #
 # Copyright (C) 2013 The CyanogenMod Project
+# Copyright (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -33,11 +34,9 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
-# system/core libcutils
+# CPU
+ENABLE_CPUSETS := true
 ENABLE_SCHEDBOOST := true
-
-# RENDERSCRIPT
-BOARD_OVERRIDE_RS_CPU_VARIANT_32 := cortex-a15
 
 # Bootloader
 TARGET_OTA_ASSERT_DEVICE := k3g,k3gxx
@@ -47,28 +46,22 @@ TARGET_NO_RADIOIMAGE := true
 
 # Camera
 BOARD_NEEDS_MEMORYHEAPION := true
-# hardware/samsung_slsi-cm/exynos5/libgscaler
-BOARD_USES_SCALER := true
-BOARD_USES_DT := true
-BOARD_USES_DT_SHORTNAME := true
-# frameworks/av/camera, camera blob support
-TARGET_GLOBAL_CFLAGS += -DSAMSUNG_CAMERA_HARDWARE
-# frameworks/av/media/libstagefright, for libwvm.so
-TARGET_GLOBAL_CFLAGS += -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
-# frameworks/av/media/libstagefright
-TARGET_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED
-BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
-
-# CAMERA HAL1 FIX
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 
-TARGET_GLOBAL_CFLAGS += -DUSE_ANB_REF
-TARGET_GLOBAL_CFLAGS += -DUSE_ANB
+# Scaler
+BOARD_USES_SCALER := true
 
-#Enable ValidityService for fingerprint
+# Device Tree
+BOARD_USES_DT := true
+BOARD_USES_DT_SHORTNAME := true
+
+# ValidityService
 BOARD_USES_VALIDITY := true
 
-# HEALTH DAEMON (CHARGER) DEFINES
+# Battery / charging mode
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
+BOARD_BATTERY_DEVICE_NAME := battery
 RED_LED_PATH := "/sys/devices/virtual/sec/led/led_r"
 GREEN_LED_PATH := "/sys/devices/virtual/sec/led/led_g"
 BLUE_LED_PATH := "/sys/devices/virtual/sec/led/led_b"
@@ -76,18 +69,12 @@ BACKLIGHT_PATH := "/sys/devices/14400000.fimd_fb/backlight/panel/brightness"
 CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 
 # Kernel
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-5.3/bin
-KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --tags_offset 0x10000100 --dt $(LOCAL_PATH)/dt.img
 TARGET_KERNEL_SOURCE := kernel/samsung/k3gxx
 TARGET_KERNEL_CONFIG := aosp_k3gxx_defconfig
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 
-# Battery / charging mode
-BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_CHARGING_MODE_BOOTING_LPM := /sys/class/power_supply/battery/batt_lp_charging
-BOARD_BATTERY_DEVICE_NAME := battery
 
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
@@ -106,10 +93,10 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-# POWER
+# Power hal from hardware/samsung
 TARGET_POWERHAL_VARIANT := samsung
 
-# Audio HAL from hardware/samsung
+# Audio hal from hardware/samsung
 TARGET_AUDIOHAL_VARIANT := samsung
 
 # Radio
@@ -136,18 +123,17 @@ NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 BOARD_USE_BGRA_8888 := true
 
 # Samsung LSI OpenMAX
-TARGET_GLOBAL_CFLAGS += -DUSE_NATIVE_SEC_NV12TILED
+BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
+TARGET_GLOBAL_CFLAGS += -DUSE_ANB_REF
+TARGET_GLOBAL_CFLAGS += -DUSE_ANB
 
- # Exynos display
+# Exynos display
 BOARD_USES_VIRTUAL_DISPLAY := true
-
-# Disable HDMI for now
-#BOARD_HDMI_INCAPABLE := true
 
 # HWCServices
 BOARD_USES_HWC_SERVICES := true
 
-#HeartRate
+# HeartRate
 TARGET_NO_SENSOR_PERMISSION_CHECK := true
 
 # Media, frameworks/av
@@ -155,9 +141,6 @@ TARGET_OMX_LEGACY_RESCALING := true
 
 # frameworks/native/libs/binder/Parcel.cpp
 TARGET_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
-
-### FONTS
-EXTENDED_FONT_FOOTPRINT := true
 
 # Samsung OpenMAX Video
 BOARD_USE_STOREMETADATA := true
@@ -168,6 +151,11 @@ BOARD_USE_IMPROVED_BUFFER := true
 BOARD_USE_GSC_RGB_ENCODER := true
 BOARD_USE_S3D_SUPPORT := true
 BOARD_USE_VP8ENC_SUPPORT := true
+BOARD_USE_VP8ENC_SUPPORT := true
+BOARD_USE_HEVCDEC_SUPPORT := true
+BOARD_USE_GSC_RGB_ENCODER := true
+BOARD_USE_ENCODER_RGBINPUT_SUPPORT := true
+
 # HDMI
 BOARD_USES_GSC_VIDEO := true
 
@@ -177,15 +165,11 @@ TARGET_OMX_LEGACY_RESCALING := true
 # HEVC support in libvideocodec
 BOARD_USE_HEVC_HWIP := true
 
-BOARD_USE_GSC_RGB_ENCODER := true
-BOARD_USE_ENCODER_RGBINPUT_SUPPORT := true
-
-BOARD_USE_VP8ENC_SUPPORT := true
-BOARD_USE_HEVCDEC_SUPPORT := true
-
+# Samsung OpenMAX Audio
 BOARD_USE_WMA_CODEC := true
 BOARD_USE_ALP_AUDIO := true
 BOARD_USE_SEIREN_AUDIO := true
+
 # Samsung Gralloc
 TARGET_SAMSUNG_GRALLOC_EXTERNAL_USECASES := true
 
@@ -207,14 +191,14 @@ WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/dhd/parameters/firmware_path"
 WIFI_DRIVER_FW_PATH_STA          := "/system/etc/wifi/bcmdhd_sta.bin"
 WIFI_DRIVER_FW_PATH_AP           := "/system/etc/wifi/bcmdhd_apsta.bin"
 
-# BLUETOOTH
+# Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_HAVE_SAMSUNG_BLUETOOTH := true
 BOARD_CUSTOM_BT_CONFIG := $(LOCAL_PATH)/bluetooth/libbt_vndcfg.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
 
-### NFC
+# NFC
 BOARD_NFC_CHIPSET := pn547
 BOARD_NFC_HAL_SUFFIX := $(TARGET_BOOTLOADER_BOARD_NAME)
 
@@ -222,7 +206,7 @@ BOARD_NFC_HAL_SUFFIX := $(TARGET_BOOTLOADER_BOARD_NAME)
 BOARD_HARDWARE_CLASS += hardware/samsung/cmhw
 BOARD_HARDWARE_CLASS += device/samsung/k3gxx/cmhw
 
-### SECCOMP
+# SECCOMP
 # frameworks/av/services/{mediacodec,mediaextractor}/minijail
 BOARD_SECCOMP_POLICY += device/samsung/k3gxx/seccomp
 
