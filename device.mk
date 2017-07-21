@@ -61,18 +61,13 @@ TARGET_SCREEN_WIDTH := 1080
 PRODUCT_PACKAGES += \
     libhwjpeg
 
-# Shims
-PRODUCT_PACKAGES += \
-    libshim_camera  
-
 # Display
 PRODUCT_PACKAGES += \
     SamsungServiceMode
 
-# GPS
 # SHIM LIBS
 PRODUCT_PACKAGES += \
-    libshim_gpsd
+    libshim
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps/SuplRootCert:system/etc/SuplRootCert \
