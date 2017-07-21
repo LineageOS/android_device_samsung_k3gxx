@@ -187,7 +187,6 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.universal5422 \
-    init.recovery.universal5422.rc \
 	init.baseband.rc \
     init.samsung.rc \
     init.universal5422.rc \
