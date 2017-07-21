@@ -68,6 +68,7 @@ on boot
 # Run deferred initcalls of builtin kernel modules (bcmdhd)
 service wifiloader /system/bin/wifiloader
     class main
+	seclabel u:r:wifiloader:s0
     oneshot
 
 service p2p_supplicant /system/bin/wpa_supplicant -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -I/system/etc/wifi/wpa_supplicant_overlay.conf -O/data/misc/wifi/sockets -c/data/misc/wifi/p2p_supplicant.conf -I/system/etc/wifi/p2p_supplicant_overlay.conf -puse_p2p_group_interface=1 -puse_multi_chan_concurrent=1 -e/data/misc/wifi/entropy.bin -g@android:wpa_wlan0
@@ -84,20 +85,21 @@ service wpa_supplicant /system/bin/wpa_supplicant -g@android:wpa_wlan0 -iwlan0 -
 
 # tiburona
 # start for WiFi MFG (TestMode)
-service mfgloader /system/bin/mfgloader
-    class main
-    disabled
-    oneshot
+#service mfgloader /system/bin/mfgloader
+#    class main
+#    disabled
+#    oneshot
 
-service wlandutservice /system/bin/wlandutservice
-    class main
-    user system
-    group wifi net_raw net_admin system inet
-    disabled
-    oneshot
+#service wlandutservice /system/bin/wlandutservice
+#    class main
+#    user system
+#    group wifi net_raw net_admin system inet
+#    disabled
+#    oneshot
 
 service macloader /system/bin/macloader
-    class late_start
+    class main
+	disabled
     oneshot
 
 on property:wlan.driver.status=ok
