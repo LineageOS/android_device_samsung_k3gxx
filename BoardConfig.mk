@@ -75,7 +75,6 @@ TARGET_KERNEL_CONFIG := aosp_k3gxx_defconfig
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 
-
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
 BOARD_USES_NEON_BLITANTIH := true
@@ -98,6 +97,9 @@ TARGET_POWERHAL_VARIANT := samsung
 
 # Audio hal from hardware/samsung
 TARGET_AUDIOHAL_VARIANT := samsung
+
+# ConsumerIR from hardware/samsung
+IR_HAL_SUFFIX := universal5422
 
 # Radio
 BOARD_PROVIDES_LIBRIL := true
