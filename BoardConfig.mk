@@ -100,7 +100,7 @@ BOARD_RIL_CLASS := ../../../device/samsung/k3gxx/ril
 
 # Recovery
 TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/rootdir/etc/fstab.universal5422
+TARGET_RECOVERY_FSTAB := device/samsung/k3gxx/ramdisk/fstab.universal5422
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
