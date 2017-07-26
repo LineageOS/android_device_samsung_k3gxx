@@ -34,10 +34,6 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
-# CPU
-ENABLE_CPUSETS := true
-ENABLE_SCHEDBOOST := true
-
 # Bootloader
 TARGET_OTA_ASSERT_DEVICE := k3g,k3gxx
 TARGET_BOOTLOADER_BOARD_NAME := universal5422
@@ -45,15 +41,12 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 
 # Camera
+BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
 BOARD_NEEDS_MEMORYHEAPION := true
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 
-# Scaler
-BOARD_USES_SCALER := true
-
 # Device Tree
 BOARD_USES_DT := true
-BOARD_USES_DT_SHORTNAME := true
 
 # ValidityService
 BOARD_USES_VALIDITY := true
@@ -71,13 +64,12 @@ CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/batt_lp_charging"
 # Kernel
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x11000000 --tags_offset 0x10000100 --dt $(LOCAL_PATH)/dt.img
 TARGET_KERNEL_SOURCE := kernel/samsung/k3gxx
-TARGET_KERNEL_CONFIG := aosp_k3gxx_defconfig
+TARGET_KERNEL_CONFIG := lineage_k3gxx_defconfig
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE := 2048
 
 # FIMG2D
 BOARD_USES_SKIA_FIMGAPI := true
-BOARD_USES_NEON_BLITANTIH := true
 
 # Include path
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/k3gxx/include
@@ -104,8 +96,6 @@ IR_HAL_SUFFIX := universal5422
 # Radio
 BOARD_PROVIDES_LIBRIL := true
 BOARD_MODEM_TYPE := xmm6360
-# we need define it (because audio.primary.universal5422.so requires it)
-TARGET_GLOBAL_CFLAGS += -DSEC_PRODUCT_FEATURE_RIL_CALL_DUALMODE_CDMAGSM
 BOARD_RIL_CLASS := ../../../device/samsung/k3gxx/ril
 
 # Recovery
@@ -118,16 +108,9 @@ BOARD_SEPOLICY_DIRS += \
 
 # Graphics
 USE_OPENGL_RENDERER := true
-VSYNC_EVENT_PHASE_OFFSET_NS := 7500000
-SF_VSYNC_EVENT_PHASE_OFFSET_NS := 5000000
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 # Use Exynos BGRA mixer
 BOARD_USE_BGRA_8888 := true
-
-# Samsung LSI OpenMAX
-BOARD_USE_SAMSUNG_CAMERAFORMAT_NV21 := true
-TARGET_GLOBAL_CFLAGS += -DUSE_ANB_REF
-TARGET_GLOBAL_CFLAGS += -DUSE_ANB
 
 # Exynos display
 BOARD_USES_VIRTUAL_DISPLAY := true
@@ -137,9 +120,6 @@ BOARD_USES_HWC_SERVICES := true
 
 # HeartRate
 TARGET_NO_SENSOR_PERMISSION_CHECK := true
-
-# Media, frameworks/av
-TARGET_OMX_LEGACY_RESCALING := true
 
 # frameworks/native/libs/binder/Parcel.cpp
 TARGET_GLOBAL_CFLAGS += -DDISABLE_ASHMEM_TRACKING
@@ -153,16 +133,13 @@ BOARD_USE_IMPROVED_BUFFER := true
 BOARD_USE_GSC_RGB_ENCODER := true
 BOARD_USE_S3D_SUPPORT := true
 BOARD_USE_VP8ENC_SUPPORT := true
-BOARD_USE_VP8ENC_SUPPORT := true
 BOARD_USE_HEVCDEC_SUPPORT := true
 BOARD_USE_GSC_RGB_ENCODER := true
 BOARD_USE_ENCODER_RGBINPUT_SUPPORT := true
+TARGET_OMX_LEGACY_RESCALING := true
 
 # HDMI
 BOARD_USES_GSC_VIDEO := true
-
-# frameworks/av
-TARGET_OMX_LEGACY_RESCALING := true
 
 # HEVC support in libvideocodec
 BOARD_USE_HEVC_HWIP := true
@@ -211,5 +188,3 @@ BOARD_HARDWARE_CLASS += device/samsung/k3gxx/cmhw
 # SECCOMP
 # frameworks/av/services/{mediacodec,mediaextractor}/minijail
 BOARD_SECCOMP_POLICY += device/samsung/k3gxx/seccomp
-
--include vendor/samsung/k3gxx/BoardConfigVendor.mk

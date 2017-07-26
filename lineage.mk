@@ -5,9 +5,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/telephony.mk)
 # Inherit device configuration
 $(call inherit-product, device/samsung/k3gxx/device.mk)
 
-# Release name
-PRODUCT_RELEASE_NAME := k3gxx
-
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 

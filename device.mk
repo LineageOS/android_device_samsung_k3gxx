@@ -19,8 +19,6 @@ LOCAL_PATH := device/samsung/k3gxx
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
-$(call inherit-product, vendor/samsung/k3gxx/k3gxx-vendor.mk)
-
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
@@ -74,10 +72,9 @@ PRODUCT_AAPT_PREBUILT_DPI := xxxhdpi xxhdpi xhdpi hdpi
 
 # HW composer
 PRODUCT_PACKAGES += \
-    libion_exynos \
+    libion \
     libfimg \
     gralloc.exynos5 \
-    hwcomposer.exynos5
 
 # Consumerir
 PRODUCT_PACKAGES += \
@@ -235,5 +232,5 @@ $(call inherit-product-if-exists, frameworks/native/build/phone-xxhdpi-2048-hwui
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5/exynos5.mk)
 $(call inherit-product, hardware/samsung_slsi-cm/exynos5422/exynos5422.mk)
 
-PRODUCT_NAME := full_k3gxx
-PRODUCT_DEVICE := k3gxx
+# call the proprietary setup
+$(call inherit-product, vendor/samsung/k3gxx/k3gxx-vendor.mk)
