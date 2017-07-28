@@ -19,6 +19,10 @@ LOCAL_PATH := device/samsung/k3gxx
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
+# Flat device tree for boot image
+PRODUCT_PACKAGES += \
+    dtbhtoolExynos
+
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
