@@ -141,6 +141,7 @@ TARGET_OMX_LEGACY_RESCALING := true
 
 # HDMI
 BOARD_USES_GSC_VIDEO := true
+BOARD_USES_NEW_HDMI := true
 
 # HEVC support in libvideocodec
 BOARD_USE_HEVC_HWIP := true
