@@ -2,7 +2,7 @@
 <device name="Android">
     <item name="none">0</item>
     <item name="screen.on">51</item>
-    <item name="screen.full">270</item>
+    <item name="screen.full">197</item>
     <item name="bluetooth.on">2</item>
     <item name="bluetooth.active">145</item>
     <item name="wifi.on">4</item>
@@ -17,7 +17,22 @@
         <value>3.4</value>
         <value>3.4</value>
     </array>
-    <array name="cpu.speeds">
+    <array name="cpu.clusters.cores">
+        <value>4</value>
+        <value>4</value>
+    </array>
+    <array name="cpu.active.cluster0">
+        <value>143</value>
+        <value>123</value>
+        <value>115</value>
+        <value>113</value>
+        <value>108</value>
+        <value>105</value>
+        <value>99</value>
+        <value>92</value>
+        <value>89</value>
+    </array>
+    <array name="cpu.speeds.cluster0">
         <value>1300000</value>
         <value>1200000</value>
         <value>1100000</value>
@@ -28,18 +43,37 @@
         <value>600000</value>
         <value>500000</value>
     </array>
-    <item name="cpu.idle">2.87</item>
-    <array name="cpu.active">
-        <value>128</value>
-        <value>119</value>
-        <value>99</value>
-        <value>95</value>
-        <value>93</value>
-        <value>66</value>
-        <value>63</value>
-        <value>60</value>
-        <value>57</value>
+    <array name="cpu.active.cluster1">
+        <value>823</value>
+        <value>695</value>
+        <value>598</value>
+        <value>512</value>
+        <value>455</value>
+        <value>406</value>
+        <value>363</value>
+        <value>337</value>
+        <value>298</value>
+        <value>265</value>
+        <value>240</value>
+        <value>215</value>
     </array>
+    <array name="cpu.speeds.cluster1">
+        <value>1900000</value>
+        <value>1800000</value>
+        <value>1700000</value>
+        <value>1600000</value>
+        <value>1500000</value>
+        <value>1400000</value>
+        <value>1300000</value>
+        <value>1200000</value>
+        <value>1100000</value>
+        <value>1000000</value>
+        <value>900000</value>
+        <value>800000</value>
+    </array>
+    <item name="cpu.idle">2.87</item>
+    <item name="wakeup.power">0.15</item>
+    <item name="cpu.awake">55</item>
     <item name="battery.capacity">2800</item>
     <array name="wifi.batchedscan">
         <value>.0002</value>
