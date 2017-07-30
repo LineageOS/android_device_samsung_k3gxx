@@ -4,9 +4,6 @@
 
 # Grapics
 ro.bq.gpu_to_cpu_unsupported=1
-debug.hwc.force_gpu=1
-debug.hwc.winupdate=1
-debug.hwc.otf=1 
 
 # Open GL
 ro.opengles.version=196609
