@@ -165,13 +165,13 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.universal5422 \
-	init.baseband.rc \
+    init.baseband.rc \
     init.samsung.rc \
     init.universal5422.rc \
     init.universal5422.usb.rc \
     init.wifi.rc \
     ueventd.universal5422.rc \
-    init.rc
+    init.power.rc 
 
 # Samsung Doze
 PRODUCT_PACKAGES += \
