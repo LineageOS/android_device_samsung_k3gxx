@@ -264,15 +264,15 @@
     </path>
     <path name="earpiece_media_gains">
         <ctl name="HPOUT3 Digital Volume"  value="108" />
-        <ctl name="HPOUT3L Input 1 Volume" value="40" />
-        <ctl name="HPOUT3L Input 2 Volume" value="40" />
+        <ctl name="HPOUT3L Input 1 Volume" value="32" />
+        <ctl name="HPOUT3L Input 2 Volume" value="32" />
     </path>
     <path name="earpiece_incall_gains">
-        <ctl name="HPOUT3 Digital Volume"  value="128" />
-        <ctl name="HPOUT3L Input 1 Volume" value="40" />
-        <ctl name="HPOUT3L Input 2 Volume" value="40" />
-        <ctl name="HPOUT3L Input 3 Volume" value="40" />
-        <ctl name="HPOUT3L Input 4 Volume" value="40" />
+        <ctl name="HPOUT3 Digital Volume"  value="108" />
+        <ctl name="HPOUT3L Input 1 Volume" value="32" />
+        <ctl name="HPOUT3L Input 2 Volume" value="32" />
+        <ctl name="HPOUT3L Input 3 Volume" value="32" />
+        <ctl name="HPOUT3L Input 4 Volume" value="32" />
     </path>
 
     <!-- ########## Speaker Playback Paths ########## -->
@@ -297,11 +297,11 @@
     </path>
     <path name="speaker_media_gains">
         <ctl name="Speaker Digital Volume" value="118" />
-        <ctl name="SPKOUTL Input 1 Volume" value="34" />
-        <ctl name="SPKOUTL Input 2 Volume" value="34" />
+        <ctl name="SPKOUTL Input 1 Volume" value="35" />
+        <ctl name="SPKOUTL Input 2 Volume" value="35" />
     </path>
     <path name="speaker_incall_gains">
-        <ctl name="Speaker Digital Volume" value="122" />
+        <ctl name="Speaker Digital Volume" value="128" />
         <ctl name="SPKOUTL Input 1 Volume" value="34" />
         <ctl name="SPKOUTL Input 2 Volume" value="34" />
         <ctl name="SPKOUTL Input 3 Volume" value="40" />
@@ -339,12 +339,12 @@
     </path>
     <path name="headset_incall_gains">
         <ctl name="Noise Gate Switch" value="0" />
-        <ctl name="HPOUT1L Impedance Volume" value="116" />
-        <ctl name="HPOUT1R Impedance Volume" value="116" />
-        <ctl name="HPOUT1L Input 1 Volume" value="32" />
-        <ctl name="HPOUT1R Input 1 Volume" value="32" />
-        <ctl name="HPOUT1L Input 2 Volume" value="32" />
-        <ctl name="HPOUT1R Input 2 Volume" value="32" />
+        <ctl name="HPOUT1L Impedance Volume" value="114" />
+        <ctl name="HPOUT1R Impedance Volume" value="114" />
+        <ctl name="HPOUT1L Input 1 Volume" value="30" />
+        <ctl name="HPOUT1R Input 1 Volume" value="30" />
+        <ctl name="HPOUT1L Input 2 Volume" value="30" />
+        <ctl name="HPOUT1R Input 2 Volume" value="30" />
     </path>
 
     <!-- ########## Bluetooth Playback Paths ########## -->
@@ -534,31 +534,13 @@
         <path name="earpiece_incall_gains" />
     </path>
 
-    <path name="voice-earpiece-wb">
-        <path name="verb_voicecall" />
-        <path name="earpiece_incall" />
-        <path name="earpiece_incall_gains" />
-    </path>
-
     <path name="voice-speaker">
         <path name="verb_voicecall" />
         <path name="speaker_incall" />
         <path name="speaker_incall_gains" />
     </path>
 
-    <path name="voice-speaker-wb">
-        <path name="verb_voicecall" />
-        <path name="speaker_incall" />
-        <path name="speaker_incall_gains" />
-    </path>
-
     <path name="voice-headphones">
-        <path name="verb_voicecall" />
-        <path name="headset_incall" />
-        <path name="headset_incall_gains" />
-    </path>
-
-    <path name="voice-headphones-wb">
         <path name="verb_voicecall" />
         <path name="headset_incall" />
         <path name="headset_incall_gains" />
@@ -574,12 +556,7 @@
         <path name="btsco_incall_gains" />
     </path>
 
-    <path name="voice-bt-sco-headset-wb">
-        <path name="btsco_incall_WB" />
-        <path name="btsco_incall_gains" />
-    </path>
-
-    <!-- <path name="hdmi">
+    <path name="hdmi">
         <path name="hdmi_media" />
     </path>
 
@@ -587,7 +564,7 @@
         <path name="speaker_media" />
         <path name="speaker_media_gains" />
         <path name="hdmi_media" />
-    </path> -->
+    </path> 
 
     <!-- ########## Capture ########## -->
 
@@ -604,6 +581,12 @@
         <path name="bultin_mic_gains" />
         <path name="back_mic" />
         <path name="back_mic_gains" />
+        <path name="channel_stereo" />
+    </path>
+
+    <path name="headset-mic">
+        <path name="headset_mic" />
+        <path name="headset_mic_gains" />
         <path name="channel_right" />
     </path>
 
@@ -618,15 +601,7 @@
         <path name="earpiece-mic" />
     </path>
 
-    <path name="voice-earpiece-mic-wb">
-        <path name="earpiece-mic" />
-    </path>
-
     <path name="voice-speaker-mic">
-        <path name="speaker-mic" />
-    </path>
-
-    <path name="voice-speaker-mic-wb">
         <path name="speaker-mic" />
     </path>
 
@@ -636,22 +611,7 @@
         <path name="channel_right" />
     </path>
 
-    <path name="voice-headset-mic-wb">
-        <path name="headset_mic" />
-        <path name="headset_mic_gains" />
-        <path name="channel_right" />
-    </path>
-
     <path name="voice-bt-sco-mic">
-        <ctl name="AIF2TX1 Input 2" value="AIF3RX1" />
-        <ctl name="AIF2TX2 Input 2" value="AIF3RX2" />
-        <ctl name="ASRC2L Input" value="AIF3RX1" />
-        <ctl name="ASRC2R Input" value="AIF3RX2" />
-        <ctl name="AIF2TX1 Input 1" value="None" />
-        <ctl name="AIF2TX2 Input 1" value="None" />
-    </path>
-
-    <path name="voice-bt-sco-mic-wb">
         <ctl name="AIF2TX1 Input 2" value="AIF3RX1" />
         <ctl name="AIF2TX2 Input 2" value="AIF3RX2" />
         <ctl name="ASRC2L Input" value="AIF3RX1" />
@@ -692,7 +652,7 @@
         <path name="bultin_mic_gains" />
         <path name="back_mic" />
         <path name="back_mic_gains" />
-        <path name="channel_right" />
+        <path name="channel_stereo" />
     </path>
 
     <!--<path name="loopback-aec"> -->
