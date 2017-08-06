@@ -81,6 +81,6 @@
  *
  * #define DSP_POWEROFF_DELAY 10 * 1000
  */
-#define DSP_POWEROFF_DELAY 10 * 1000
+#define DSP_POWEROFF_DELAY 50 * 1000
 
 #endif // SAMSUNG_AUDIO_H
