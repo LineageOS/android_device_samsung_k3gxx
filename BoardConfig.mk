@@ -88,9 +88,6 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 # Power hal from hardware/samsung
 TARGET_POWERHAL_VARIANT := samsung
 
-# Audio hal from hardware/samsung
-TARGET_AUDIOHAL_VARIANT := samsung
-
 # ConsumerIR from hardware/samsung
 IR_HAL_SUFFIX := universal5422
 
