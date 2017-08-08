@@ -92,54 +92,54 @@
 
     <!-- common digital volume -->
     <!-- don't change this common volume -->
-    <ctl name="AIF1TX1 Input 1 Volume" value="40" />
-    <ctl name="AIF1TX1 Input 2 Volume" value="40" />
-    <ctl name="AIF1TX1 Input 3 Volume" value="40" />
-    <ctl name="AIF1TX1 Input 4 Volume" value="40" />
-    <ctl name="AIF1TX2 Input 1 Volume" value="40" />
-    <ctl name="AIF1TX2 Input 2 Volume" value="40" />
-    <ctl name="AIF1TX2 Input 3 Volume" value="40" />
-    <ctl name="AIF1TX2 Input 4 Volume" value="40" />
-    <ctl name="AIF1TX3 Input 1 Volume" value="40" />
-    <ctl name="AIF1TX3 Input 2 Volume" value="40" />
-    <ctl name="AIF1TX3 Input 3 Volume" value="40" />
-    <ctl name="AIF1TX3 Input 4 Volume" value="40" />
-    <ctl name="AIF1TX4 Input 1 Volume" value="40" />
-    <ctl name="AIF1TX4 Input 2 Volume" value="40" />
-    <ctl name="AIF1TX4 Input 3 Volume" value="40" />
-    <ctl name="AIF1TX4 Input 4 Volume" value="40" />
-    <ctl name="AIF1TX5 Input 1 Volume" value="40" />
-    <ctl name="AIF1TX5 Input 2 Volume" value="40" />
-    <ctl name="AIF1TX5 Input 3 Volume" value="40" />
-    <ctl name="AIF1TX5 Input 4 Volume" value="40" />
-    <ctl name="AIF1TX6 Input 1 Volume" value="40" />
-    <ctl name="AIF1TX6 Input 2 Volume" value="40" />
-    <ctl name="AIF1TX6 Input 3 Volume" value="40" />
-    <ctl name="AIF1TX6 Input 4 Volume" value="40" />
-    <ctl name="AIF1TX7 Input 1 Volume" value="40" />
-    <ctl name="AIF1TX7 Input 2 Volume" value="40" />
-    <ctl name="AIF1TX7 Input 3 Volume" value="40" />
-    <ctl name="AIF1TX7 Input 4 Volume" value="40" />
-    <ctl name="AIF1TX8 Input 1 Volume" value="40" />
-    <ctl name="AIF1TX8 Input 2 Volume" value="40" />
-    <ctl name="AIF1TX8 Input 3 Volume" value="40" />
-    <ctl name="AIF1TX8 Input 4 Volume" value="40" />
-    <ctl name="AIF2TX1 Input 1 Volume" value="40" />
-    <ctl name="AIF2TX1 Input 2 Volume" value="40" />
-    <ctl name="AIF2TX1 Input 3 Volume" value="40" />
-    <ctl name="AIF2TX1 Input 4 Volume" value="40" />
-    <ctl name="AIF2TX2 Input 1 Volume" value="40" />
-    <ctl name="AIF2TX2 Input 2 Volume" value="40" />
-    <ctl name="AIF2TX2 Input 3 Volume" value="40" />
-    <ctl name="AIF2TX2 Input 4 Volume" value="40" />
-    <ctl name="AIF3TX1 Input 1 Volume" value="40" />
-    <ctl name="AIF3TX1 Input 2 Volume" value="40" />
-    <ctl name="AIF3TX1 Input 3 Volume" value="40" />
-    <ctl name="AIF3TX1 Input 4 Volume" value="40" />
-    <ctl name="AIF3TX2 Input 1 Volume" value="40" />
-    <ctl name="AIF3TX2 Input 2 Volume" value="40" />
-    <ctl name="AIF3TX2 Input 3 Volume" value="40" />
-    <ctl name="AIF3TX2 Input 4 Volume" value="40" />
+    <ctl name="AIF1TX1 Input 1 Volume" value="32" />
+    <ctl name="AIF1TX1 Input 2 Volume" value="32" />
+    <ctl name="AIF1TX1 Input 3 Volume" value="32" />
+    <ctl name="AIF1TX1 Input 4 Volume" value="32" />
+    <ctl name="AIF1TX2 Input 1 Volume" value="32" />
+    <ctl name="AIF1TX2 Input 2 Volume" value="32" />
+    <ctl name="AIF1TX2 Input 3 Volume" value="32" />
+    <ctl name="AIF1TX2 Input 4 Volume" value="32" />
+    <ctl name="AIF1TX3 Input 1 Volume" value="32" />
+    <ctl name="AIF1TX3 Input 2 Volume" value="32" />
+    <ctl name="AIF1TX3 Input 3 Volume" value="32" />
+    <ctl name="AIF1TX3 Input 4 Volume" value="32" />
+    <ctl name="AIF1TX4 Input 1 Volume" value="32" />
+    <ctl name="AIF1TX4 Input 2 Volume" value="32" />
+    <ctl name="AIF1TX4 Input 3 Volume" value="32" />
+    <ctl name="AIF1TX4 Input 4 Volume" value="32" />
+    <ctl name="AIF1TX5 Input 1 Volume" value="32" />
+    <ctl name="AIF1TX5 Input 2 Volume" value="32" />
+    <ctl name="AIF1TX5 Input 3 Volume" value="32" />
+    <ctl name="AIF1TX5 Input 4 Volume" value="32" />
+    <ctl name="AIF1TX6 Input 1 Volume" value="32" />
+    <ctl name="AIF1TX6 Input 2 Volume" value="32" />
+    <ctl name="AIF1TX6 Input 3 Volume" value="32" />
+    <ctl name="AIF1TX6 Input 4 Volume" value="32" />
+    <ctl name="AIF1TX7 Input 1 Volume" value="32" />
+    <ctl name="AIF1TX7 Input 2 Volume" value="32" />
+    <ctl name="AIF1TX7 Input 3 Volume" value="32" />
+    <ctl name="AIF1TX7 Input 4 Volume" value="32" />
+    <ctl name="AIF1TX8 Input 1 Volume" value="32" />
+    <ctl name="AIF1TX8 Input 2 Volume" value="32" />
+    <ctl name="AIF1TX8 Input 3 Volume" value="32" />
+    <ctl name="AIF1TX8 Input 4 Volume" value="32" />
+    <ctl name="AIF2TX1 Input 1 Volume" value="32" />
+    <ctl name="AIF2TX1 Input 2 Volume" value="32" />
+    <ctl name="AIF2TX1 Input 3 Volume" value="32" />
+    <ctl name="AIF2TX1 Input 4 Volume" value="32" />
+    <ctl name="AIF2TX2 Input 1 Volume" value="32" />
+    <ctl name="AIF2TX2 Input 2 Volume" value="32" />
+    <ctl name="AIF2TX2 Input 3 Volume" value="32" />
+    <ctl name="AIF2TX2 Input 4 Volume" value="32" />
+    <ctl name="AIF3TX1 Input 1 Volume" value="32" />
+    <ctl name="AIF3TX1 Input 2 Volume" value="32" />
+    <ctl name="AIF3TX1 Input 3 Volume" value="32" />
+    <ctl name="AIF3TX1 Input 4 Volume" value="32" />
+    <ctl name="AIF3TX2 Input 1 Volume" value="32" />
+    <ctl name="AIF3TX2 Input 2 Volume" value="32" />
+    <ctl name="AIF3TX2 Input 3 Volume" value="32" />
+    <ctl name="AIF3TX2 Input 4 Volume" value="32" />
 
     <ctl name="Input Ramp Up" value="8ms/6dB" />
 
@@ -297,13 +297,13 @@
     </path>
     <path name="speaker_media_gains">
         <ctl name="Speaker Digital Volume" value="118" />
-        <ctl name="SPKOUTL Input 1 Volume" value="33" />
-        <ctl name="SPKOUTL Input 2 Volume" value="33" />
+        <ctl name="SPKOUTL Input 1 Volume" value="34" />
+        <ctl name="SPKOUTL Input 2 Volume" value="34" />
     </path>
     <path name="speaker_incall_gains">
-        <ctl name="Speaker Digital Volume" value="128" />
-        <ctl name="SPKOUTL Input 1 Volume" value="33" />
-        <ctl name="SPKOUTL Input 2 Volume" value="33" />
+        <ctl name="Speaker Digital Volume" value="122" />
+        <ctl name="SPKOUTL Input 1 Volume" value="34" />
+        <ctl name="SPKOUTL Input 2 Volume" value="34" />
         <ctl name="SPKOUTL Input 3 Volume" value="40" />
         <ctl name="SPKOUTL Input 4 Volume" value="40" />
     </path>
@@ -331,19 +331,19 @@
     </path>
 
     <path name="headset_media_gains">
-        <ctl name="AIF3TX1 Input 1 Volume" value="40" />
-        <ctl name="AIF3TX1 Input 2 Volume" value="40" />
-        <ctl name="AIF3TX2 Input 1 Volume" value="40" />
-        <ctl name="AIF3TX2 Input 2 Volume" value="40" />
+        <ctl name="AIF3TX1 Input 1 Volume" value="32" />
+        <ctl name="AIF3TX1 Input 2 Volume" value="32" />
+        <ctl name="AIF3TX2 Input 1 Volume" value="32" />
+        <ctl name="AIF3TX2 Input 2 Volume" value="32" />
     </path>
     <path name="headset_incall_gains">
         <ctl name="Noise Gate Switch" value="0" />
         <ctl name="HPOUT1L Impedance Volume" value="116" />
         <ctl name="HPOUT1R Impedance Volume" value="116" />
-        <ctl name="HPOUT1L Input 1 Volume" value="40" />
-        <ctl name="HPOUT1R Input 1 Volume" value="40" />
-        <ctl name="HPOUT1L Input 2 Volume" value="40" />
-        <ctl name="HPOUT1R Input 2 Volume" value="40" />
+        <ctl name="HPOUT1L Input 1 Volume" value="32" />
+        <ctl name="HPOUT1R Input 1 Volume" value="32" />
+        <ctl name="HPOUT1L Input 2 Volume" value="32" />
+        <ctl name="HPOUT1R Input 2 Volume" value="32" />
     </path>
 
     <!-- ########## Bluetooth Playback Paths ########## -->
@@ -437,7 +437,7 @@
     </path>
     <path name="bultin_mic_gains">
         <ctl name="IN1R Digital Volume" value="132" />
-        <ctl name="LHPF1 Input 1 Volume" value="40" />
+        <ctl name="LHPF1 Input 1 Volume" value="38" />
     </path>
 
     <path name="back_mic">
@@ -453,7 +453,7 @@
     </path>
     <path name="back_mic_gains">
         <ctl name="IN3R Digital Volume" value="132" />
-        <ctl name="LHPF2 Input 1 Volume" value="40" />
+        <ctl name="LHPF2 Input 1 Volume" value="38" />
     </path>
 
     <path name="headset_mic">
@@ -470,7 +470,7 @@
     <path name="headset_mic_gains">
         <ctl name="IN2R Volume" value="30" />
         <ctl name="IN2R Digital Volume" value="128" />
-        <ctl name="LHPF2 Input 1 Volume" value="40" />
+        <ctl name="LHPF2 Input 1 Volume" value="38" />
     </path>
 
     <!--
@@ -505,9 +505,25 @@
 
     <path name="speaker-and-headphones">
         <path name="verb_normal" />
-        <path name="speaker_media" />
+        <path name="earpiece_disable" />
+        <path name="btsco_disable" />
+        <!--        Speaker         -->
+        <path name="speaker_enable" />
+        <ctl name="ASRC RATE 1" value="SYNCCLK rate 3" />
+        <ctl name="ISRC2INT1 Input" value="ASRC2L" />
+        <ctl name="SPKOUTL Input 1" value="AIF1RX1" />
+        <ctl name="SPKOUTL Input 2" value="AIF1RX2" />
+        <ctl name="SPKOUTL Input 3" value="ISRC2INT1" />
         <path name="speaker_media_gains" />
-        <path name="headset_media" />
+        <!--        Headphones      -->
+        <path name="headset_enable" />
+        <ctl name="ASRC RATE 1" value="SYNCCLK rate 3" />
+        <ctl name="ISRC2INT1 Input" value="ASRC2L" />
+        <ctl name="HPOUT1 DRE Switch" value="0" />
+        <ctl name="HPOUT1L Input 1" value="AIF1RX1" />
+        <ctl name="HPOUT1R Input 1" value="AIF1RX2" />
+        <ctl name="HPOUT1L Input 2" value="ISRC2INT1" />
+        <ctl name="HPOUT1R Input 2" value="ISRC2INT1" />
         <path name="headset_media_gains" />
     </path>
 
