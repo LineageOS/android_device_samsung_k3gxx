@@ -331,10 +331,11 @@
     </path>
 
     <path name="headset_media_gains">
-        <ctl name="AIF3TX1 Input 1 Volume" value="32" />
-        <ctl name="AIF3TX1 Input 2 Volume" value="32" />
-        <ctl name="AIF3TX2 Input 1 Volume" value="32" />
-        <ctl name="AIF3TX2 Input 2 Volume" value="32" />
+        <ctl name="Noise Gate Switch" value="0" />
+        <ctl name="HPOUT1L Impedance Volume" value="114" />
+        <ctl name="HPOUT1R Impedance Volume" value="114" />
+        <ctl name="HPOUT1L Input 1 Volume" value="32" />
+        <ctl name="HPOUT1R Input 1 Volume" value="32" />
     </path>
     <path name="headset_incall_gains">
         <ctl name="Noise Gate Switch" value="0" />
