@@ -86,3 +86,6 @@ on boot
 
     # reset param index
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/param_index 0
+
+    # disable samsung input boosters
+    write /sys/class/input_booster/touch/level 0
