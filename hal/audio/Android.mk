@@ -23,37 +23,22 @@ LOCAL_MODULE_TAGS := optional
 
 LOCAL_SRC_FILES := audio_hw.c ril_interface.c
 
+ifeq ($(BOARD_USES_NEW_HDMI), true)
+    LOCAL_CFLAGS += -DUSES_NEW_HDMI
+endif
+
 LOCAL_C_INCLUDES += \
-	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include \
 	external/tinyalsa/include \
 	$(call include-path-for, audio-effects) \
 	$(call include-path-for, audio-utils) \
-	$(call include-path-for, audio-route)
+	$(call include-path-for, audio-route) \
+	hardware/samsung/ril/libsecril-client \
+        $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include \
 
 LOCAL_ADDITIONAL_DEPENDENCIES += \
 	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 
 LOCAL_SHARED_LIBRARIES := liblog libcutils libtinyalsa libaudioutils libdl \
-	libaudience_voicefx libaudioroute
-
-LOCAL_CFLAGS := -Wno-unused-parameter
-
-include $(BUILD_SHARED_LIBRARY)
-
-
-# Audience voice preprocessing library
-include $(CLEAR_VARS)
-
-LOCAL_MODULE := libaudience_voicefx
-LOCAL_MODULE_TAGS := optional
-
-LOCAL_SRC_FILES := eS325VoiceProcessing.cpp
-
-LOCAL_C_INCLUDES += \
-	$(call include-path-for, audio-effects)
-
-LOCAL_SHARED_LIBRARIES := liblog libutils
-
-LOCAL_CFLAGS := -Wno-unused-parameter
+	libaudioroute libsecril-client
 
 include $(BUILD_SHARED_LIBRARY)

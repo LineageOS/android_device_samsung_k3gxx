@@ -32,3 +32,7 @@ media.stagefright.less-secure=true
 
 # Wifi
 wlan.wfd.hdcp=disable
+
+# Audio
+audio_hal.force_voice_config=wide
+persist.bluetooth.disableabsvol=true
