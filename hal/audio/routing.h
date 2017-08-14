@@ -50,32 +50,32 @@ struct route_config {
 
 const struct route_config voice_speaker = {
     "voice-speaker",
-    "voice-speaker-mic"
+    "voice-speaker-mic-nb"
 };
 
 const struct route_config voice_speaker_wb = {
     "voice-speaker_wb",
-    "voice-speaker-mic"
+    "voice-speaker-mic-wb"
 };
 
 const struct route_config voice_earpiece = {
     "voice-earpiece",
-    "voice-earpiece-mic"
+    "voice-earpiece-mic-nb"
 };
 
 const struct route_config voice_earpiece_wb = {
     "voice-earpiece_wb",
-    "voice-earpiece-mic"
+    "voice-earpiece-mic-wb"
 };
 
 const struct route_config voice_headphones = {
     "voice-headphones",
-    "voice-earpiece-mic"
+    "voice-earpiece-mic-nb"
 };
 
 const struct route_config voice_headphones_wb = {
     "voice-headphones_wb",
-    "voice-earpiece-mic"
+    "voice-earpiece-mic-wb"
 };
 
 const struct route_config voice_headset = {
