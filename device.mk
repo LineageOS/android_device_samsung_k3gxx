@@ -44,8 +44,7 @@ TARGET_SCREEN_WIDTH := 1080
 
 # Camera
 PRODUCT_PACKAGES += \
-    Snap \
-    libhwjpeg
+    Snap
 
 # Display
 PRODUCT_PACKAGES += \
