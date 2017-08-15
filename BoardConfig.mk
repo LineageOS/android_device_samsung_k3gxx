@@ -33,6 +33,7 @@ TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
+ENABLE_CPUSETS := true
 
 # Bootloader
 TARGET_OTA_ASSERT_DEVICE := k3g,k3gxx
