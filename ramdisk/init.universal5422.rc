@@ -6,6 +6,8 @@ import init.power.rc
 
 on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
+    chown system system /sys/kernel/debug
+    chmod 0755 /sys/kernel/debug
 
 on init
 
