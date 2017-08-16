@@ -131,6 +131,7 @@ typedef uint16_t GpsLocationFlags;
 typedef uint16_t GpsAidingData;
 /* IMPORTANT: Note that the following values must match
  * constants in GpsLocationProvider.java. */
+#if 0
 #define GPS_DELETE_EPHEMERIS        0x0001
 #define GPS_DELETE_ALMANAC          0x0002
 #define GPS_DELETE_POSITION         0x0004
@@ -143,6 +144,37 @@ typedef uint16_t GpsAidingData;
 #define GPS_DELETE_SADATA           0x0200
 #define GPS_DELETE_RTI              0x0400
 #define GPS_DELETE_CELLDB_INFO      0x8000
+#else
+/** SAMSUNG **/
+#define GPS_DELETE_EPHEMERIS                     0x00000001
+#define GPS_DELETE_ALMANAC                       0x00000002
+#define GPS_DELETE_POSITION                      0x00000004
+#define GPS_DELETE_TIME                          0x00000008
+#define GPS_DELETE_IONO                          0x00000010
+#define GPS_DELETE_UTC                           0x00000020
+#define GPS_DELETE_HEALTH                        0x00000040
+#define GPS_DELETE_SVDIR                         0x00000080
+#define GPS_DELETE_SVSTEER                       0x00000100
+#define GPS_DELETE_SADATA                        0x00000200
+#define GPS_DELETE_RTI                           0x00000400
+#define GPS_DELETE_CELLDB_INFO                   0x00000800
+#define GPS_DELETE_ALMANAC_CORR                  0x00001000
+#define GPS_DELETE_FREQ_BIAS_EST                 0x00002000
+#define GLO_DELETE_EPHEMERIS                     0x00004000
+#define GLO_DELETE_ALMANAC                       0x00008000
+#define GLO_DELETE_SVDIR                         0x00010000
+#define GLO_DELETE_SVSTEER                       0x00020000
+#define GLO_DELETE_ALMANAC_CORR                  0x00040000
+#define GPS_DELETE_TIME_GPS                      0x00080000
+#define GLO_DELETE_TIME                          0x00100000
+#define BDS_DELETE_SVDIR                         0X00200000
+#define BDS_DELETE_SVSTEER                       0X00400000
+#define BDS_DELETE_TIME                          0X00800000
+#define BDS_DELETE_ALMANAC_CORR                  0X01000000
+#define BDS_DELETE_EPHEMERIS                     0X02000000
+#define BDS_DELETE_ALMANAC                       0X04000000
+/** SAMSUNG END **/
+#endif
 #define GPS_DELETE_ALL              0xFFFF
 
 /** AGPS type */
@@ -310,12 +342,6 @@ typedef uint32_t GnssMeasurementFlags;
 #define GNSS_MEASUREMENT_HAS_CARRIER_PHASE                     (1<<11)
 /** A valid 'carrier phase uncertainty' is stored in the data structure. */
 #define GNSS_MEASUREMENT_HAS_CARRIER_PHASE_UNCERTAINTY         (1<<12)
-/**
- * The value of 'pseudorange rate' is uncorrected.
- * This is a mandatory flag. See comments of
- * GpsMeasurement::pseudorange_rate_mps for more details.
- */
-#define GNSS_MEASUREMENT_HAS_UNCORRECTED_PSEUDORANGE_RATE      (1<<18)
 
 /* The following typedef together with its constants below are deprecated, and
  * will be removed in the next release. */
@@ -569,20 +595,15 @@ typedef struct {
     /** set to sizeof(GpsSvInfo) */
     size_t          size;
     /** Pseudo-random number for the SV. */
-
     int     prn;
-
     /** Signal to noise ratio. */
     float   snr;
-
     /** Elevation of SV in degrees. */
     float   elevation;
-
     /** Azimuth of SV in degrees. */
     float   azimuth;
-
+    /** SAMSUNG **/
     int used;
-
 } GpsSvInfo;
 
 typedef struct {
@@ -677,9 +698,6 @@ typedef struct {
      * might rely in the old (wrong) behavior.
      */
     uint16_t lac;
-#ifdef AGPS_USE_PSC
-    uint16_t psc;
-#endif
     /** Cell id in 2G. Utran Cell id in 3G. Cell Global Id EUTRA in LTE. */
     uint32_t cid;
     /** Tracking Area Code in LTE. */
