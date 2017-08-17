@@ -17,7 +17,7 @@ allow macloader system_file:file execute_no_trans;
 file_type_auto_trans(macloader, system_data_file, wifi_data_file)
 
 allow macloader wifi_data_file:dir create_dir_perms;
-allow macloader wifi_data_file:file { create_file_perms getattr setattr };
+allow macloader wifi_data_file:file { create_file_perms getattr setattr open write };
 
 # /sys/module/dhd/parameters/nvram_path
 allow macloader sysfs:file rw_file_perms;
@@ -28,6 +28,3 @@ allow macloader efs_file:dir r_dir_perms;
 # /efs/wifi/.mac.info
 allow macloader wifi_efs_file:dir r_dir_perms;
 allow macloader wifi_efs_file:file r_file_perms;
-
-allow macloader system_data_file:file { getattr open };
-

@@ -1,0 +1,9 @@
+#### sensorhubservice
+#
+type sensorhubservice, domain, domain_deprecated;
+type sensorhubservice_exec, exec_type, file_type;
+
+allow sensorhubservice servicemanager:binder { call transfer };
+allow sensorhubservice sensorhub_service:service_manager add;
+
+init_daemon_domain(sensorhubservice)

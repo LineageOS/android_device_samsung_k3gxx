@@ -1,0 +1,2 @@
+allow audioserver debugfs_trace_marker:file { getattr open read write };
+allow audioserver rild:unix_stream_socket connectto;

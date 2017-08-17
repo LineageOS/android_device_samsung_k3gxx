@@ -21,3 +21,5 @@ allow vcs tee:unix_stream_socket connectto;
 
 # /dev/s5p-smem
 allow vcs secmem_device:chr_file { read write ioctl open };
+
+allow vcs ion_device:chr_file { open read write ioctl };

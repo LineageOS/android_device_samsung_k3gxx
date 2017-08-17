@@ -23,6 +23,13 @@ allow init debugfs:file write;
 
 # denied { setattr relabelto } name="rear_camfw"
 allow init camera_device:file { relabelto setattr };
+allow init camera_device:lnk_file { read relabelto };
+allow init camera_device:dir relabelto;
 
 #rild-cas
 allow init socket_device:sock_file { create setattr unlink write };
+
+allow init proc:dir write;
+allow init servicemanager:binder { call transfer };
+allow init wifi_efs_file:file getattr;
+allow init batch_io_device:chr_file setattr;

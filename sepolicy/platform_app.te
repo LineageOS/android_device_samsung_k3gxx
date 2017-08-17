@@ -4,3 +4,4 @@ allow platform_app exfat:file rw_file_perms;
 #nfc
 allow platform_app nfc_service:service_manager find;
 
+allow platform_app self:process ptrace;

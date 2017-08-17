@@ -41,3 +41,7 @@ allow system_server debugfs:file r_file_perms;
 
 # Unknown
 allow system_server kernel:process setsched;
+
+allow system_server batch_io_device:chr_file { ioctl open read };
+allow system_server sysfs_input_file:file getattr;
+allow system_server app_efs_file:file { open read };

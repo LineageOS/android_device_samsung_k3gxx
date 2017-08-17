@@ -9,4 +9,8 @@ allow ueventd sysfs_multipdp_writable:file rw_file_perms;
 allow ueventd emmcblk_device:blk_file { relabelfrom relabelto };
 
 # /sys/devices/virtual/camera/rear/rear_camfw
-allow ueventd camera_device:file { getattr relabelto };
+allow ueventd camera_device:file { getattr relabelto open write };
+allow ueventd camera_device:dir { getattr open read search };
+
+allow ueventd batch_io_device:chr_file { create setattr };
+allow ueventd sysfs_bluetooth_writable:file { open write };
