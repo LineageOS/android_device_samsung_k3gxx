@@ -622,18 +622,6 @@ on property:ro.debug_level=0x4f4c
 on property:ro.bootmode=charger
     mount ext4 /dev/block/mmcblk0p18 /system wait ro
 
-
-# service for TZPR provisioning version check app
-service scranton_RD /system/bin/scranton_RD
-     class main
-     user root
-     disabled
-     oneshot
-
-# start for TZPR provisioning version check app
-on property:sys.mobicoredaemon.enable=true
-    start scranton_RD
-
 # Secure Storage startup
 service secure_storage /system/bin/secure_storage_daemon
     class core
