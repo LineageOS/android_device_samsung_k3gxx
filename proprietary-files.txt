@@ -67,14 +67,13 @@ lib/libhwjpeg.so
 
 # Sensors
 lib/libsensorhub.so
-lib/libsensorhubservice.so \
-lib/hw/sensorhubs.universal5422.so \
-lib/hw/sensors.universal5422.so \
-bin/sensorhubservice \
+lib/libsensorhubservice.so
+lib/hw/sensorhubs.universal5422.so
+lib/hw/sensors.universal5422.so
+bin/sensorhubservice
 bin/sensorservice
 
 # Gps
-lib/hw/gps.default.so
 lib/hw/gps.default.so:lib/hw/gps.universal5422.so
 bin/gpsd
 lib/libwrappergps.so
@@ -93,11 +92,10 @@ lib/libvalAuth.so
 lib/libvcsfp.so
 lib/libvfmClient.so
 lib/libvfmtztransport.so
-vcsFPService
+bin/vcsFPService
 
 # GPU
 vendor/lib/egl/libGLES_mali.so
-lib/hw/gralloc.exynos5.so
 lib/hw/gralloc.exynos5.so:vendor/lib/hw/gralloc.exynos5.so
 
 # Widevine
