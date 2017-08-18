@@ -1,1 +1,2 @@
-genfscon debugfs "/asoc/Pacific WM5110 Sound/dapm/" u:object_r:debugfs_asoc:s0
+genfscon debugfs "/asoc/Pacific WM5110 Sound/dapm" u:object_r:debugfs_asoc:s0
+genfscon debugfs "/asoc/Pacific WM5110 Sound/florida-codec/dapm" u:object_r:debugfs_asoc:s0

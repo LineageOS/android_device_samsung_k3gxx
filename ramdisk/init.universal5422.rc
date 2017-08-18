@@ -8,6 +8,7 @@ on early-init
     mount debugfs /sys/kernel/debug /sys/kernel/debug
     chown system system /sys/kernel/debug
     chmod 0755 /sys/kernel/debug
+    restorecon_recursive /sys/kernel/debug
 
 on init
 

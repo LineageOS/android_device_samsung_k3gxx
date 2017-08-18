@@ -3,3 +3,4 @@ allow audioserver rild:unix_stream_socket connectto;
 
 # /d/asoc/Pacific WM5110 Sound/dapm/
 allow audioserver debugfs_asoc:file r_file_perms;
+allow audioserver debugfs_asoc:dir r_dir_perms;
