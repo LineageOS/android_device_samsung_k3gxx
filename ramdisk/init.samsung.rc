@@ -652,12 +652,6 @@ on charger
     write /sys/class/power_supply/battery/batt_update_data "/efs/Battery/battery_data.dat"
     class_start charger
 
-# deferred initcall
-service sec-sh /system/etc/init.sec.boot.sh
-    class core
-    user root
-    oneshot
-
 # adbd is controlled via property triggers in init.<platform>.usb.rc
 service adbd /sbin/adbd --root_seclabel=u:r:su:s0
     class core
@@ -665,45 +659,11 @@ service adbd /sbin/adbd --root_seclabel=u:r:su:s0
     disabled
     seclabel u:r:adbd:s0
 
-# adbd on at boot in emulator
-on property:ro.kernel.qemu=1
-    start adbd
-
-# RIL
-service ril-daemon /system/bin/rild
-    class main
-    socket rild stream 660 root radio
-    socket sap_uim_socket1 stream 660 bluetooth bluetooth
-    socket rild-debug stream 660 radio system
-#FSI {Tmm] Add Start (120615)
-    socket rild-cas stream 660  casdrm mmb
-#FSI {Tmm] Add End (120615)
-    user root
-    group radio cache inet misc audio sdcard_r sdcard_rw log vpn system
-    onrestart restart cpboot-daemon
-on property:persist.sys.cpboot=disable
-    stop ril-daemon
-    stop cpboot-daemon
-
 # MobiCore startup
 service mobicore /system/bin/mcDriverDaemon -r /system/app/FFFFFFFF000000000000000000000001.drbin -r /system/app/mcRegistry/ffffffffd0000000000000000000000a.tlbin -r /system/app/mcRegistry/ffffffffd00000000000000000000016.tlbin
     class core
     user system
     group system
-
-service surfaceflinger /system/bin/surfaceflinger
-    class core
-    user system
-    group graphics drmrpc
-    onrestart restart zygote
-    writepid /dev/cpuset/system-background/tasks
-    onrestart restart loc_launcher
-
-service media /system/bin/mediaserver
-    class main
-    user media
-    group system audio camera inet net_bt net_bt_admin net_raw net_bw_acct drmrpc sdcard_r shell mediadrm media_rw lgt_gid radio
-    ioprio rt 4
 
 on property:sys.boot_completed=1
     write /sys/block/mmcblk0/queue/scheduler cfq
