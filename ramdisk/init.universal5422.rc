@@ -500,12 +500,6 @@ on fs
     chown system system /sys/class/mdnie/mdnie/auto_brightness
     chown system system /sys/class/mdnie/mdnie/sensorRGB
 
-# Copy DRM Key
-    copy /system/app/wv.keys /factory/wv.keys
-
-# Permission for DRM Key
-    chmod 0644 /factory/wv.keys
-
 # MTP permission
     chmod 0660 /dev/usb_mtp_gadget
     chown system mtp /dev/usb_mtp_gadget
@@ -576,13 +570,6 @@ service watchdogd /sbin/watchdogd 10 20
 on property:ro.debuggable=1
     write /sys/module/kgdboc/parameters/kgdboc ttyFIQ1
     write /sys/module/fiq_debugger/parameters/kgdb_enable 1
-# SecEDS
-service TvoutService_C /system/bin/bintvoutservice
-     class main
-     user system
-     group graphics
-on property:ro.SecEDS.enable=false
-    stop TvoutService_C
 	
 # CS service
 service fingerprintd /system/bin/fingerprintd
@@ -622,10 +609,3 @@ on property:ro.debug_level=0x4f4c
 # LPM
 on property:ro.bootmode=charger
     mount ext4 /dev/block/mmcblk0p18 /system wait ro
-
-# Secure Storage startup
-service secure_storage /system/bin/secure_storage_daemon
-    class core
-    user system
-    group system
-    disabled
