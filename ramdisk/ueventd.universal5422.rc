@@ -105,7 +105,7 @@
 /dev/umts*                0660   system     radio
 
 # vfs
-/dev/vfsspi       		  0660   system     system
+/dev/vfsspi               0660   system     system
 
 /dev/block/mmcblk0p8      0660   system     system
 # sensor sysfs properties
@@ -121,8 +121,6 @@
 /sys/bus/iio/devices/iio:device*    0664   system     radio
 
 /dev/tzic                 0660   system     system
-/dev/hidraw1              0664   root       system
-/dev/ovr*                 0664   root       system
 
 # for PL2303 driver
 /dev/ttyUSB*              0660   system     usb
@@ -136,12 +134,6 @@
 
 # sensorhub
 /dev/ssp_sensorhub        0660   system     system
-/dev/ssp_data_injection   0660   system     system
 
 # Reactivation Lock
-/dev/block/mmcblk0rpmb	  0660	 system	    system
-
-# Fingerprint Sensor
-/dev/vfsspi      		  0660   system     system
-/dev/esfp0    			  0660   system     system
-
+/dev/block/mmcblk0rpmb    0660   system	    system
