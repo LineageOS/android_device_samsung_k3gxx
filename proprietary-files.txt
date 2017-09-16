@@ -71,7 +71,6 @@ lib/libsensorhubservice.so
 lib/hw/sensorhubs.universal5422.so
 lib/hw/sensors.universal5422.so
 bin/sensorhubservice
-bin/sensorservice
 
 # Gps
 lib/hw/gps.default.so:lib/hw/gps.universal5422.so
